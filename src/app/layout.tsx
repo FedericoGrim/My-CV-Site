@@ -22,11 +22,11 @@ export default function RootLayout({
 
       <body className={inter.className}>
         {children}
-      </body>
 
-      <footer>
+        <footer>
 
       </footer>
+      </body>
     </html>
   );
 }
