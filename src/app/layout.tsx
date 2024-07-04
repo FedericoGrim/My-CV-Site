@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/styles/globals.css";
 
+import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,8 +23,13 @@ export default function RootLayout({
       </head>
 
       <body className={inter.className}>
-        {children}
+        <DropDownMenu
+          class=""
+          options={["Contatti", "Progetti", "Esperienze lavorative"]}
+          optionsFunctionality={[]}
+        />
 
+        {children}
         <footer>
 
       </footer>
