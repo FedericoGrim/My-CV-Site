@@ -13,14 +13,17 @@ import { DropDownMenuProps } from './DropDownMenuProps';
 
 export const DropDownMenu: React.FC<DropDownMenuProps> = ({
   iconSelection = 'menu',
+
   classnameDropDown,
   classnameMenu,
   classnameMenuIcon,
   classnameMyButton,
   classnameMyButtonDiv,
+
   variantMyButton = 'text',
+  
   options = ['text', 'text', 'text'],
-  optionsFunctionality
+  optionsFunctionality = []
 }) => {
 
   const handleMenuClick = (index: number) => {

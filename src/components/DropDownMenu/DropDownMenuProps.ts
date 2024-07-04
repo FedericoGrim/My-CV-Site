@@ -1,5 +1,5 @@
 export interface DropDownMenuProps {
-    iconSelection: 'menu' | 'BOH';
+    iconSelection?: 'menu' | 'BOH';
 
   classnameDropDown?: string;
   classnameMenuIcon?: string;
@@ -7,8 +7,8 @@ export interface DropDownMenuProps {
   classnameMyButtonDiv?: string;
   classnameMyButton?: string;
 
-  options: string[];
-  optionsFunctionality: (() => void)[];
+  options?: string[];
+  optionsFunctionality?: (() => void)[];
 
-  variantMyButton: 'text' | 'outlined' | 'contained';
+  variantMyButton?: 'text' | 'outlined' | 'contained';
 }
