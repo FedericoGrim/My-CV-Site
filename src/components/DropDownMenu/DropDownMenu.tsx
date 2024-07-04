@@ -7,7 +7,8 @@ import { Menu } from '@mui/base/Menu';
 import { MenuItem } from '@mui/base/MenuItem';
 import { MyButton } from '../Button/Button';
 import { DropDownMenuProps } from './DropDownMenuProps';
-import { handleMenuClick, renderIcon } from './DropDownMenuFunction';
+import { handleMenuClick } from './DropDownMenuLogic';
+import { renderIcon } from './DropDownMenuFrontendLogic';
 
 export const DropDownMenu: React.FC<DropDownMenuProps> = ({
     iconSelection = 'menu',
