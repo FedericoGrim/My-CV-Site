@@ -25,17 +25,21 @@ export const DropDownMenu: React.FC<DropDownMenuProps> = ({
     };
 
     return (
-        <Dropdown className={className}>
-            <MenuButton>
-                <MenuIcon/>
-            </MenuButton>
-            <Menu>
-                {options.map((option, index) => (
-                    <MenuItem key={option} onClick={() => handleMenuClick(index)}>
-                        {option}
-                    </MenuItem>
-                ))}
-            </Menu>
-        </Dropdown>
+        <div className='flex justify-end m-3'>
+            <Dropdown className={className}>
+                <MenuButton>
+                    <MenuIcon
+                        className='bg-green-800 p-1 rounded-lg text-5xl'
+                    />
+                </MenuButton>
+                <Menu>
+                    {options.map((option, index) => (
+                        <MenuItem key={option} onClick={() => handleMenuClick(index)}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </Menu>
+            </Dropdown>
+        </div>
     );
 };

@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <DropDownMenu
           class=""
-          options={["Contatti", "Progetti", "Esperienze lavorative"]}
+          options={["Contatti", "Progetti", "Ex Lavori"]}
           optionsFunctionality={[]}
         />
 
