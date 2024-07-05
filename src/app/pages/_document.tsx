@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="icon" href="../../../public/favicon.ico" />
+          <link rel="icon" href="/favicon.ico" />
           <meta name="description" content="Descrizione del tuo sito" />
           <meta property="og:image" content="URL dell'immagine per l'anteprima sui social media" />
           <meta name="og:title" content="Titolo del tuo sito" />
