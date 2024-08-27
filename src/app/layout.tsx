@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "@/app/styles/globals.css";
 
 import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
+import { MyImage } from "@/components/Image/Image";
+
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +40,13 @@ export default function RootLayout({
 
             options={["Contatti", "Progetti", "Esperienze di lavoro"]}
             optionsFunctionality={[]}
+          />
+
+          <MyImage
+            src="images/myLogo.png"
+            alt=""
+            width={60}
+            height={50}
           />
         </div>
 
