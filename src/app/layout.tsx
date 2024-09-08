@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={inter.className}>
-        <div className="flex justify-between m-3">
+        <div className="flex justify-between m-3 bg-black">
           <div className="flex items-center">
             <div className="relative">
               <Link href="/" passHref>
@@ -36,7 +36,7 @@ export default function RootLayout({
               <MyImage src="images/myLogo.png" alt="Logo di Federico Grimaldi" width={50} height={50} />
             </div>
 
-            <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-customGreen" />
+            <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-customGreen" font="teko" />
           </div>
 
           <DropDownMenu
