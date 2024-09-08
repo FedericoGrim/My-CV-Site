@@ -3,6 +3,11 @@ import { Inter } from "next/font/google";
 import "@/app/styles/globals.css";
 
 import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
+import { MyImage } from "@/components/Image/Image";
+import { Label } from "@/components/Label/Label";
+
+import Button from "@mui/material/Button";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,32 +23,37 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-
-      </head>
-
+      <head></head>
       <body className={inter.className}>
-        <div className='flex justify-end m-3'>
+        <div className="flex justify-between m-3">
+          <div className="flex items-center">
+            <div className="relative">
+              <Link href="/" passHref>
+                <Button className="absolute inset-0 w-full h-full bg-transparent" aria-label="Torna alla Home">
+                  <span className="sr-only">Torna alla Home</span>
+                </Button>
+              </Link>
+              <MyImage src="images/myLogo.png" alt="Logo di Federico Grimaldi" width={50} height={50} />
+            </div>
+
+            <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-customGreen" />
+          </div>
+
           <DropDownMenu
             iconSelection="menu"
-
-            classnameDropDown=""
-            classnameMenu='my-2 bg-green-800 rounded-lg'
-            classnameMenuIcon='bg-green-800 p-1 rounded-lg text-5xl'
+            classnameDropDown="justify-end"
+            classnameMenu="my-2 bg-customGreen rounded-lg" 
+            classnameMenuIcon="bg-customGreen p-1 rounded-lg text-5xl text-black"
             classnameMyButton="text-black border-2 border-black w-24"
-            classnameMyButtonDiv='m-1'
-
-            variantMyButton='outlined'
-
+            classnameMyButtonDiv="m-1"
+            variantMyButton="outlined"
             options={["Contatti", "Progetti", "Esperienze di lavoro"]}
             optionsFunctionality={[]}
           />
         </div>
 
         {children}
-        <footer>
-
-      </footer>
+        <footer></footer>
       </body>
     </html>
   );
