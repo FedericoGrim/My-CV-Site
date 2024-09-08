@@ -1,5 +1,3 @@
-
-
 const handleMenuClick = (index: number, optionsFunctionality: (() => void)[]) => {
     if (index >= 0 && index < optionsFunctionality.length) {
         optionsFunctionality[index]();

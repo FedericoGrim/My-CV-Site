@@ -1,15 +1,12 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import SquareIcon from '@mui/icons-material/Square';
 
-const renderIcon = (iconSelection: 'menu' | 'BOH', classnameMenuIcon?: string) => {
-    switch (iconSelection) {
-        case 'menu':
-            return <MenuIcon className={classnameMenuIcon} />;
-        case 'BOH':
-            return <SquareIcon className={classnameMenuIcon} />;
-        default:
-            return <MenuIcon className={classnameMenuIcon} />;
-    }
-};
+export type IconKey = 'menu' | 'square';
 
-export {renderIcon};
+const menu = (classnameMenuIcon?: string) => <MenuIcon className={classnameMenuIcon} />;
+const square = (classnameMenuIcon?: string) => <SquareIcon className={classnameMenuIcon} />;
+
+export const Icons = {
+    menu: menu,
+    square: square,
+};
