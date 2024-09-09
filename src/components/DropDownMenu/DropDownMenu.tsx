@@ -8,10 +8,10 @@ import { MenuItem } from '@mui/base/MenuItem';
 import { MyButton } from '../Button/Button';
 import { DropDownMenuProps } from './DropDownMenuProps';
 import { handleMenuClick } from './DropDownMenuLogic';
-import { Icons, IconKey } from './DropDownMenuFrontendLogic'; // Importa l'oggetto Icons
+import { Icons, IconKey } from './DropDownMenuFrontendLogic';
 
 export const DropDownMenu: React.FC<DropDownMenuProps & { iconSelection?: IconKey }> = ({
-    iconSelection = 'menu',  // Imposta "menu" come icona predefinita
+    iconSelection = 'menu',
     classnameDropDown,
     classnameMenu,
     classnameMenuIcon,
@@ -22,13 +22,12 @@ export const DropDownMenu: React.FC<DropDownMenuProps & { iconSelection?: IconKe
     optionsFunctionality = []
 }) => {
 
-    // Ottieni l'icona selezionata dall'oggetto Icons o usa il default
     const IconComponent = Icons[iconSelection] || Icons.menu;
 
     return (
         <Dropdown className={classnameDropDown}>
             <MenuButton>
-                {IconComponent(classnameMenuIcon)} {/* Renderizza l'icona dinamica */}
+                {IconComponent(classnameMenuIcon)}
             </MenuButton>
             <Menu className={classnameMenu}>
                 {options.map((option, index) => (
