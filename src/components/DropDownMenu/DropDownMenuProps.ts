@@ -7,8 +7,8 @@ export interface DropDownMenuProps {
     classnameMyButtonDiv?: string; //lo stile per il div che contiene i vari tasti del menu
     classnameMyButton?: string; //lo stile per i vari tasti del menu
 
-    options?: string[];
-    optionsFunctionality?: (() => void)[];
+    options?: string[]; // Array di stringhe per le opzioni del menu
+    optionsFunctionality?: string[]; // Array di stringhe (es. URL)
 
     variantMyButton?: 'text' | 'outlined' | 'contained'; //i tre aspetti per i pulsanti del menu
 }
