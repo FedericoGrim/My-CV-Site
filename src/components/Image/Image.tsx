@@ -6,24 +6,48 @@ import { ImageProps } from './ImageProps';
 
 export const MyImage: React.FC<ImageProps> = ({
   src,
-  alt = "Image description",
+  alt,  // Alt obbligatorio
   width,
   height,
-  fill = false,  // Usa fill per indicare il layout
-  objectFit = 'cover',  // Default objectFit
+  fill = false,
+  objectFit = 'cover',
   className = "",
   divClassName = "",
+  priority = false,  // Supporto per `priority`
+  unoptimized = false,  // Supporto per `unoptimized`
+  sizes,  // Opzionale, per immagini responsive
+  placeholder = 'empty',  // Placeholder (vuoto o blur)
+  blurDataURL,  // Aggiunto per le immagini sfocate
 }) => {
   return (
     <div className={`relative ${divClassName}`}>
-      <Image
-        src={src}
-        alt={alt}
-        // Usa fill se specificato, altrimenti usa width e height
-        {...(fill ? { fill: true } : { width, height })}
-        style={{ objectFit }}  // Usa objectFit come stile inline
-        className={className}
-      />
+      {fill ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          style={{ objectFit }}
+          className={className}
+          priority={priority}
+          unoptimized={unoptimized}
+          placeholder={placeholder}
+          blurDataURL={blurDataURL}
+          sizes={sizes}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={className}
+          priority={priority}
+          unoptimized={unoptimized}
+          placeholder={placeholder}
+          blurDataURL={blurDataURL}
+          sizes={sizes}
+        />
+      )}
     </div>
   );
 };

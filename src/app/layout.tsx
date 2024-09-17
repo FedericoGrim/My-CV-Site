@@ -27,13 +27,16 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex justify-between m-3 bg-black">
           <div className="flex items-center">
-            <div className="relative">
+            <div className="relative flex items-center">
               <Link href="/" passHref>
-                <Button className="absolute inset-0 w-full h-full bg-transparent" aria-label="Torna alla Home">
-                  <span className="sr-only">Torna alla Home</span>
-                </Button>
+                <MyImage
+                  src="images/myLogo.png"
+                  alt="Logo di Federico Grimaldi"
+                  width={50}
+                  height={50}
+                  className="z-0"
+                />
               </Link>
-              <MyImage src="images/myLogo.png" alt="Logo di Federico Grimaldi" width={50} height={50} />
             </div>
 
             <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-customGreen" font="teko" />
