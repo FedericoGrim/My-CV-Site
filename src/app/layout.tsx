@@ -51,7 +51,7 @@ export default function RootLayout({
             classnameMyButtonDiv="m-1"
             variantMyButton="outlined"
             options={["Contatti", "Progetti", "Esperienze di lavoro"]}
-            optionsFunctionality={[]}
+            optionsFunctionality={["/pages/contatti", "/pages/projects"]}
           />
         </div>
 
