@@ -17,14 +17,11 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #000000; /* Imposta lo sfondo completamente nero */
+  color: rgb(var(--foreground-rgb)); /* Usa la variabile per il colore del testo */
 }
+
+
 
 @layer utilities {
   .text-balance {

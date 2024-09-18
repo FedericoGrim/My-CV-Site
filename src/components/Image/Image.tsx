@@ -6,21 +6,22 @@ import { ImageProps } from './ImageProps';
 
 export const MyImage: React.FC<ImageProps> = ({
   src,
-  alt,  // Alt obbligatorio
+  alt,  
   width,
   height,
   fill = false,
   objectFit = 'cover',
   className = "",
   divClassName = "",
-  priority = false,  // Supporto per `priority`
-  unoptimized = false,  // Supporto per `unoptimized`
-  sizes,  // Opzionale, per immagini responsive
-  placeholder = 'empty',  // Placeholder (vuoto o blur)
-  blurDataURL,  // Aggiunto per le immagini sfocate
+  divImageStyle = {},
+  priority = false,
+  unoptimized = false,
+  sizes, 
+  placeholder = 'empty',  
+  blurDataURL,  
 }) => {
   return (
-    <div className={`relative ${divClassName}`}>
+    <div className={`relative ${divClassName}`} style={divImageStyle}>
       {fill ? (
         <Image
           src={src}
