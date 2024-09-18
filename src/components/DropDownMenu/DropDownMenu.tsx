@@ -17,7 +17,7 @@ export const DropDownMenu: React.FC<DropDownMenuProps & { iconSelection?: IconKe
     classnameMyButtonDiv,
     variantMyButton = 'text',
     options = ['text', 'text', 'text'],
-    optionsFunctionality = []
+    buttonsLinks = []
 }) => {
 
     const IconComponent = Icons[iconSelection] || Icons.menu;
@@ -31,7 +31,7 @@ export const DropDownMenu: React.FC<DropDownMenuProps & { iconSelection?: IconKe
                 {options.map((option, index) => (
                     <MenuItem key={option}>
                         <div className={classnameMyButtonDiv}>
-                            <Link href={optionsFunctionality[index] || '/'} passHref>
+                            <Link href={buttonsLinks[index] || '/'} passHref>
                                 <MyButton className={classnameMyButton} text={option} variant={variantMyButton} />
                             </Link>
                         </div>
