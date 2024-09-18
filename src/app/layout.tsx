@@ -6,7 +6,6 @@ import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
 import { MyImage } from "@/components/Image/Image";
 import { Label } from "@/components/Label/Label";
 
-import Button from "@mui/material/Button";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -51,7 +50,7 @@ export default function RootLayout({
             classnameMyButtonDiv="m-1"
             variantMyButton="outlined"
             options={["Contatti", "Progetti", "Esperienze di lavoro"]}
-            optionsFunctionality={["/pages/contatti", "/pages/projects"]}
+            buttonsLinks={["/pages/contatti", "/pages/projects"]}
           />
         </div>
 
