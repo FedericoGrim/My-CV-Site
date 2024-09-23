@@ -8,7 +8,7 @@ export default function Home() {
       <div className="relative w-full" style={{ height: '400px' }}>
         {/* Prima immagine di sfondo */}
         <MyImage 
-          src="/images/CodeBackground.png" 
+          src="/My-CV-Site/images/CodeBackground.png" 
           alt="Code Background"
           fill 
           objectFit="cover"
@@ -19,7 +19,7 @@ export default function Home() {
         {/* Immagine rotonda in basso */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[40px]">
           <MyImage 
-            src="/images/FotoPlaceHolder.png" 
+            src="/My-CV-Site/images/FotoPlaceHolder.png" 
             alt="Round Image"
             width={250} 
             height={250} 
