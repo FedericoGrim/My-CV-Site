@@ -55,7 +55,18 @@ export default function RootLayout({
         </div>
 
         {children}
-        <footer></footer>
+
+        <footer>
+          <div>
+            {/*Sezione dei social*/}
+          </div>
+          <div>
+            {/*Sezione su come contattarmi*/}
+          </div>
+          <div>
+            {/*Sezione per scaricare il CV di Europass*/}
+          </div>
+        </footer>
       </body>
     </html>
   );
