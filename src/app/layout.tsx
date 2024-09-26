@@ -7,6 +7,7 @@ import { MyImage } from "@/components/Image/Image";
 import { Label } from "@/components/Label/Label";
 
 import Link from "next/link";
+import { MyButton } from "@/components/Button/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,14 +39,14 @@ export default function RootLayout({
               </Link>
             </div>
 
-            <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-customGreen" font="teko" />
+            <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
           </div>
 
           <DropDownMenu
             iconSelection="menu"
             classnameDropDown="justify-end"
-            classnameMenu="my-2 bg-customGreen rounded-lg" 
-            classnameMenuIcon="bg-customGreen p-1 rounded-lg text-5xl text-black"
+            classnameMenu="my-2 bg-MantisGreen rounded-lg" 
+            classnameMenuIcon="bg-MantisGreen p-1 rounded-lg text-5xl text-black"
             classnameMyButton="text-black border-2 border-black w-24"
             classnameMyButtonDiv="m-1"
             variantMyButton="outlined"
@@ -57,15 +58,57 @@ export default function RootLayout({
         {children}
 
         <footer>
-          <div>
-            {/*Sezione dei social*/}
+          <div className="flex flex-col space-y-6">
+            <div className="flex flex-row space-x-6">
+              <div className="flex-1 p-6 bg-gray-800 rounded-lg text-center">
+                <Label text="Social" className="text-white text-2xl font-bold mb-4" font="teko" />
+
+                <div className="space-y-4">
+                  <div className="flex justify-center items-center space-x-2">
+                    <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
+                    <Link href="https://www.linkedin.com/in/federico-grimaldi-3385b9289/" passHref>
+                      <Label text="Federico Grimaldi" className="text-blue-500 text-lg" font="teko" />
+                    </Link>
+                  </div>
+
+                  <div className="flex justify-center items-center space-x-2">
+                    <Label text="GitHub:" className="text-white text-lg" font="teko" />
+                    <Link href="https://github.com/FedericoGrim" passHref>
+                      <Label text="FedericoGrim" className="text-blue-500 text-lg" font="teko" />
+                    </Link>
+                  </div>
+
+                  <div className="flex justify-center items-center space-x-2">
+                    <Label text="X/Twitter:" className="text-white text-lg" font="teko" />
+                    <Link href="https://twitter.com/esempio" passHref>
+                      <Label text="@esempio" className="text-blue-500 text-lg" font="teko" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-1 p-6 bg-green-800 rounded-lg text-center space-y-4">
+                <Label text="Contattami" className="text-white text-3xl font-bold" font="teko"/>
+
+                <div className="flex justify-center space-x-2">
+                  <Label text="Email:" className="text-white text-lg" font="teko"/>
+                  <Link href="mailto:federico.grimaldi2006@gmail.com?subject=Richiesta%20informazioni&body=Ciao%20Federico,%0D%0A%0D%0AScrivo%20per%20richiedere%20informazioni%20su..." passHref>
+                    <Label text="federico.grimaldi2006@gmail.com" className="text-blue-500 text-lg hover:underline" font="teko" />
+                  </Link>
+                </div>
+
+                <div className="flex justify-center space-x-2">
+                  <Label text="Cellulare:" className="text-white text-lg" font="teko"/>
+                  <Label text="+39 348 342 3417" className="text-gray-300 text-lg" font="teko"/>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center bg-HunterGreen rounded-lg">
+              <Label text="" className="" font=""/>
+              <MyButton className="text-black border-2 border-black w-24 bg-DarkGreen" text="Download" variant="outlined" download="/CVs/CV_18-09-2024(ITA).pdf"/>
+            </div>
           </div>
-          <div>
-            {/*Sezione su come contattarmi*/}
-          </div>
-          <div>
-            {/*Sezione per scaricare il CV di Europass*/}
-          </div>
+
         </footer>
       </body>
     </html>
