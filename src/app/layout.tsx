@@ -115,13 +115,13 @@ export default function RootLayout({
                     className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
                     text="Download CV ITA" 
                     variant="outlined" 
-                    download="/CVs/CV_18-09-2024(ITA).pdf"
+                    download="https://drive.google.com/file/d/13JVq1By-XVz3h-OcJ_kq4ndh3_CRdB7U/view?usp=sharing"
                   />
                   <MyButton 
                     className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
                     text="Download CV ENG" 
                     variant="outlined" 
-                    download="/CVs/CV_18-09-2024(ENG).pdf"
+                    href="https://drive.google.com/file/d/12I7PibYYqV-Of_TJviZxVc2P1WG8mK1m/view?usp=sharing"
                   />
                 </div>
               </div>
