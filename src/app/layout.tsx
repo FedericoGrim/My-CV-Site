@@ -45,15 +45,18 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex justify-between m-3 bg-black">
           <div className="flex items-center">
-            <Link href="/" passHref>
-              <Image
-                src="/images/myLogo.png"
-                alt="Logo di Federico Grimaldi"
-                width={50}
-                height={50}
-                className="z-0"
-              />
-            </Link>
+            <div className="relative flex items-center">
+              <Link href="/" passHref>
+                <MyImage
+                  src="images/myLogo.png"
+                  alt="Federico Grimaldi's Logo"
+                  width={50}
+                  height={50}
+                  className="z-0"
+                />
+              </Link>
+            </div>
+
             <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
           </div>
 
@@ -65,8 +68,8 @@ export default function RootLayout({
             classnameMyButton="text-black border-2 border-black w-24"
             classnameMyButtonDiv="m-1"
             variantMyButton="outlined"
-            options={["Contatti", "Progetti", "Esperienze di lavoro"]}
-            buttonsLinks={["/pages/contatti", "/pages/projects"]}
+            options={["Contacts", "Projects"]}
+            buttonsLinks={["/pages/contacts", "/pages/projects"]}
           />
         </div>
 
@@ -75,7 +78,8 @@ export default function RootLayout({
         <footer>
           <div className="flex flex-col space-y-6">
             <div className="flex flex-row space-x-6">
-              <div className="flex-1 p-6 bg-gray-800 rounded-lg text-center">
+              {/* Social Section */}
+              <div className="flex-1 p-6 bg-DarkGreen rounded-lg text-center">
                 <Label text="Social" className="text-white text-2xl font-bold mb-4" font="teko" />
                 <div className="space-y-4">
                   <div className="flex justify-center items-center space-x-2">
@@ -93,37 +97,56 @@ export default function RootLayout({
                   </div>
 
                   <div className="flex justify-center items-center space-x-2">
-                    <Label text="X/Twitter:" className="text-white text-lg" font="teko" />
-                    <Link href="https://twitter.com/esempio" passHref>
-                      <Label text="@esempio" className="text-blue-500 text-lg" font="teko" />
+                    <Label text="Instagram:" className="text-white text-lg" font="teko" />
+                    <Link href="https://www.instagram.com/federico_grima/" passHref>
+                      <Label text="federico_grima" className="text-blue-500 text-lg" font="teko" />
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="flex-1 p-6 bg-green-800 rounded-lg text-center space-y-4">
-                <Label text="Contattami" className="text-white text-3xl font-bold" font="teko" />
 
-                <address className="flex justify-center space-x-2">
-                  <Label text="Email:" className="text-white text-lg" font="teko" />
-                  <Link href="mailto:federico.grimaldi2006@gmail.com?subject=Richiesta%20informazioni&body=Ciao%20Federico,%0D%0A%0D%0AScrivo%20per%20richiedere%20informazioni%20su..." passHref>
+              {/* Download Section */}
+              <div className="w-1/4 p-6 bg-EerieBlackLighter rounded-lg text-center space-y-6">
+                <Label text="Download my CV" className="text-white text-2xl font-bold mb-4" font="teko" />
+                
+                {/* Download Buttons */}
+                <div className="flex flex-col space-y-4">
+                  <MyButton 
+                    className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
+                    text="Download CV ITA" 
+                    variant="outlined" 
+                    download="/CVs/CV_18-09-2024(ITA).pdf"
+                  />
+                  <MyButton 
+                    className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
+                    text="Download CV ENG" 
+                    variant="outlined" 
+                    download="/CVs/CV_18-09-2024(ENG).pdf"
+                  />
+                </div>
+              </div>
+
+              {/* Contact Section */}
+              <div className="flex-1 p-6 bg-DarkGreen rounded-lg text-center space-y-4">
+                <Label text="Contact Me" className="text-white text-3xl font-bold" font="teko"/>
+
+                <div className="flex justify-center space-x-2">
+                  <Label text="Email:" className="text-white text-lg" font="teko"/>
+                  <Link href="mailto:federico.grimaldi2006@gmail.com?subject=Request%20for%20information&body=Hello%20Federico,%0D%0A%0D%0AI%20am%20writing%20to%20request%20information%20about..." passHref>
                     <Label text="federico.grimaldi2006@gmail.com" className="text-blue-500 text-lg hover:underline" font="teko" />
                   </Link>
                 </address>
 
                 <div className="flex justify-center space-x-2">
-                  <Label text="Cellulare:" className="text-white text-lg" font="teko" />
-                  <Label text="+39 348 342 3417" className="text-gray-300 text-lg" font="teko" />
+                  <Label text="Phone:" className="text-white text-lg" font="teko"/>
+                  <Label text="+39 348 342 3417" className="text-gray-300 text-lg" font="teko"/>
+                </div>
+
+                <div className="flex justify-center space-x-2">
+                  <Label text="Telegram:" className="text-white text-lg" font="teko"/>
+                  <Label text="@FedeGrim" className="text-gray-300 text-lg" font="teko"/>
                 </div>
               </div>
-            </div>
-
-            <div className="text-center bg-HunterGreen rounded-lg">
-              <MyButton
-                className="text-black border-2 border-black w-24 bg-DarkGreen"
-                text="Download"
-                variant="outlined"
-                download="/CVs/CV_18-09-2024(ITA).pdf"
-              />
             </div>
           </div>
         </footer>
