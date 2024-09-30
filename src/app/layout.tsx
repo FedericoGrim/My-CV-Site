@@ -5,7 +5,7 @@ import "@/app/styles/globals.css";
 import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
 import { Label } from "@/components/Label/Label";
 import Link from "next/link";
-import Image from 'next/image';
+import { MyImage } from "@/components/Image/Image";
 import { MyButton } from "@/components/Button/Button";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -135,7 +135,7 @@ export default function RootLayout({
                   <Link href="mailto:federico.grimaldi2006@gmail.com?subject=Request%20for%20information&body=Hello%20Federico,%0D%0A%0D%0AI%20am%20writing%20to%20request%20information%20about..." passHref>
                     <Label text="federico.grimaldi2006@gmail.com" className="text-blue-500 text-lg hover:underline" font="teko" />
                   </Link>
-                </address>
+                </div>
 
                 <div className="flex justify-center space-x-2">
                   <Label text="Phone:" className="text-white text-lg" font="teko"/>
