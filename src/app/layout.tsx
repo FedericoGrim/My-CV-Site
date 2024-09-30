@@ -115,7 +115,7 @@ export default function RootLayout({
                     className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
                     text="Download CV ITA" 
                     variant="outlined" 
-                    download="https://drive.google.com/file/d/13JVq1By-XVz3h-OcJ_kq4ndh3_CRdB7U/view?usp=sharing"
+                    href="https://drive.google.com/file/d/13JVq1By-XVz3h-OcJ_kq4ndh3_CRdB7U/view?usp=sharing"
                   />
                   <MyButton 
                     className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg" 
