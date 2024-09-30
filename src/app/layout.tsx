@@ -3,18 +3,36 @@ import { Inter } from "next/font/google";
 import "@/app/styles/globals.css";
 
 import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
-import { MyImage } from "@/components/Image/Image";
 import { Label } from "@/components/Label/Label";
-
 import Link from "next/link";
+import { MyImage } from "@/components/Image/Image";
 import { MyButton } from "@/components/Button/Button";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://federicogrim.github.io/My-CV-Site/"),
+
   title: "Federico Grimaldi CV Site",
-  description: "The site that Federico made to use as a CV",
+  description: "Federico Grimaldi CV",
+  icons: {
+    icon: "/My-CV-Site/images/MyLogo.png",
+  },
+  openGraph: {
+    title: "Federico Grimaldi CV Site",
+    description: "The site that Federico made to use as a CV",
+    images: [
+      {
+        url: "/My-CV-Site/images/MyLogo.png",
+        alt: "Federico Grimaldi CV site",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
+
 
 export default function RootLayout({
   children,
@@ -45,7 +63,7 @@ export default function RootLayout({
           <DropDownMenu
             iconSelection="menu"
             classnameDropDown="justify-end"
-            classnameMenu="my-2 bg-MantisGreen rounded-lg" 
+            classnameMenu="my-2 bg-MantisGreen rounded-lg"
             classnameMenuIcon="bg-MantisGreen p-1 rounded-lg text-5xl text-black"
             classnameMyButton="text-black border-2 border-black w-24"
             classnameMyButtonDiv="m-1"
@@ -63,7 +81,6 @@ export default function RootLayout({
               {/* Social Section */}
               <div className="flex-1 p-6 bg-DarkGreen rounded-lg text-center">
                 <Label text="Social" className="text-white text-2xl font-bold mb-4" font="teko" />
-
                 <div className="space-y-4">
                   <div className="flex justify-center items-center space-x-2">
                     <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
