@@ -16,14 +16,14 @@ export const metadata: Metadata = {
   title: "Federico Grimaldi CV Site",
   description: "Federico Grimaldi CV",
   icons: {
-    icon: "/My-CV-Site/images/MyLogo.png",
+    icon: "/My-CV-Site/favicon.ico",
   },
   openGraph: {
     title: "Federico Grimaldi CV Site",
     description: "The site that Federico made to use as a CV",
     images: [
       {
-        url: "/My-CV-Site/images/MyLogo.png",
+        url: "images/MyLogo.png",
         alt: "Federico Grimaldi CV site",
       },
     ],
