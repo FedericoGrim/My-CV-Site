@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-[120px] w-[680px] text-center">
+        <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-[120px] text-center">
           <Label 
             text="Sono Federico Grimaldi, uno studente di Quinta Superiore appassionato di informatica.
                   Con una solida conoscenza informatica e una buona abilità nel problem solving,
