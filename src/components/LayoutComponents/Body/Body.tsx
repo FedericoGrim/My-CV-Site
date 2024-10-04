@@ -38,7 +38,7 @@ export const AdaptiveBody = () => {
                         <div className="relative flex items-center">
                             <Link href="/" passHref>
                                 <MyImage
-                                    src="images/myLogo.png"
+                                    src="/My-CV-Siteimages/myLogo.png"
                                     alt="Federico Grimaldi's Logo"
                                     width={50}
                                     height={50}
@@ -55,13 +55,13 @@ export const AdaptiveBody = () => {
                             text="Contacts" 
                             className='text-MantisGreen border-2 border-MantisGreen w-24' 
                             variant='outlined' 
-                            href="@/app/pages/contacts"
+                            href="/pages/contacts"
                         />
                         <MyButton 
                             text="Projects"
                             className='text-MantisGreen border-2 border-MantisGreen w-24' 
                             variant='outlined' 
-                            href="@/app/pages/projects" 
+                            href="/pages/projects" 
                         />
                     </div>
                 </div>
@@ -71,7 +71,7 @@ export const AdaptiveBody = () => {
                         <div className="relative flex items-center">
                         <Link href="/" passHref>
                             <MyImage
-                            src="images/myLogo.png"
+                            src="/My-CV-Site/images/myLogo.png"
                             alt="Federico Grimaldi's Logo"
                             width={50}
                             height={50}
