@@ -8,7 +8,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-0">
       <div className="relative w-full">
         <MyImage 
-          src="/My-CV-Site/images/CodeBackground.png" 
+          src="/images/CodeBackground.png" 
           alt="Code Background"
           fill 
           objectFit="cover"
@@ -18,7 +18,7 @@ export default function Home() {
 
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-[40px]">
           <MyImage 
-            src="/My-CV-Site/images/FotoPlaceHolder.png" 
+            src="/images/FotoPlaceHolder.png" 
             alt="Round Image"
             width={250} 
             height={250} 
