@@ -38,7 +38,7 @@ export const AdaptiveBody = () => {
                         <div className="relative flex items-center">
                             <Link href="/" passHref>
                                 <MyImage
-                                    src="/My-CV-Siteimages/myLogo.png"
+                                    src="/My-CV-Site/images/myLogo.png"
                                     alt="Federico Grimaldi's Logo"
                                     width={50}
                                     height={50}
