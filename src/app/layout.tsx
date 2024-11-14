@@ -49,7 +49,7 @@ export default function RootLayout({
 
         {children}
 
-        <footer>
+        <footer className="">
           <AdaptiveFooter/>
         </footer>
       </body>

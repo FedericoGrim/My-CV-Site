@@ -12,19 +12,15 @@ export const AdaptiveBody = () => {
     const [screenHeight, setScreenHeight] = useState<number>(0);
 
     useEffect(() => {
-        // Funzione per aggiornare le dimensioni dello schermo
         const updateDimensions = () => {
             setScreenHeight(window.innerHeight);
             setScreenWidth(window.innerWidth);
         };
 
-        // Imposta le dimensioni iniziali
         updateDimensions();
 
-        // Aggiungi un listener per l'evento resize
         window.addEventListener('resize', updateDimensions);
 
-        // Rimuovi il listener quando il componente viene smontato
         return () => {
             window.removeEventListener('resize', updateDimensions);
         };
@@ -50,7 +46,7 @@ export const AdaptiveBody = () => {
                         <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
                     </div>
                 
-                    <div className="flex space-x-2"> {/* Aggiunto per gestire lo spazio tra i bottoni */}
+                    <div className="flex space-x-2">
                         <MyButton 
                             text="Contacts" 
                             className='text-MantisGreen border-2 border-MantisGreen w-24' 
