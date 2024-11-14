@@ -51,13 +51,13 @@ export const AdaptiveBody = () => {
                             text="Contacts" 
                             className='text-MantisGreen border-2 border-MantisGreen w-24' 
                             variant='outlined' 
-                            href="/pages/contacts"
+                            href="/My-CV-Site/pages/contacts"
                         />
                         <MyButton 
                             text="Projects"
                             className='text-MantisGreen border-2 border-MantisGreen w-24' 
                             variant='outlined' 
-                            href="/pages/projects" 
+                            href="/My-CV-Site/pages/projects" 
                         />
                     </div>
                 </div>
@@ -88,7 +88,7 @@ export const AdaptiveBody = () => {
                         classnameMyButtonDiv="m-1"
                         variantMyButton="outlined"
                         options={["Contacts", "Projects"]}
-                        buttonsLinks={["/pages/contacts", "/pages/projects"]}
+                        buttonsLinks={["/My-CV-Site/pages/contacts", "/My-CV-Site/pages/projects"]}
                     />
                 </div>
             )}
