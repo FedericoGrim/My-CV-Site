@@ -12,14 +12,26 @@ export const MyButton: React.FC<ButtonProps> = ({
   className 
 }) => {
   return (
-    <Button
-      variant={variant}
-      className={className}
-      component="a"
-      href={href}
-      download={download || true} // Imposta il nome del file o consenti il comportamento di default
-    >
-      {text}
-    </Button>
+    <>
+      {download !== "" ? (
+        <Button
+          variant={variant}
+          className={className}
+          component="a"
+          download={download || true} 
+        >
+          {text}
+        </Button> 
+      ) : (
+        <Button
+          variant={variant}
+          className={className}
+          component="a"
+          href={href}
+        >
+          {text}
+        </Button> 
+      )}
+    </>
   );
 };
