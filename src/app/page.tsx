@@ -67,7 +67,7 @@ const YourComponent = () => {
           </div>
 
           <div className="relative w-full h-[400px] mb-20">
-            <Image src="/images/CodeBackground.png" alt="Code Background" fill priority />
+            <Image src="/My-CV-Site/images/CodeBackground.png" alt="Code Background" fill priority />
             <div className="absolute bottom-[-90px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
               <div className="text-center">
                 <MyImage
