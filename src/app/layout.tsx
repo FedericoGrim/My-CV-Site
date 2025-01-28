@@ -45,13 +45,9 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body className={inter.className}>
-        <AdaptiveBody/>
-
-        {children}
-
-        <footer className="">
-          <AdaptiveFooter/>
-        </footer>
+        <div>
+            {children}
+        </div>
       </body>
     </html>
   );
