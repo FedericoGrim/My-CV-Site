@@ -30,9 +30,9 @@ export const AdaptiveFooter = () => {
     }, []);
 
     return (
-        <>
+        <div className='flex flex-col'>
             {screenHeight > screenWidth ? (
-                <div className="flex flex-col ">
+                <div>
                     {/* Social Section */}
                     <div className="flex flex-col p-6 bg-DarkGreen  text-center">
                         <Label text="Social" className="text-white text-2xl font-bold mb-4" font="teko" />
@@ -104,7 +104,7 @@ export const AdaptiveFooter = () => {
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col space-y-6">
+                <div className="space-y-6 ">
                     <div className="flex flex-row space-x-6">
                         {/* Social Section */}
                         <div className="flex-1 p-6 bg-DarkGreen rounded-lg text-center">
@@ -178,6 +178,6 @@ export const AdaptiveFooter = () => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 };

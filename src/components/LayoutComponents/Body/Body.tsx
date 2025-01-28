@@ -27,25 +27,24 @@ export const AdaptiveBody = () => {
     }, []);
 
     return (
-        <>
-            {screenHeight < screenWidth ? (
-                <div className="flex justify-between m-3 bg-black">
-                    <div className="flex items-center">
-                        <div className="relative flex items-center">
-                            <Link href="/" passHref>
-                                <MyImage
-                                    src="images/myLogo.png"
-                                    alt="Federico Grimaldi's Logo"
-                                    width={50}
-                                    height={50}
-                                    className="z-0"
-                                />
-                            </Link>
-                        </div>
-                
-                        <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
+            <div className="flex justify-between m-3 bg-black">
+                <div className="flex items-center">
+                    <div className="relative flex items-center">
+                        <Link href="/" passHref>
+                            <MyImage
+                                src="@/../images/myLogo.png"
+                                alt="Federico Grimaldi's Logo"
+                                width={50}
+                                height={50}
+                                className="z-0"
+                            />
+                        </Link>
                     </div>
-                
+            
+                    <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
+                </div>
+
+                {screenHeight < screenWidth ? (
                     <div className="flex space-x-2">
                         <MyButton 
                             text="Contacts" 
@@ -60,25 +59,7 @@ export const AdaptiveBody = () => {
                             href="/pages/projects" 
                         />
                     </div>
-                </div>
-            ) : (
-                <div className="flex justify-between m-3 bg-black">
-                    <div className="flex items-center">
-                        <div className="relative flex items-center">
-                        <Link href="/" passHref>
-                            <MyImage
-                            src="images/myLogo.png"
-                            alt="Federico Grimaldi's Logo"
-                            width={50}
-                            height={50}
-                            className="z-0"
-                            />
-                        </Link>
-                        </div>
-
-                        <Label text="Federico Grimaldi" className="ml-2 font-Teko text-lg text-MantisGreen" font="teko" />
-                    </div>
-
+                ):(
                     <DropDownMenu
                         iconSelection="menu"
                         classnameDropDown="justify-end"
@@ -90,8 +71,7 @@ export const AdaptiveBody = () => {
                         options={["Contacts", "Projects"]}
                         buttonsLinks={["/pages/contacts", "/pages/projects"]}
                     />
-                </div>
             )}
-        </>
-    );
-};
+            </div>
+        )
+    }
