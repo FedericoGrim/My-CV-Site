@@ -36,7 +36,7 @@ const YourComponent = () => {
             <div className="flex items-center bg-black border-r-2 border-MantisGreen p-1 w-[226px]">
               <Link href="/" passHref>
                   <MyImage
-                    src="@/../images/myLogo.png"
+                    src="/My-CV-Site/images/myLogo.png"
                     alt="Federico Grimaldi's Logo"
                     width={50}
                     height={50}
@@ -71,7 +71,7 @@ const YourComponent = () => {
             <div className="absolute bottom-[-90px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
               <div className="text-center">
                 <MyImage
-                  src="/images/FotoPlaceHolder.png"
+                  src="/My-CV-Site/images/FotoPlaceHolder.png"
                   alt="Round Image"
                   width={250}
                   height={250}
@@ -135,7 +135,7 @@ const YourComponent = () => {
             <div className="flex items-center bg-black p-1 ">
               <Link href="/" passHref>
                   <MyImage
-                    src="@/../images/myLogo.png"
+                    src="/My-CV-Site/images/myLogo.png"
                     alt="Federico Grimaldi's Logo"
                     width={50}
                     height={50}
@@ -163,11 +163,11 @@ const YourComponent = () => {
           </div>
 
           <div className="relative w-full h-[400px] mb-20">
-            <Image src="/images/CodeBackground.png" alt="Code Background" fill priority />
+            <Image src="/My-CV-Site/images/CodeBackground.png" alt="Code Background" fill priority />
             <div className="absolute bottom-[-90px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
               <div className="text-center">
                 <MyImage
-                  src="/images/FotoPlaceHolder.png"
+                  src="/My-CV-Site/images/FotoPlaceHolder.png"
                   alt="Round Image"
                   width={250}
                   height={250}
