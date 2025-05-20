@@ -2,52 +2,32 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/styles/globals.css";
 
-import { DropDownMenu } from "@/components/DropDownMenu/DropDownMenu";
-import { Label } from "@/components/Label/Label";
-import Link from "next/link";
-import { MyImage } from "@/components/Image/Image";
-import { MyButton } from "@/components/Button/Button";
+import Header from "@/components/Header/Header"; // componente client
 import { AdaptiveFooter } from "@/components/LayoutComponents/Footer/Footer";
-import { AdaptiveBody } from "@/components/LayoutComponents/Body/Body";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://federicogrim.github.io/My-CV-Site/"),
-
   title: "Federico Grimaldi CV Site",
   description: "Federico Grimaldi CV",
-  icons: {
-    icon: "/favicon.ico",
-  },
+  icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "Federico Grimaldi CV Site",
     description: "The site that Federico made to use as a CV",
-    images: [
-      {
-        url: "images/MyLogo.png",
-        alt: "Federico Grimaldi CV site",
-      },
-    ],
+    images: [{ url: "images/MyLogo.png", alt: "Federico Grimaldi CV site" }],
   },
-  twitter: {
-    card: "summary_large_image",
-  },
+  twitter: { card: "summary_large_image" },
 };
 
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head></head>
+      <head />
       <body className={inter.className}>
-        <div>
-            {children}
-        </div>
+        <Header />
+        <main>{children}</main>
+        {/* <AdaptiveFooter /> */}
       </body>
     </html>
   );
