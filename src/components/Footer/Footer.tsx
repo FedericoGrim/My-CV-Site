@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Label } from "@/components/Label/Label";
-import { MyButton } from "@/components/Button/Button"; // Assicurati che sia il path corretto
+import { MyButton } from "@/components/Button/Button";
 
 export default function Footer() {
   const [ScreenWidth, SetScreenWidth] = useState(0);
@@ -23,7 +23,7 @@ export default function Footer() {
   const IsMobile = ScreenWidth < 768;
 
   return (
-    <div className="flex flex-col"> {/* Gap sinistro, destro e sotto */}
+    <div className="flex flex-col">
       {IsMobile ? (
         <div className="">
           {/* Social Section */}
