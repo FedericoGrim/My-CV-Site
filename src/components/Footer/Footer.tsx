@@ -7,12 +7,11 @@ import { MyButton } from "@/components/Button/Button"; // Assicurati che sia il 
 
 export default function Footer() {
   const [ScreenWidth, SetScreenWidth] = useState(0);
-  const [ScreenHeight, SetScreenHeight] = useState(0);
+
 
   useEffect(() => {
     const HandleResize = () => {
       SetScreenWidth(window.innerWidth);
-      SetScreenHeight(window.innerHeight);
     };
 
     window.addEventListener("resize", HandleResize);
