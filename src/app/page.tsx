@@ -4,8 +4,39 @@ import Image from "next/image";
 
 import { MyImage } from "@/components/Image/Image";
 import Label from "@/components/Label/Label";
+import { MyButton } from '@/components/Button/Button';
+import { useState } from 'react';
 
 const HomePage = () => {
+    const [SlideIndex, SetSlideIndex] = useState(1);
+  
+    function HandleNext() {
+      SetSlideIndex(prevIndex => (prevIndex === 4 ? 1 : prevIndex + 1));
+    }
+  
+    function HandlePrev() {
+      SetSlideIndex(prevIndex => (prevIndex === 1 ? 4 : prevIndex - 1));
+    }
+  
+    function RenderSlide() {
+      switch (SlideIndex) {
+        case 1:
+          return <div>
+                  <MyButton
+                    text="Inizio"
+                    className="text-center text-lg"
+                  />
+                </div>;
+        case 2:
+          return <div className="text-center text-lg">Slide 2: Informazioni importanti</div>;
+        case 3:
+          return <div className="text-center text-lg">Slide 3: Altri dettagli</div>;
+        case 4:
+          return <div className="text-center text-lg">Slide 4: Fine della presentazione</div>;
+        default:
+          return null;
+      }
+    }
   return (
     <section>
       {/*Presentation*/}
@@ -127,9 +158,21 @@ const HomePage = () => {
 
       {/*...*/}
       <section className="">
-        <div>
-          
+        <div className="relative w-full h-[400px] flex flex-col items-center justify-center">
+        {RenderSlide()}
+        <div className="mt-6 space-x-4">
+          <MyButton
+            text="<"
+            className=""
+            onClick={HandlePrev}
+          />
+          <MyButton
+            text=">"
+            className=""
+            onClick={HandleNext}
+          />
         </div>
+      </div>
       </section>
     </section>
   );
