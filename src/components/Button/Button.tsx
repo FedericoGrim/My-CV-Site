@@ -9,29 +9,24 @@ export const MyButton: React.FC<ButtonProps> = ({
   download = "", 
   href = "", 
   text = "TEXT", 
-  className 
+  className,
+  onClick
 }) => {
-  return (
-    <>
-      {download !== "" ? (
-        <Button
-          variant={variant}
-          className={className}
-          component="a"
-          download={download || true} 
-        >
-          {text}
-        </Button> 
-      ) : (
-        <Button
-          variant={variant}
-          className={className}
-          component="a"
-          href={href}
-        >
-          {text}
-        </Button> 
-      )}
-    </>
-  );
+  let buttonProps: any = {
+    variant,
+    className,
+    component: "a",
+    children: text
+  };
+
+  if (download !== "") {
+    buttonProps.download = download || true;
+    buttonProps.href = href;
+  } else if (onClick) {
+    buttonProps.onClick = onClick;
+  } else if (href) {
+    buttonProps.href = href;
+  }
+
+  return <Button {...buttonProps} />;
 };
