@@ -8,6 +8,7 @@ import Label from "@/components/Label/Label";
 const HomePage = () => {
   return (
     <section>
+      {/*Presentation*/}
       <section>
         <div className="relative w-full h-[400px] mb-20">
             <MyImage
@@ -34,7 +35,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div className="max-w-lg mx-auto text-center h-auto my-10 px-4">
+        <div className="max-w-2xl mx-auto text-center h-auto my-10">
           <Label
             text="Sono Federico Grimaldi, uno studente di Quinta Superiore appassionato di informatica. Con una solida conoscenza informatica e una buona abilità nel problem solving, sono pronto ad affrontare nuove sfide e ad ampliare le mie conoscenze. Sono sempre desideroso di imparare e sono motivato a cogliere ogni opportunità per crescere nel campo dell'informatica."
             className="text-center leading-6 font-regular"
@@ -43,6 +44,7 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/*Scool*/}
       <section className="max-w-5xl mx-auto px-4 py-8">
         <div className="bg-HunterGreen  rounded-t-xl rounded-b-xl">
           <h2 className="text-3xl font-bold text-center mb-8 text-white font-teko bg-DarkGreen p-4 rounded-t-xl">Istruzione</h2>
@@ -119,6 +121,14 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+        </div>
+        
+      </section>
+
+      {/*...*/}
+      <section className="">
+        <div>
+          
         </div>
       </section>
     </section>
