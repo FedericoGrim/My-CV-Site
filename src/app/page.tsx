@@ -108,7 +108,7 @@ const HomePage = () => {
       {/* Sezione di presentazione */}
       <div className="relative w-full h-[400px] mb-20">
         <MyImage
-          src="/images/CodeBackground.png"
+          src="/My-CV-Site/images/CodeBackground.png"
           alt="Code Background"
           fill
           objectFit="cover"
@@ -118,7 +118,7 @@ const HomePage = () => {
         <div className="absolute bottom-[-120px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
           <div className="text-center">
             <MyImage
-              src="/images/FotoPlaceHolder.png"
+              src="/My-CV-Site/images/FotoPlaceHolder.png"
               alt="Round Image"
               width={250}
               height={250}
@@ -155,7 +155,7 @@ const HomePage = () => {
               <Link href="https://www.itisgrassi.edu.it" className="no-underline">
               <div className="flex items-center gap-6">
                 <Image
-                  src="/images/myLogo.png"
+                  src="/My-CV-Site/images/FotoPlaceHolder.png"
                   alt="ITTS Carlo Grassi"
                   width={100}
                   height={100}
@@ -195,7 +195,7 @@ const HomePage = () => {
               <Link href="https://www.its-ictpiemonte.it/corsi/backend-developer/" className="no-underline">
                 <div className="flex items-center gap-6">
                   <Image
-                    src="/images/ITS-Logo.jpg"
+                    src="/My-CV-Site/images/ITS-Logo.jpg"
                     alt="ITS Academy"
                     width={100}
                     height={100}

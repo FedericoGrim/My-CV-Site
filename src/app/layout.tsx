@@ -12,21 +12,21 @@ export const metadata: Metadata = {
   title: "Federico Grimaldi CV Site",
   description: "Federico Grimaldi CV",
   icons: {
-    icon: "/images/favicon.png", 
+    icon: "/My-CV-Site/images/favicon.png", 
   },
   openGraph: {
     title: "Federico Grimaldi CV Site",
     description: "Federico Grimaldi CV",
     images: [
       {
-        url: "/images/MyLogo.png",
+        url: "/My-CV-Site/images/MyLogo.png",
         alt: "Federico Grimaldi CV site",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/images/MyLogo.png"],  
+    images: ["/My-CV-Site/images/MyLogo.png"],  
   },
 };
 
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Header 
           options={["Projects", "Contacts"]}
-          buttonsLinks={["/pages/projects", "/pages/contacts"]}
+          buttonsLinks={["/My-CV-Site/pages/projects", "/My-CV-Site/pages/contacts"]}
           classnameMyButtonDiv="flex justify-center items-center"
           classnameMyButton={{"DropDownMenuButtons":"text-DarkGreen font-Teko text-lg border-2 border-DarkGreen rounded-lg px-4 py-2 hover:bg-HunterGreen hover:border-DarkGreen hover:text-MantisGreen transition duration-300",
                               "SeparatedButtons":"text-MantisGreen font-Teko text-lg border-2 hover:text-MantisGreen border-MantisGreen rounded-lg px-4 py-2 hover:bg-HunterGreen hover:text-MantisGreen transition duration-300 hover:border-MantisGreen"}}
