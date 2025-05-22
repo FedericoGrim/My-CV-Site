@@ -1,3 +1,4 @@
+import { Light } from "@mui/icons-material";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -14,10 +15,11 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        MantisGreen: '#5CB84A',
-        HunterGreen: '#2E5C25',
-        DarkGreen:'#172E13',
-        EerieBlackLighter:'#171717'
+        LighterGreen: '#a7f099', // verde chiaro
+        MantisGreen: '#5CB84A', // verde evidenziatore
+        HunterGreen: '#2E5C25', // verde scuro
+        DarkGreen:'#172E13', // verde più scuro
+        DarkerGreen:'#051206'
       },
     },
   },
