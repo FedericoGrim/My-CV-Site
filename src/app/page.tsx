@@ -144,14 +144,14 @@ const HomePage = () => {
       </section>
 
       {/* Istruzione */}
-      <section className="max-w-5xl mx-auto px-4 py-8">
-        <div className="bg-NightGreen rounded-t-xl rounded-b-xl">
-          <h2 className="text-3xl font-bold text-center mb-8 text-white font-teko bg-Black p-4 rounded-t-xl">
-            Istruzione
+      <section className="w-full bg-black/50 py-5 px-4">
+        <div>
+          <h2 className="text-3xl font-bold text-center mb-8 text-LightGreen font-teko p-4">
+            ISTRUZIONE:
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center">
             {/* ITTS Carlo Grassi */}
-            <div className="flex-1 bg-white rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
+            <div className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
               <Link href="https://www.itisgrassi.edu.it" className="no-underline">
               <div className="flex items-center gap-6">
                 <Image
@@ -164,7 +164,7 @@ const HomePage = () => {
                 <div>
                   <Label
                     text="ITTS Carlo Grassi"
-                    className="text-2xl text-lightBlue"
+                    className="text-2xl text-lightBlue font-bold"
                     font="teko"
                   />
                   <Label
@@ -191,7 +191,7 @@ const HomePage = () => {
             </div>
 
             {/* ITS Academy */}
-            <div className="flex-1 bg-white rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
+            <div className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
               <Link href="https://www.its-ictpiemonte.it/corsi/backend-developer/" className="no-underline">
                 <div className="flex items-center gap-6">
                   <Image
@@ -204,7 +204,7 @@ const HomePage = () => {
                   <div>
                     <Label
                       text="ITS Academy"
-                      className="text-2xl text-lightBlue"
+                      className="text-2xl text-lightBlue font-bold"
                       font="teko"
                     />
                     <Label
