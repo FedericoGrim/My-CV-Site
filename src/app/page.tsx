@@ -60,7 +60,7 @@ const HomePage = () => {
       case 1:
         return (
           <div>
-            <Label text="Favourite languages and technologies:" className="text-4xl text-MantisGreen text-center w-auto" font="teko" />
+            <Label text="Favourite technologies:" className="text-4xl text-MantisGreen text-center w-auto" font="teko" />
             <Label
               text="Slide left and right to see my favourite programming languages and technologies."
               className="text-2xl text-white text-center"
@@ -246,7 +246,7 @@ const HomePage = () => {
       </section>
 
       {/* Work Principles */}
-      <section className="bg-cover bg-center" style={{ backgroundImage: "url('/My-CV-Site/images/CodeGreenBackground.jpg')" }}>
+      <section className="bg-cover bg-center w-full" style={{ backgroundImage: "url('/My-CV-Site/images/CodeGreenBackground.jpg')" }}>
         <div className="relative z-10 text-center px-4 py-10 bg-black/50">
           <Label
             text="Lavoro con dei principi:"
