@@ -32,7 +32,7 @@ export default function Header({
       <div className="flex items-center p-1">
         <Link href="/" passHref>
           <MyImage
-            src="/images/myLogo.png"
+            src="/My-CV-Site/images/myLogo.png"
             alt="Federico Grimaldi's Logo"
             width={50}
             height={50}

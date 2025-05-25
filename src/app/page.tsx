@@ -109,7 +109,7 @@ const HomePage = () => {
       <section>
         <div className="relative w-full h-[400px] mb-20">
           <MyImage
-            src="/images/CodeBackground.jpg"
+            src="/My-CV-Site/images/CodeBackground.jpg"
             alt="Code Background"
             fill
             objectFit="cover"
@@ -119,7 +119,7 @@ const HomePage = () => {
           <div className="absolute bottom-[-120px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
             <div className="text-center">
               <MyImage
-                src="/images/FotoPlaceHolder.png"
+                src="/My-CV-Site/images/FotoPlaceHolder.png"
                 alt="Round Image"
                 width={250}
                 height={250}
@@ -155,7 +155,7 @@ const HomePage = () => {
               <Link href="https://www.itisgrassi.edu.it" className="no-underline">
               <div className="flex items-center gap-6">
                 <Image
-                  src="/images/FotoPlaceHolder.png"
+                  src="/My-CV-Site/images/FotoPlaceHolder.png"
                   alt="ITTS Carlo Grassi"
                   width={100}
                   height={100}
@@ -195,7 +195,7 @@ const HomePage = () => {
               <Link href="https://www.its-ictpiemonte.it/corsi/backend-developer/" className="no-underline">
                 <div className="flex items-center gap-6">
                   <Image
-                    src="/images/ITS-Logo.jpg"
+                    src="/My-CV-Site/images/ITS-Logo.jpg"
                     alt="ITS Academy"
                     width={100}
                     height={100}
@@ -246,7 +246,7 @@ const HomePage = () => {
       </section>
 
       {/* Work Principles */}
-      <section className="bg-cover bg-center" style={{ backgroundImage: "url('/images/CodeGreenBackground.jpg')" }}>
+      <section className="bg-cover bg-center" style={{ backgroundImage: "url('/My-CV-Site/images/CodeGreenBackground.jpg')" }}>
         <div className="relative z-10 text-center px-4 py-10 bg-black/50">
           <Label
             text="Lavoro con dei principi:"
