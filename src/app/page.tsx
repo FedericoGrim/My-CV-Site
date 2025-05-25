@@ -250,7 +250,7 @@ const HomePage = () => {
         <div className="relative z-10 text-center px-4 py-10 bg-black/50">
           <Label
             text="Lavoro con dei principi:"
-            className="font-Teko text-5xl text-LightGreen whitespace-nowrap"
+            className="font-Teko text-5xl text-LightGreen w-auto "
             font="teko"
           />
           <p className="text-white text-base mt-2 max-w-xl mx-auto">
