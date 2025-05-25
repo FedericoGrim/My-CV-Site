@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MyImage } from "@/components/Image/Image";
 import { MyButton } from "@/components/Button/Button";
@@ -29,11 +28,11 @@ export default function Header({
   const IsMobile = ScreenWidth < 768;
 
   return (
-    <header className="flex justify-between items-center bg-DarkGreen border-b-2 border-MantisGreen p-1">
+    <header className="flex justify-between items-center bg-NightGreen border-b-2 border-MantisGreen p-1">
       <div className="flex items-center p-1">
         <Link href="/" passHref>
           <MyImage
-            src="/My-CV-Site/images/myLogo.png"
+            src="/images/myLogo.png"
             alt="Federico Grimaldi's Logo"
             width={50}
             height={50}

@@ -15,11 +15,14 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        LighterGreen: '#a7f099', // verde chiaro
-        MantisGreen: '#5CB84A', // verde evidenziatore
-        HunterGreen: '#2E5C25', // verde scuro
-        DarkGreen:'#172E13', // verde più scuro
-        DarkerGreen:'#051206'
+        LightGreen: '#BEE8B4', //chiaro
+        MantisGreen: '#7CD068',
+        FernGreen: '#44793A',
+        CalPolyGreen: '#284D23',
+        DarkGreen: '#0B210C',
+        NightGreen: '#061106',
+        BlackGreen: '#030903',
+        Black: '#000000',  //scuro
       },
     },
   },

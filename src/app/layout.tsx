@@ -39,8 +39,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           options={["Projects", "Contacts"]}
           buttonsLinks={["/My-CV-Site/pages/projects", "/My-CV-Site/pages/contacts"]}
           classnameMyButtonDiv="flex justify-center items-center"
-          classnameMyButton={{"DropDownMenuButtons":"text-DarkGreen font-Teko text-lg border-2 border-DarkGreen rounded-lg px-4 py-2 hover:bg-HunterGreen hover:border-DarkGreen hover:text-MantisGreen transition duration-300",
-                              "SeparatedButtons":"text-MantisGreen font-Teko text-lg border-2 hover:text-MantisGreen border-MantisGreen rounded-lg px-4 py-2 hover:bg-HunterGreen hover:text-MantisGreen transition duration-300 hover:border-MantisGreen"}}
+          classnameMyButton={{"DropDownMenuButtons":"text-DarkGreen font-Teko text-lg border-2 border-DarkGreen rounded-lg px-4 py-2 hover:bg-LightGreen hover:border-DarkGreen hover:text-MantisGreen transition duration-300",
+                              "SeparatedButtons":"text-MantisGreen font-Teko text-lg border-2 hover:text-MantisGreen border-MantisGreen rounded-lg px-4 py-2 hover:bg-CalPolyGreen hover:text-MantisGreen transition duration-300 hover:border-MantisGreen"}}
           variantMyButton="outlined"  
         />
         <main>{children}</main>
