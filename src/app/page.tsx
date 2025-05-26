@@ -313,7 +313,7 @@ const HomePage = () => {
                 <Link href="https://www.itsacademy.it" className="no-underline">
                   <div className="flex items-center gap-6">
                     <Image
-                      src="/My-CV-Site/images/FotoPlaceHolder.png"
+                      src="/My-CV-Site/images/ITS-Logo.jpg"
                       alt="ITS Academy"
                       width={100}
                       height={100}
@@ -326,11 +326,18 @@ const HomePage = () => {
                         font="teko"
                       />
                       <Label
-                        text="Corso post-diploma in tecnologie digitali, anno 2025-2026."
+                        text="Freqentato il corso biennale di Software Develorep presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
                         className="text-left text-black"
                         font="merriweather"
                       />
                     </div>
+                  </div>
+                  <div className="flex justify-center gap-4 items-center mt-6">
+                    <Label
+                      text="Ore di lavoro in azienda: ... ore"
+                      className="text-center font-bold text-black"
+                      font="merriweather"
+                    />
                   </div>
                 </Link>
               </div>
