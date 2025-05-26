@@ -5,7 +5,32 @@ import Image from "next/image";
 import { MyImage } from "@/components/Image/Image";
 import Label from "@/components/Label/Label";
 import { MyButton } from "@/components/Button/Button";
-import { useState } from "react";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+
+function UseIntersectionObserver(ref: React.RefObject<HTMLElement>, options: IntersectionObserverInit = {}) {
+  const [IsVisible, SetIsVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        SetIsVisible(true);
+        observer.unobserve(element); // Osserva una volta sola
+      }
+    }, options);
+
+    observer.observe(element);
+
+    return () => {
+      if (element) observer.unobserve(element);
+    };
+  }, [ref, options]);
+
+  return IsVisible;
+}
 
 const HomePage = () => {
   const [ProjectSlideIndex, SetProjectSlideIndex] = useState(1);
@@ -103,188 +128,274 @@ const HomePage = () => {
     }
   }
 
+  const [Opacity, SetOpacity] = useState(0);
+  const [IsHovered, SetIsHovered] = useState(false);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      SetOpacity(1);
+    }, 10);
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  // Ref per i div da animare nella sezione istruzione
+  const CarloGrassiRef = useRef<HTMLDivElement>(null);
+  const ItsAcademyRef = useRef<HTMLDivElement>(null);
+
+  // Stato visibilità con intersection observer
+  const CarloGrassiVisible = UseIntersectionObserver(CarloGrassiRef);
+  const ItsAcademyVisible = UseIntersectionObserver(ItsAcademyRef);
+
   return (
-    <section className="w-full bg-gradient-to-b from-CalPolyGreen to-Black">
-      {/* Sezione di presentazione */}
-      <section>
-        <div className="relative w-full h-[400px] mb-20">
-          <MyImage
-            src="/My-CV-Site/images/CodeBackground.jpg"
-            alt="Code Background"
-            fill
-            objectFit="cover"
-            priority
-            divImageStyle={{ height: "400px" }}
-          />
-          <div className="absolute bottom-[-120px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
-            <div className="text-center">
-              <MyImage
-                src="/My-CV-Site/images/FotoPlaceHolder.png"
-                alt="Round Image"
-                width={250}
-                height={250}
-                className="rounded-full border-4 border-LightGreen mx-auto"
-                priority
-              />
-              <Label
-                text="Federico Grimaldi"
-                className="font-Teko text-5xl text-LightGreen text-center whitespace-nowrap mt-3 mb-12"
-                font="teko"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="max-w-2xl mx-auto text-center h-auto my-10 px-4">
-          <Label
-            text="Sono Federico Grimaldi, uno studente di Quinta Superiore (2024-2025) appassionato di informatica, soprattutto programmazione. Con una solida conoscenza informatica e una ottima abilità nel problem solving, sono pronto ad affrontare nuove sfide e ad ampliare le mie conoscenze. Sono sempre desideroso di imparare e sono motivato a cogliere ogni opportunità per crescere nel campo dell'informatica."
-            className="text-center leading-6 font-regular"
-            font="merriweather"
-          />
-        </div>
-      </section>
+    <>
+      <style>
+        {`
+          @keyframes SlideInFromLeft {
+            0% {
+              transform: translateX(-100%);
+              opacity: 0;
+            }
+            100% {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          @keyframes SlideInFromRight {
+            0% {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            100% {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+        `}
+      </style>
 
-      {/* Istruzione */}
-      <section className="w-full bg-black/50 py-5 px-4">
-        <div>
-          <h2 className="text-3xl font-bold text-center mb-8 text-LightGreen font-teko p-4">
-            ISTRUZIONE:
-          </h2>
-          <div className="flex flex-col md:flex-row gap-8 justify-center">
-            {/* ITTS Carlo Grassi */}
-            <div className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
-              <Link href="https://www.itisgrassi.edu.it" className="no-underline">
-              <div className="flex items-center gap-6">
-                <Image
-                  src="/My-CV-Site/images/FotoPlaceHolder.png"
-                  alt="ITTS Carlo Grassi"
-                  width={100}
-                  height={100}
-                  priority
-                />
-                <div>
-                  <Label
-                    text="ITTS Carlo Grassi"
-                    className="text-2xl text-lightBlue font-bold"
-                    font="teko"
-                  />
-                  <Label
-                    text="Frequentato il corso di Informatica e Telecomunicazioni presso l'ITTS Carlo Grassi (Torino Piemonte) anno 2020-2025."
-                    className="text-left text-black"
-                    font="merriweather"
-                  />
-                </div>
-              </div>
-              
-              <div className="flex justify-center gap-4 items-center mt-6 ">
-                <Label
-                  text="Uscito: 0/100"
-                  className="font-bold text-center text-black"
-                  font="merriweather"
-                />
-                <Label
-                  text="Ore PCTO: 2000"
-                  className="text-center text-black"
-                  font="inter"
-                />
-              </div>
-              </Link>
-            </div>
+      <section className="w-full bg-gradient-to-b from-CalPolyGreen to-Black">
+        {/* Sezione di presentazione */}
+        <section>
+          <div className="relative w-full h-[400px] mb-20">
+            <MyImage
+              src="/My-CV-Site/images/CodeBackground.jpg"
+              alt="Code Background"
+              fill
+              objectFit="cover"
+              priority
+              divImageStyle={{ height: "400px" }}
+            />
 
-            {/* ITS Academy */}
-            <div className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4">
-              <Link href="https://www.its-ictpiemonte.it/corsi/backend-developer/" className="no-underline">
-                <div className="flex items-center gap-6">
-                  <Image
-                    src="/My-CV-Site/images/ITS-Logo.jpg"
-                    alt="ITS Academy"
-                    width={100}
-                    height={100}
+            <div className="absolute bottom-[-120px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
+              <div className="text-center">
+                <div
+                  style={{
+                    opacity: Opacity,
+                    transition: "opacity 2s ease",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <MyImage
+                    src="/My-CV-Site/images/FotoPlaceHolder.png"
+                    alt="Round Image"
+                    width={250}
+                    height={250}
+                    className="rounded-full border-4 border-LightGreen mx-auto"
                     priority
                   />
-                  <div>
-                    <Label
-                      text="ITS Academy"
-                      className="text-2xl text-lightBlue font-bold"
-                      font="teko"
-                    />
-                    <Label
-                      text="Frequentato il corso biennale di Software Develorep presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
-                      className="text-left text-black"
-                      font="merriweather"
-                    />
-                  </div>
                 </div>
 
-                <div className="flex justify-center gap-4 items-center mt-6">
+                <div
+                  style={{
+                    display: "inline-block",
+                    transform: IsHovered ? "scale(1.1)" : "scale(1)",
+                    transition: "transform 0.3s ease",
+                  }}
+                  onMouseEnter={() => SetIsHovered(true)}
+                  onMouseLeave={() => SetIsHovered(false)}
+                >
                   <Label
-                    text="Ore di lavoro in azienda: 2000 ore"
-                    className="text-center font-bold text-black"
-                    font="merriweather"
+                    text="Federico Grimaldi"
+                    className="font-Teko text-5xl text-LightGreen text-center whitespace-nowrap mt-3 mb-12"
+                    font="teko"
                   />
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Best Projects */}
-      <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
-        <div className="px-24 w-full">
-          {RenderProjectSlide()}
-        </div>
-        <MyButton
-          text="<"
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-          onClick={() => HandlePrev(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
-        />
-        <MyButton
-          text=">"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-          onClick={() => HandleNext(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
-        />
-      </section>
+          <div className="max-w-2xl mx-auto text-center h-auto my-10 px-4">
+            <div
+              style={{
+                display: "inline-block",
+                transform: IsHovered ? "scale(1.1)" : "scale(1)",
+                transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)", // easing tipo spring approssimato
+              }}
+              onMouseEnter={() => SetIsHovered(true)}
+              onMouseLeave={() => SetIsHovered(false)}
+            >
+              <Label
+                text="Sono Federico Grimaldi, uno studente di Quinta Superiore (2024-2025) appassionato di informatica, soprattutto programmazione. Con una solida conoscenza informatica e una ottima abilità nel problem solving, sono pronto ad affrontare nuove sfide e ad ampliare le mie conoscenze. Sono sempre desideroso di imparare e sono motivato a cogliere ogni opportunità per crescere nel campo dell'informatica."
+                className="text-center leading-6 font-regular"
+                font="merriweather"
+              />
+            </div>
+          </div>
+        </section>
 
-      {/* Work Principles */}
-      <section className="bg-cover bg-center w-full" style={{ backgroundImage: "url('/My-CV-Site/images/CodeGreenBackground.jpg')" }}>
-        <div className="relative z-10 text-center px-4 py-10 bg-black/50">
-          <Label
-            text="Lavoro con dei principi:"
-            className="font-Teko text-5xl text-LightGreen w-auto "
-            font="teko"
+        {/* Istruzione */}
+        <section className="w-full bg-black/50 py-5 px-4">
+          <div>
+            <h2 className="text-3xl font-bold text-center mb-8 text-LightGreen font-teko p-4">
+              ISTRUZIONE:
+            </h2>
+            <div className="flex flex-col md:flex-row gap-8 justify-center">
+              {/* ITTS Carlo Grassi */}
+              <div
+                ref={CarloGrassiRef}
+                className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4"
+                style={{
+                  animationName: CarloGrassiVisible ? "SlideInFromLeft" : undefined,
+                  animationDuration: CarloGrassiVisible ? "3s" : undefined,
+                  animationFillMode: CarloGrassiVisible ? "forwards" : undefined,
+                  animationTimingFunction: CarloGrassiVisible ? "ease-out" : undefined,
+                  opacity: CarloGrassiVisible ? 1 : 0,
+                }}
+              >
+                <Link href="https://www.itisgrassi.edu.it" className="no-underline">
+                  <div className="flex items-center gap-6">
+                    <Image
+                      src="/My-CV-Site/images/FotoPlaceHolder.png"
+                      alt="ITTS Carlo Grassi"
+                      width={100}
+                      height={100}
+                      priority
+                    />
+                    <div>
+                      <Label
+                        text="ITTS Carlo Grassi"
+                        className="text-2xl text-lightBlue font-bold"
+                        font="teko"
+                      />
+                      <Label
+                        text="Frequentato il corso di Informatica e Telecomunicazioni presso l'ITTS Carlo Grassi (Torino Piemonte) anno 2020-2025."
+                        className="text-left text-black"
+                        font="merriweather"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center gap-4 items-center mt-6 ">
+                    <Label
+                      text="Uscito: 0/100"
+                      className="font-bold text-center text-black"
+                      font="merriweather"
+                    />
+                    <Label text="Ore PCTO: 2000" className="text-center text-black" font="merriweather" />
+                  </div>
+                </Link>
+              </div>
+
+              {/* ITS Academy */}
+              <div
+                ref={ItsAcademyRef}
+                className="flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4"
+                style={{
+                  animationName: ItsAcademyVisible ? "SlideInFromRight" : undefined,
+                  animationDuration: ItsAcademyVisible ? "3s" : undefined,
+                  animationFillMode: ItsAcademyVisible ? "forwards" : undefined,
+                  animationTimingFunction: ItsAcademyVisible ? "ease-out" : undefined,
+                  opacity: ItsAcademyVisible ? 1 : 0,
+                }}
+              >
+                <Link href="https://www.itsacademy.it" className="no-underline">
+                  <div className="flex items-center gap-6">
+                    <Image
+                      src="/My-CV-Site/images/FotoPlaceHolder.png"
+                      alt="ITS Academy"
+                      width={100}
+                      height={100}
+                      priority
+                    />
+                    <div>
+                      <Label
+                        text="ITS Academy"
+                        className="text-2xl text-lightBlue font-bold"
+                        font="teko"
+                      />
+                      <Label
+                        text="Corso post-diploma in tecnologie digitali, anno 2025-2026."
+                        className="text-left text-black"
+                        font="merriweather"
+                      />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section Progetti */}
+        <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
+          <div className="px-24 w-full">
+            {RenderProjectSlide()}
+          </div>
+          <MyButton
+            text="<"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
+            onClick={() => HandlePrev(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
           />
-          <p className="text-white text-base mt-2 max-w-xl mx-auto">
-            In informatica, credo che seguire dei principi sia fondamentale per creare software di qualità e duraturo, così nel tempo mentre affinavo le mie abilità, ho sviluppato i miei principi di lavoro che seguo sempre quando sviluppo software.
-          </p>
-          <ul className="text-white text-lg mt-6 max-w-2xl mx-auto text-left list-disc list-inside space-y-2">
-            <li>🔧 Scrivo codice semplice e leggibile.</li>
-            <li>🧱 Progetto sistemi manutenibili e scalabili.</li>
-            <li>📐 Seguo principi solidi di design e architettura.</li>
-            <li>🧠 Penso prima, codice dopo.</li>
-            <li>🧠 Penso prima, codice dopo.</li>
-            <li>🧠 Penso prima, codice dopo.</li>
-          </ul>
-        </div>
-      </section>
+          <MyButton
+            text=">"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
+            onClick={() => HandleNext(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
+          />
+        </section>
 
-      {/* Tecnologie preferite */}
-      <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
-        <div className="relative px-24">
-          {RenderLanguagesAndTecnologiesSlide()}
-        </div>
+        {/* Work Principles */}
+        <section className="bg-cover bg-center w-full" style={{ backgroundImage: "url('/My-CV-Site/images/CodeGreenBackground.jpg')" }}>
+          <div className="relative z-10 text-center px-4 py-10 bg-black/50">
+            <Label
+              text="Lavoro con dei principi:"
+              className="font-Teko text-5xl text-LightGreen w-auto "
+              font="teko"
+            />
+            <p className="text-white text-base mt-2 max-w-xl mx-auto">
+              In informatica, credo che seguire dei principi sia fondamentale per creare software di qualità e duraturo, così nel tempo mentre affinavo le mie abilità, ho sviluppato i miei principi di lavoro che seguo sempre quando sviluppo software.
+            </p>
+            <ul className="text-white text-lg mt-6 max-w-2xl mx-auto text-left list-disc list-inside space-y-2">
+              <li>🔧 Scrivo codice semplice e leggibile.</li>
+              <li>🧱 Progetto sistemi manutenibili e scalabili.</li>
+              <li>📐 Seguo principi solidi di design e architettura.</li>
+              <li>🧠 Penso prima, codice dopo.</li>
+              <li>🧠 Penso prima, codice dopo.</li>
+              <li>🧠 Penso prima, codice dopo.</li>
+            </ul>
+          </div>
+        </section>
 
-        <MyButton
-          text="<"
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-          onClick={() => HandlePrev(TechSlideIndex, 1, 6, SetTechSlideIndex)}
-        />
-        <MyButton
-          text=">"
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-          onClick={() => HandleNext(TechSlideIndex, 1, 6, SetTechSlideIndex)}
-        />
+        {/* Section Tecnologie */}
+        <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
+          <div className="relative px-24">
+            {RenderLanguagesAndTecnologiesSlide()}
+          </div>
+
+          <MyButton
+            text="<"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
+            onClick={() => HandlePrev(TechSlideIndex, 1, 6, SetTechSlideIndex)}
+          />
+          <MyButton
+            text=">"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
+            onClick={() => HandleNext(TechSlideIndex, 1, 6, SetTechSlideIndex)}
+          />
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 
