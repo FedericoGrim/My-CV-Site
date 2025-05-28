@@ -6,7 +6,7 @@ import { MyImage } from "@/components/Image/Image";
 import Label from "@/components/Label/Label";
 import { MyButton } from "@/components/Button/Button";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function UseIntersectionObserver(ref: React.RefObject<HTMLElement>, options: IntersectionObserverInit = {}) {
   const [IsVisible, SetIsVisible] = useState(false);
@@ -149,31 +149,6 @@ const HomePage = () => {
 
   return (
     <>
-      <style>
-        {`
-          @keyframes SlideInFromLeft {
-            0% {
-              transform: translateX(-100%);
-              opacity: 0;
-            }
-            100% {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-          @keyframes SlideInFromRight {
-            0% {
-              transform: translateX(100%);
-              opacity: 0;
-            }
-            100% {
-              transform: translateX(0);
-              opacity: 1;
-            }
-          }
-        `}
-      </style>
-
       <section className="w-full bg-gradient-to-b from-CalPolyGreen to-Black">
         {/* Sezione di presentazione */}
         <section>
