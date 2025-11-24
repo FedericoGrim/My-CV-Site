@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Federico Grimaldi CV Site",
   description: "Federico Grimaldi CV",
   icons: {
-    icon: "/My-CV-Site/images/favicon.ico", 
+    icon: "/My-CV-Site/favicon.ico", 
   },
   openGraph: {
     title: "Federico Grimaldi CV Site",
