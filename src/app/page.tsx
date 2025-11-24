@@ -8,7 +8,10 @@ import { MyButton } from "@/components/Button/Button";
 
 import { useState, useEffect, useRef } from "react";
 
-function UseIntersectionObserver(ref: React.RefObject<HTMLElement>, options: IntersectionObserverInit = {}) {
+function UseIntersectionObserver<T extends HTMLElement>(
+  ref: React.RefObject<T>,
+  options: IntersectionObserverInit = {}
+) {
   const [IsVisible, SetIsVisible] = useState(false);
 
   useEffect(() => {
@@ -25,7 +28,7 @@ function UseIntersectionObserver(ref: React.RefObject<HTMLElement>, options: Int
     observer.observe(element);
 
     return () => {
-      if (element) observer.unobserve(element);
+      observer.unobserve(element);
     };
   }, [ref, options]);
 
@@ -144,80 +147,71 @@ const HomePage = () => {
   const ItsAcademyRef = useRef<HTMLDivElement>(null);
 
   // Stato visibilità con intersection observer
-  const CarloGrassiVisible = UseIntersectionObserver(CarloGrassiRef);
-  const ItsAcademyVisible = UseIntersectionObserver(ItsAcademyRef);
+  const CarloGrassiVisible = UseIntersectionObserver(CarloGrassiRef as React.RefObject<HTMLElement>);
+  const ItsAcademyVisible = UseIntersectionObserver(ItsAcademyRef as React.RefObject<HTMLElement>);
 
   return (
     <>
       <section className="w-full bg-gradient-to-b from-CalPolyGreen to-Black">
         {/* Sezione di presentazione */}
         <section>
-          <div className="relative w-full h-[400px] mb-20">
-            <MyImage
-              src="/My-CV-Site/images/CodeBackground.jpg"
-              alt="Code Background"
-              fill
-              objectFit="cover"
-              priority
-              divImageStyle={{ height: "400px" }}
-            />
+          <div
+            className="w-full min-h-[350px] py-20 px-4 bg-no-repeat bg-center bg-[length:100%_100%]"
+            style={{
+              backgroundImage: "url('/My-CV-Site/images/CodeBackground.jpg')",
+            }}
+          >
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-center justify-center gap-10 bg-FernGreen p-6 rounded-2xl shadow-lg border-4 border-black/50">
 
-            <div className="absolute bottom-[-120px] left-1/2 transform -translate-x-1/2 flex justify-center items-center w-full">
-              <div className="text-center">
-                <div
-                  style={{
-                    opacity: Opacity,
-                    transition: "opacity 2s ease",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  <MyImage
-                    src="/My-CV-Site/images/FotoPlaceHolder.png"
-                    alt="Round Image"
-                    width={250}
-                    height={250}
-                    className="rounded-full border-4 border-LightGreen mx-auto"
-                    priority
-                  />
-                </div>
-
-                <div
-                  style={{
-                    display: "inline-block",
-                    transform: IsHovered ? "scale(1.1)" : "scale(1)",
-                    transition: "transform 0.3s ease",
-                  }}
-                  onMouseEnter={() => SetIsHovered(true)}
-                  onMouseLeave={() => SetIsHovered(false)}
-                >
-                  <Label
-                    text="Federico Grimaldi"
-                    className="font-Teko text-5xl text-LightGreen text-center whitespace-nowrap mt-3 mb-12"
-                    font="teko"
-                  />
-                </div>
+              {/* Foto */}
+              <div
+                style={{
+                  opacity: Opacity,
+                  transition: "opacity 2s ease",
+                }}
+                className="flex-shrink-0 md:ml-10"
+              >
+                <MyImage
+                  src="/My-CV-Site/images/MyPhoto.jpg"
+                  alt="Profile Image"
+                  width={250}
+                  height={250}
+                  className="rounded-2xl border-4 border-LightGreen"
+                  priority
+                />
               </div>
+
+              {/* Testo */}
+              <div
+                style={{
+                  transform: IsHovered ? "scale(1.03)" : "scale(1)",
+                  transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+                }}
+                onMouseEnter={() => SetIsHovered(true)}
+                onMouseLeave={() => SetIsHovered(false)}
+                className="md:max-w-[60%]"
+              >
+                <Label
+                  text={[
+                    "Sono un ragazzo appassionato di informatica.",
+                    "Cerco sempre nuove sfide e tecnologie da utilizzare.",
+                    "Amo affrontare sfide che mi impongono di trovare soluzioni fuori dagli schemi.",
+                    "Sono spinto dalla possibilità di contribuire all’avanzamento tecnologico.",
+                    "Sono spinto ogni giorno dalla possibilità di contribuire all'avanzamento tecnologico e lasciare il mio segno.",
+                    "Sono sempre pronto a scoprire nuove soluzioni e tecnologie per migliorare le mie competenze",
+                    "Sono pronto ad affrontare nuove sfide e ad espandere le mie conoscenze per adattarmi all'evoluzione della tecnologia"
+                  ].map((paragrafo, i) => (
+                    <p key={i} className="">{paragrafo}</p>
+                  ))}
+                  className="leading-6 font-regular text-left text-white"
+                  font="merriweather"
+                />
+              </div>
+
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto text-center h-auto my-10 px-4">
-            <div
-              style={{
-                display: "inline-block",
-                transform: IsHovered ? "scale(1.1)" : "scale(1)",
-                transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)", // easing tipo spring approssimato
-              }}
-              onMouseEnter={() => SetIsHovered(true)}
-              onMouseLeave={() => SetIsHovered(false)}
-            >
-              <Label
-                text="Sono Federico Grimaldi, uno studente di Quinta Superiore (2024-2025) appassionato di informatica, soprattutto programmazione. Con una solida conoscenza informatica e una ottima abilità nel problem solving, sono pronto ad affrontare nuove sfide e ad ampliare le mie conoscenze. Sono sempre desideroso di imparare e sono motivato a cogliere ogni opportunità per crescere nel campo dell'informatica."
-                className="text-center leading-6 font-regular"
-                font="merriweather"
-              />
-            </div>
-          </div>
+
         </section>
 
         {/* Istruzione */}
@@ -239,7 +233,7 @@ const HomePage = () => {
                   opacity: CarloGrassiVisible ? 1 : 0,
                 }}
               >
-                <Link href="https://www.itisgrassi.edu.it" className="no-underline">
+                <Link href="https://www.itisgrassi.edu.it" className="no-underline text-black">
                   <div className="flex items-center gap-6">
                     <Image
                       src="/My-CV-Site/images/FotoPlaceHolder.png"
@@ -251,7 +245,7 @@ const HomePage = () => {
                     <div>
                       <Label
                         text="ITTS Carlo Grassi"
-                        className="text-2xl text-lightBlue font-bold"
+                        className="text-2xl font-bold"
                         font="teko"
                       />
                       <Label
@@ -285,7 +279,7 @@ const HomePage = () => {
                   opacity: ItsAcademyVisible ? 1 : 0,
                 }}
               >
-                <Link href="https://www.itsacademy.it" className="no-underline">
+                <Link href="https://www.itsacademy.it" className="no-underline text-black">
                   <div className="flex items-center gap-6">
                     <Image
                       src="/My-CV-Site/images/ITS-Logo.jpg"
@@ -297,7 +291,7 @@ const HomePage = () => {
                     <div>
                       <Label
                         text="ITS Academy"
-                        className="text-2xl text-lightBlue font-bold"
+                        className="text-2xl font-bold"
                         font="teko"
                       />
                       <Label
