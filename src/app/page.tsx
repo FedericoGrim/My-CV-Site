@@ -176,7 +176,7 @@ const HomePage = () => {
                   alt="Profile Image"
                   width={250}
                   height={250}
-                  className="rounded-2xl border-4 border-LightGreen"
+                  className="rounded-2xl border-4 border-black/50"
                   priority
                 />
               </div>
@@ -201,9 +201,9 @@ const HomePage = () => {
                     "Sono sempre pronto a scoprire nuove soluzioni e tecnologie per migliorare le mie competenze",
                     "Sono pronto ad affrontare nuove sfide e ad espandere le mie conoscenze per adattarmi all'evoluzione della tecnologia"
                   ].map((paragrafo, i) => (
-                    <p key={i} className="">{paragrafo}</p>
+                    <p key={i} className="mb-0.5">{paragrafo}</p>
                   ))}
-                  className="leading-6 font-regular text-left text-white"
+                  className="leading-6 text-left text-white"
                   font="merriweather"
                 />
               </div>
