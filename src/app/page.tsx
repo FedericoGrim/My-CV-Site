@@ -203,7 +203,7 @@ const HomePage = () => {
                   ].map((paragrafo, i) => (
                     <p key={i} className="mb-0.5">{paragrafo}</p>
                   ))}
-                  className="leading-6 text-left text-white"
+                  className="leading-6 text-left text-black"
                   font="merriweather"
                 />
               </div>
@@ -217,7 +217,7 @@ const HomePage = () => {
         {/* Istruzione */}
         <section className="w-full bg-black/50 py-5 px-4">
           <div>
-            <h2 className="text-3xl font-bold text-center mb-8 text-LightGreen font-teko p-4">
+            <h2 className="text-3xl font-bold text-center mb-8 text-MantisGreen font-teko p-4">
               ISTRUZIONE:
             </h2>
             <div className="flex flex-col md:flex-row gap-8 justify-center">
@@ -236,7 +236,7 @@ const HomePage = () => {
                 <Link href="https://www.itisgrassi.edu.it" className="no-underline text-black">
                   <div className="flex items-center gap-6">
                     <Image
-                      src="/My-CV-Site/images/FotoPlaceHolder.png"
+                      src="/My-CV-Site/images/GrassiLogo.png"
                       alt="ITTS Carlo Grassi"
                       width={100}
                       height={100}
@@ -336,7 +336,7 @@ const HomePage = () => {
           <div className="relative z-10 text-center px-4 py-10 bg-black/50">
             <Label
               text="Lavoro con dei principi:"
-              className="font-Teko text-5xl text-LightGreen w-auto "
+              className="font-Teko text-5xl text-MantisGreen w-auto "
               font="teko"
             />
             <p className="text-white text-base mt-2 max-w-xl mx-auto">
