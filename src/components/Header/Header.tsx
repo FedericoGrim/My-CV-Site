@@ -30,7 +30,7 @@ export default function Header({
   return (
     <header className="flex justify-between items-center bg-NightGreen border-b-2 border-MantisGreen p-1">
       <div className="flex items-center p-1">
-        <Link href="/" passHref>
+        <Link href="/pages/home" passHref>
           <MyImage
             src="/My-CV-Site/images/myLogo.png"
             alt="Federico Grimaldi's Logo"
@@ -38,7 +38,7 @@ export default function Header({
             height={50}
           />
         </Link>
-        <Link href="/" passHref>
+        <Link href="/pages/home" passHref>
           <Label
             text="Federico Grimaldi"
             className="flex items-center ml-2 font-Teko text-2xl text-MantisGreen font-bold "

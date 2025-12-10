@@ -28,3 +28,32 @@ body {
     text-wrap: balance;
   }
 }
+
+
+@keyframes SlideIn {
+    0% {
+        transform: translateX(var(--slide-start));
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.SlideIn {
+    animation-name: SlideIn;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    opacity: 1;
+}
+
+/* Per direzione */
+.SlideLeft {
+    --slide-start: -100%;
+}
+
+.SlideRight {
+    --slide-start: 100%;
+}
