@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="">
           {/* Social Section */}
           <div className="flex flex-col p-6 bg-BlackGreen text-center">
-            <Label text="Social" className="text-LightGreen text-2xl font-bold mb-4" font="teko" />
+            <Label text="Social" className="text-MantisGreen text-2xl font-bold mb-4" font="teko" />
             <div className="space-y-4">
               <div className="flex justify-center items-center space-x-2">
                 <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
@@ -55,7 +55,7 @@ export default function Footer() {
 
           {/* Download Section */}
           <div className="flex flex-col w-full p-6 bg-NightGreen text-center">
-            <Label text="Download my CV" className="text-LightGreen text-2xl font-bold mb-4" font="teko" />
+            <Label text="Download my CV" className="text-MantisGreen text-2xl font-bold mb-4" font="teko" />
             <div className="flex flex-col space-y-4">
               <MyButton
                 className="text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg hover:border-MantisGreen hover:border-2 hover:bg-DarkGreen hover:text-MantisGreen"
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Contact Section */}
           <div className="flex flex-col p-6 bg-DarkGreen text-center">
-            <Label text="Contact Me" className="text-LightGreen text-3xl font-bold" font="teko" />
+            <Label text="Contact Me" className="text-MantisGreen text-3xl font-bold" font="teko" />
 
             <div className="flex justify-center space-x-2">
               <Label text="Email:" className="text-white text-lg" font="teko" />
@@ -101,7 +101,7 @@ export default function Footer() {
         <div className="flex flex-row w-full text-center">
           {/* Social */}
           <div className="flex-1 p-6 bg-NightGreen flex flex-col justify-center space-y-4">
-            <Label text="Social" className="text-2xl font-bold text-LightGreen" font="teko" />
+            <Label text="Social" className="text-2xl font-bold text-MantisGreen" font="teko" />
             <div className="space-y-2">
               <div className="flex justify-center items-center space-x-2">
                 <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
@@ -126,7 +126,7 @@ export default function Footer() {
 
           {/* Download */}
           <div className="flex-1 p-6 bg-BlackGreen flex flex-col justify-center space-y-4">
-            <Label text="Download my CV" className="text-LightGreen text-2xl font-bold" font="teko" />
+            <Label text="Download my CV" className="text-MantisGreen text-2xl font-bold" font="teko" />
             <MyButton 
               className="w-[300px] mx-auto text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg hover:border-MantisGreen hover:border-2 hover:bg-DarkGreen hover:text-MantisGreen" 
               text="Download CV ITA" 
@@ -144,7 +144,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="flex-1 p-6 bg-NightGreen flex flex-col justify-center space-y-4">
-            <Label text="Contact Me" className="text-LightGreen text-3xl font-bold" font="teko" />
+            <Label text="Contact Me" className="text-MantisGreen text-3xl font-bold" font="teko" />
             <div className="flex justify-center space-x-2">
               <Label text="Email:" className="text-white text-lg" font="teko" />
               <Link href="mailto:federico.grimaldi2006@gmail.com" passHref>
