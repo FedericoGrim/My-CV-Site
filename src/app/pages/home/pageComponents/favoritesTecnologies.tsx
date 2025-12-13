@@ -68,22 +68,43 @@ export default function TechnologiesSection() {
   const [TechSlideIndex, SetTechSlideIndex] = useState(1);
 
   return (
-    <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
-      <div className="relative px-24">
+    <section className="relative w-full min-h-[400px] overflow-hidden">
+      {/* Contenuto slide */}
+      <div className="absolute inset-0 flex items-center justify-center px-24">
         {RenderLanguagesAndTecnologiesSlide(TechSlideIndex)}
       </div>
 
-      <MyButton
-        text="<"
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-        onClick={() => HandlePrev(TechSlideIndex, 1, 6, SetTechSlideIndex)}
-      />
+      {/* PREV */}
+      <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
+        <MyButton
+          text="<"
+          className="
+            !text-MantisGreen
+            !font-extrabold
+            !text-4xl
+            !min-w-0
+            !px-2
+            !leading-none
+          "
+          onClick={() => HandlePrev(TechSlideIndex, 1, 6, SetTechSlideIndex)}
+        />
+      </div>
 
-      <MyButton
-        text=">"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-        onClick={() => HandleNext(TechSlideIndex, 1, 6, SetTechSlideIndex)}
-      />
+      {/* NEXT */}
+      <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10">
+        <MyButton
+          text=">"
+          className="
+            !text-MantisGreen
+            !font-extrabold
+            !text-4xl
+            !min-w-0
+            !px-2
+            !leading-none
+          "
+          onClick={() => HandleNext(TechSlideIndex, 1, 6, SetTechSlideIndex)}
+        />
+      </div>
     </section>
   );
 }

@@ -92,22 +92,30 @@ export default function ProjectSlider() {
   const [ProjectSlideIndex, SetProjectSlideIndex] = useState(1);
 
   return (
-    <section className="relative w-full h-[400px] flex flex-col items-center justify-center">
-      <div className="px-24 w-full">
-        {RenderProjectSlide(ProjectSlideIndex)}
-      </div>
+<section className="relative w-full min-h-[400px] overflow-hidden">
+  <div className="absolute inset-0 flex items-center justify-center px-24">
+    {RenderProjectSlide(ProjectSlideIndex)}
+  </div>
 
-      <MyButton
-        text="<"
-        className="absolute left-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-        onClick={() => HandlePrev(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
-      />
+  {/* PREV */}
+  <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
+    <MyButton
+      text="<"
+      className="!text-MantisGreen !font-bold !min-w-0 !px-3 !text-3xl"
+      onClick={() => HandlePrev(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
+    />
+  </div>
 
-      <MyButton
-        text=">"
-        className="absolute right-4 top-1/2 -translate-y-1/2 text-MantisGreen text-2xl"
-        onClick={() => HandleNext(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
-      />
-    </section>
+  {/* NEXT */}
+  <div className="absolute right-6 top-1/2 -translate-y-1/2 z-10">
+    <MyButton
+      text=">"
+      className="!text-MantisGreen !font-bold !min-w-0 !px-3 !text-3xl"
+      onClick={() => HandleNext(ProjectSlideIndex, 1, 4, SetProjectSlideIndex)}
+    />
+  </div>
+</section>
+
+
   );
 }
