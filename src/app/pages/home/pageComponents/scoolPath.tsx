@@ -30,7 +30,7 @@ export default function SchoolPath() {
             ref={CarloGrassiRef}
             className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 SlideIn ${CarloGrassiVisible ? 'SlideLeft' : 'SlideRight'}`}
           >
-            <Link href="https://www.itisgrassi.edu.it" className="no-underline text-black">
+            <Link href="https://www.itisgrassi.edu.it" className="!no-underline !text-black">
               <div className="flex items-center gap-6">
                 <Image
                   src="/My-CV-Site/images/GrassiLogo.png"
@@ -47,7 +47,7 @@ export default function SchoolPath() {
                   />
                   <Label
                     text="Frequentato il corso di Informatica e Telecomunicazioni presso l'ITTS Carlo Grassi (Torino Piemonte) anno 2020-2025."
-                    className="text-left text-black"
+                    className="text-left !text-black"
                     font="merriweather"
                   />
                 </div>
@@ -60,7 +60,7 @@ export default function SchoolPath() {
             ref={ItsAcademyRef}
             className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 SlideIn ${ItsAcademyVisible ? 'SlideRight' : 'SlideLeft'}`}
           >
-            <Link href="https://www.itsacademy.it" className="no-underline text-black">
+            <Link href="https://www.itsacademy.it" className="!no-underline !text-black">
               <div className="flex items-center gap-6">
                 <Image
                   src="/My-CV-Site/images/ITS-Logo.jpg"
@@ -77,7 +77,7 @@ export default function SchoolPath() {
                   />
                   <Label
                     text="Freqentato il corso biennale di Software Developer presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
-                    className="text-left text-black"
+                    className="text-left !text-black"
                     font="merriweather"
                   />
                 </div>
