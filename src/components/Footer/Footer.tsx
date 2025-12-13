@@ -128,14 +128,14 @@ export default function Footer() {
           <div className="flex-1 p-6 bg-BlackGreen flex flex-col justify-center space-y-4">
             <Label text="Download my CV" className="text-MantisGreen text-2xl font-bold" font="teko" />
             <MyButton 
-              className="w-[300px] mx-auto text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg hover:border-MantisGreen hover:border-2 hover:bg-DarkGreen hover:text-MantisGreen" 
+              className="!w-[300px] !mx-auto !text-MantisGreen !border-2 !border-MantisGreen py-2 !rounded-lg !hover:border-MantisGreen !hover:border-2 !hover:bg-DarkGreen !hover:text-MantisGreen" 
               text="Download CV ITA" 
               variant="outlined" 
               href="https://drive.google.com/file/d/13JVq1By-XVz3h-OcJ_kq4ndh3_CRdB7U/view?usp=sharing"
             />
 
             <MyButton 
-              className="w-[300px] mx-auto text-MantisGreen border-2 border-MantisGreen py-2 rounded-lg hover:border-MantisGreen hover:border-2 hover:bg-DarkGreen hover:text-MantisGreen" 
+              className="!w-[300px] !mx-auto !text-MantisGreen !border-2 !border-MantisGreen py-2 !rounded-lg !hover:border-MantisGreen !hover:border-2 !hover:bg-DarkGreen !hover:text-MantisGreen" 
               text="Download CV ENG" 
               variant="outlined" 
               href="https://drive.google.com/file/d/12I7PibYYqV-Of_TJviZxVc2P1WG8mK1m/view?usp=sharing"
