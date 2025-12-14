@@ -56,8 +56,8 @@ case 1:
                   "Utilizza cifratura simmetrica e un backend semplice che permette di salvare, modificare e recuperare le credenziali.",
                   "È stato pensato per: studiare la CLEAN ARCHITECTURE, creazione di REST API, utilizzo di MIGRATIONS per la struttura del DB e per creare UNIT TESTS."
               ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-              className="leading-6 text-left text-white"
-              font="merriweather"
+              className="leading-6 text-left text-white text-lg"
+              font="roboto"
             />
           </div>
         </div>
@@ -83,8 +83,8 @@ case 1:
                   "Utilizza cifratura simmetrica e un backend semplice che permette di salvare, modificare e recuperare le credenziali.",
                   "È stato pensato per: studiare la CLEAN ARCHITECTURE, creazione di REST API, utilizzo di MIGRATIONS per la struttura del DB e per creare UNIT TESTS."
                 ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-                className="leading-6 text-left text-white"
-                font="merriweather"
+                className="leading-6 text-left text-white text-lg"
+                font="roboto"
               />
             </div>
           </div>
@@ -121,8 +121,8 @@ case 1:
                 "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                 "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
               ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-              className="leading-6 text-left text-white"
-              font="merriweather"
+              className="leading-6 text-left text-white text-lg"
+              font="roboto"
             />
           </div>
         </div>
@@ -149,8 +149,8 @@ case 1:
                   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                   "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-                className="leading-6 text-left text-white"
-                font="merriweather"
+                className="leading-6 text-left text-white text-lg"
+                font="roboto"
               />
             </div>
           </div>
@@ -187,8 +187,8 @@ case 1:
                   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                   "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
               ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-              className="leading-6 text-left text-white"
-              font="merriweather"
+              className="leading-6 text-left text-white text-lg"
+              font="roboto"
             />
           </div>
         </div>
@@ -215,8 +215,8 @@ case 1:
                   "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                   "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
-                className="leading-6 text-left text-white"
-                font="merriweather"
+                className="leading-6 text-left text-white text-lg"
+                font="roboto"
               />
             </div>
           </div>

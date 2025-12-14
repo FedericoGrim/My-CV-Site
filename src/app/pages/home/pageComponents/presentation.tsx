@@ -58,12 +58,12 @@ export default function Presentation() {
                 "Sono spinto dalla possibilità di contribuire all’avanzamento tecnologico.",
                 "Sono spinto ogni giorno dalla possibilità di contribuire all'avanzamento tecnologico e lasciare il mio segno.",
                 "Sono sempre pronto a scoprire nuove soluzioni e tecnologie per migliorare le mie competenze",
-                "Sono pronto ad affrontare nuove sfide e ad espandere le mie conoscenze per adattarmi all'evoluzione della tecnologia"
+                "Sono pronto ad affrontare nuove sfide e ad espandere le mie conoscenze per adattarmi all'evoluzione della tecnologia."
               ].map((paragrafo, i) => (
                 <p key={i} className="mb-0.5">{paragrafo}</p>
               ))}
-              className="leading-6 text-left text-black"
-              font="merriweather"
+              className="leading-6 text-left text-black text-lg"
+              font="roboto"
             />
           </div>
 

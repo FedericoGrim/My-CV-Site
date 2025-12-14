@@ -47,8 +47,8 @@ export default function SchoolPath() {
                   />
                   <Label
                     text="Frequentato il corso di Informatica e Telecomunicazioni presso l'ITTS Carlo Grassi (Torino Piemonte) anno 2020-2025."
-                    className="text-left !text-black"
-                    font="merriweather"
+                    className="text-left !text-black text-lg"
+                    font="roboto"
                   />
                 </div>
               </div>
@@ -77,8 +77,8 @@ export default function SchoolPath() {
                   />
                   <Label
                     text="Freqentato il corso biennale di Software Developer presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
-                    className="text-left !text-black"
-                    font="merriweather"
+                    className="text-left !text-black text-lg"
+                    font="roboto"
                   />
                 </div>
               </div>
