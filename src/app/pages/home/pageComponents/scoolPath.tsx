@@ -52,6 +52,14 @@ export default function SchoolPath() {
                   />
                 </div>
               </div>
+              <div className="flex justify-center gap-4 items-center mt-6 ">
+                <Label
+                  text="Uscito: 100/100"
+                  className="font-bold text-center text-black"
+                  font="roboto"
+                />
+                <Label text="Ore PCTO: 2067" className="text-center text-black" font="roboto" />
+              </div>
             </Link>
           </div>
 
@@ -71,16 +79,24 @@ export default function SchoolPath() {
                 />
                 <div>
                   <Label
-                    text="ITS Academy"
+                    text="ITS Academy (On going)"
                     className="text-2xl font-bold"
                     font="teko"
                   />
                   <Label
-                    text="Freqentato il corso biennale di Software Developer presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
+                    text="Frequentato il corso biennale di Software Developer presso l'ITS Academy (Torino Piemonte) dall'anno 2025-2027."
                     className="text-left !text-black text-lg"
                     font="roboto"
                   />
                 </div>
+              </div>
+              <div className="flex justify-center gap-4 items-center mt-6 ">
+                <Label
+                  text="Uscito: .../100"
+                  className="font-bold text-center text-black"
+                  font="roboto"
+                />
+                <Label text="Ore PCTO: ..." className="text-center text-black" font="roboto" />
               </div>
             </Link>
           </div>
