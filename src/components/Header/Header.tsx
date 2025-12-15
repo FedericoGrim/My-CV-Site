@@ -49,9 +49,9 @@ export default function Header({
       {IsMobile ? (
         <DropDownMenu
           iconSelection="menu"
-          classnameDropDown="bg-gray-200"
-          classnameMenu="my-2 bg-MantisGreen rounded-lg"
-          classnameMenuIcon="bg-MantisGreen p-1 rounded-lg text-5xl text-black"
+          classnameDropDown="!bg-gray-200"
+          classnameMenu="!my-2 !bg-MantisGreen !rounded-lg"
+          classnameMenuIcon="!bg-MantisGreen !p-1 !rounded-lg !text-5xl !text-black"
           classnameMyButton={classnameMyButton["DropDownMenuButtons"]}
           classnameMyButtonDiv={classnameMyButtonDiv}
           variantMyButton={variantMyButton}
