@@ -113,6 +113,138 @@ function RenderProjectSlide(projectSlideIndex: number, isMobile: boolean) {
         </div>
       );
 
+    case 3:
+      return isMobile ? (
+        <div className="flex flex-col items-center gap-4 px-4">
+          {/* Riga immagine + titolo/categoria */}
+          <div className="flex items-center gap-4">
+            <MyImage
+              src="/My-CV-Site/images/FotoPlaceHolder.png"
+              alt="Project Image"
+              width={150}
+              height={150}
+              className="rounded-2xl object-cover"
+              priority
+            />
+
+            {/* Titolo e categoria, centrati verticalmente */}
+            <div className="flex flex-col justify-center">
+              <Label text="BOH" className="text-4xl text-MantisGreen" font="teko" />
+              <Label text="Expence Manager" className="text-xl text-LightGreen" font="teko" />
+            </div>
+          </div>
+
+          {/* Testo descrittivo */}
+          <div className="max-w-[350px]">
+            <Label
+              text={[
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
+              className="leading-6 text-left text-white text-lg"
+              font="roboto"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-row items-start gap-6">
+          <MyImage
+            src="/My-CV-Site/images/FotoPlaceHolder.png"
+            alt="Profile Image"
+            width={250}
+            height={250}
+            className="rounded-2xl object-cover"
+            priority
+          />
+          <div className="flex flex-col">
+            <div className="flex gap-4 items-baseline">
+              <Label text="BOH" className="text-5xl text-MantisGreen" font="teko" />
+              <Label text="Expence Manager" className="text-3xl text-LightGreen" font="teko" />
+            </div>
+            <div className="mt-2">
+              <Label
+                text={[
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
+                className="leading-6 text-left text-white text-lg"
+                font="roboto"
+              />
+            </div>
+          </div>
+        </div>
+      );
+
+    case 4:
+      return isMobile ? (
+        <div className="flex flex-col items-center gap-4 px-4">
+          {/* Riga immagine + titolo/categoria */}
+          <div className="flex items-center gap-4">
+            <MyImage
+              src="/My-CV-Site/images/FotoPlaceHolder.png"
+              alt="Project Image"
+              width={150}
+              height={150}
+              className="rounded-2xl object-cover"
+              priority
+            />
+
+            {/* Titolo e categoria, centrati verticalmente */}
+            <div className="flex flex-col justify-center">
+              <Label text="A.J.A.I." className="text-4xl text-MantisGreen" font="teko" />
+              <Label text="Personal Assistant" className="text-xl text-LightGreen" font="teko" />
+            </div>
+          </div>
+
+          {/* Testo descrittivo */}
+          <div className="max-w-[350px]">
+            <Label
+              text={[
+                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
+              className="leading-6 text-left text-white text-lg"
+              font="roboto"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-row items-start gap-6">
+          <MyImage
+            src="/My-CV-Site/images/FotoPlaceHolder.png"
+            alt="Profile Image"
+            width={250}
+            height={250}
+            className="rounded-2xl object-cover"
+            priority
+          />
+          <div className="flex flex-col">
+            <div className="flex gap-4 items-baseline">
+              <Label text="A.J.A.I." className="text-5xl text-MantisGreen" font="teko" />
+              <Label text="Personal Assistant" className="text-3xl text-LightGreen" font="teko" />
+            </div>
+            <div className="mt-2">
+              <Label
+                text={[
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                  "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                  "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                ].map((p, i) => <p key={i} className="mb-1">{p}</p>)}
+                className="leading-6 text-left text-white text-lg"
+                font="roboto"
+              />
+            </div>
+          </div>
+        </div>
+      );
+
     default:
       return null;
   }
