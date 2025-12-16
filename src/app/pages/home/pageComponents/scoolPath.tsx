@@ -55,10 +55,10 @@ export default function SchoolPath() {
               <div className="flex justify-center gap-4 items-center mt-6 ">
                 <Label
                   text="Uscito: 100/100"
-                  className="font-bold text-center text-black"
+                  className="!font-bold !text-center !text-black"
                   font="roboto"
                 />
-                <Label text="Ore PCTO: 2067" className="text-center text-black" font="roboto" />
+                <Label text="Ore PCTO: 2067" className="!text-center !text-black" font="roboto" />
               </div>
             </Link>
           </div>
@@ -93,10 +93,10 @@ export default function SchoolPath() {
               <div className="flex justify-center gap-4 items-center mt-6 ">
                 <Label
                   text="Uscito: .../100"
-                  className="font-bold text-center text-black"
+                  className="!font-bold !text-center !text-black"
                   font="roboto"
                 />
-                <Label text="Ore PCTO: ..." className="text-center text-black" font="roboto" />
+                <Label text="Ore PCTO: ..." className="!text-center !text-black" font="roboto" />
               </div>
             </Link>
           </div>

@@ -5,5 +5,8 @@ export interface ButtonProps {
     variant?: 'text' | 'outlined' | 'contained';
     text?: string;
     onClick?: () => void;
+    ariaLabel?: string;
+    title?: string;
+    children?: React.ReactNode;
   }
   

@@ -2,29 +2,49 @@
 
 import React from 'react';
 import Button from '@mui/material/Button';
-import { ButtonProps } from './ButtonProps';
 
-export const MyButton: React.FC<ButtonProps> = ({ 
-  variant = "text", 
-  download = "", 
-  href = "", 
-  text = "TEXT", 
+export interface ButtonProps {
+  href?: string;
+  download?: string;
+  className?: string;
+  variant?: 'text' | 'outlined' | 'contained';
+  text?: string;
+  onClick?: () => void;
+  ariaLabel?: string;
+  title?: string;
+  children?: React.ReactNode;
+}
+
+export const MyButton: React.FC<ButtonProps> = ({
+  variant = "text",
+  download,
+  href,
+  text,
   className,
-  onClick
+  onClick,
+  ariaLabel,
+  title,
+  children
 }) => {
-  let buttonProps: any = {
+
+  const buttonProps: any = {
     variant,
     className,
-    component: "a",
-    children: text
+    component: href || download ? "a" : "button",
+    children: children ?? text   // ⭐ LINEA CHIAVE
   };
 
-  if (download !== "") {
-    buttonProps.download = download || true;
+  if (ariaLabel) buttonProps['aria-label'] = ariaLabel;
+  if (title) buttonProps.title = title;
+
+  if (download) {
+    buttonProps.download = download === "" ? true : download;
     buttonProps.href = href;
-  } else if (onClick) {
+  } 
+  else if (onClick) {
     buttonProps.onClick = onClick;
-  } else if (href) {
+  } 
+  else if (href) {
     buttonProps.href = href;
   }
 
