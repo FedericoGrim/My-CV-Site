@@ -17,11 +17,9 @@
 }
 
 body {
-  background-color: #000000; /* Imposta lo sfondo completamente nero */
-  color: rgb(var(--foreground-rgb)); /* Usa la variabile per il colore del testo */
+  background-color: #000000;
+  color: rgb(var(--foreground-rgb));
 }
-
-
 
 @layer utilities {
   .text-balance {
@@ -29,49 +27,73 @@ body {
   }
 }
 
+/* ================= SLIDE IN ================= */
 
 @keyframes SlideIn {
-    0% {
-        transform: translateX(var(--slide-start));
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes FogAppear {
-    0% {
-        opacity: 0;
-        filter: blur(12px);
-        transform: translateY(10px);
-    }
-
-    100% {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateY(0);
-    }
+  0% {
+    transform: translateX(var(--slide-start));
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .SlideIn {
-    animation-name: SlideIn;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-    opacity: 1;
+  animation: SlideIn 0.6s ease-out forwards;
 }
 
-/* Per direzione */
+/* Direzione entrata */
 .SlideLeft {
-    --slide-start: -100%;
+  --slide-start: -100%;
 }
 
 .SlideRight {
-    --slide-start: 100%;
+  --slide-start: 100%;
+}
+
+/* ================= SLIDE OUT ================= */
+
+@keyframes SlideOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--slide-end));
+    opacity: 0;
+  }
+}
+
+.SlideOut {
+  animation: SlideOut 0.6s ease-in forwards;
+}
+
+/* Direzione uscita */
+.SlideOutLeft {
+  --slide-end: -100%;
+}
+
+.SlideOutRight {
+  --slide-end: 100%;
+}
+
+/* ================= FOG ================= */
+
+@keyframes FogAppear {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
 }
 
 .FogAnimation {
-    animation: FogAppear 2.5s ease-out forwards;
+  animation: FogAppear 0.8s ease-out forwards;
 }
