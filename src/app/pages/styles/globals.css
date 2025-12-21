@@ -41,6 +41,20 @@ body {
     }
 }
 
+@keyframes FogAppear {
+    0% {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
 .SlideIn {
     animation-name: SlideIn;
     animation-duration: 3s;
@@ -56,4 +70,8 @@ body {
 
 .SlideRight {
     --slide-start: 100%;
+}
+
+.FogAnimation {
+    animation: FogAppear 2.5s ease-out forwards;
 }

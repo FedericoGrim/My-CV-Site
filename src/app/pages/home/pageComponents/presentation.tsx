@@ -22,7 +22,7 @@ export default function Presentation() {
           backgroundImage: "url('/My-CV-Site/images/CodeBackground.jpg')",
         }}
       >
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-center justify-center gap-10 bg-FernGreen p-6 rounded-2xl shadow-lg border-4 border-black/50">
+        <div className="FogAnimation max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-center justify-center gap-10 bg-FernGreen p-6 rounded-2xl shadow-lg border-4 border-black/50">
 
           <div
             style={{
