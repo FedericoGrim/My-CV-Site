@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Label } from "@/components/Label/Label";
 import { MyButton } from "@/components/Button/Button";
 
@@ -68,7 +69,8 @@ function RenderLanguagesAndTecnologiesSlide(techSlideIndex: number) {
 function HandleNextPrev(
   isMobile: boolean,
   techSlideIndex: number,
-  setTechSlideIndex: (value: number) => void
+  setTechSlideIndex: (value: number) => void,
+  setSlideDirection: (value: "next" | "prev") => void
 ) {
   if (isMobile) {
     return (
@@ -85,7 +87,7 @@ function HandleNextPrev(
             !transition !duration-300
             flex items-center justify-center
           "
-          onClick={() => HandlePrev(techSlideIndex, 1, 6, setTechSlideIndex)}
+          onClick={() => { setSlideDirection("prev"); HandlePrev(techSlideIndex, 1, 6, setTechSlideIndex); }}
         >
           <ArrowBackIcon className="!text-MantisGreen !text-5xl" />
         </MyButton>
@@ -102,7 +104,7 @@ function HandleNextPrev(
             !transition !duration-300
             flex items-center justify-center
           "
-          onClick={() => HandleNext(techSlideIndex, 1, 6, setTechSlideIndex)}
+          onClick={() => { setSlideDirection("next"); HandleNext(techSlideIndex, 1, 6, setTechSlideIndex); }}
         >
           <ArrowForwardIcon className="!text-MantisGreen !text-5xl" />
         </MyButton>
@@ -119,7 +121,7 @@ function HandleNextPrev(
           ariaLabel="Previous technology"
           title="Previous"
           className="flex items-center justify-center"
-          onClick={() => HandlePrev(techSlideIndex, 1, 6, setTechSlideIndex)}
+          onClick={() => { setSlideDirection("prev"); HandlePrev(techSlideIndex, 1, 6, setTechSlideIndex); }}
         >
           <ArrowBackIcon className="!text-MantisGreen !text-4xl" />
         </MyButton>
@@ -130,7 +132,7 @@ function HandleNextPrev(
           ariaLabel="Next technology"
           title="Next"
           className="flex items-center justify-center"
-          onClick={() => HandleNext(techSlideIndex, 1, 6, setTechSlideIndex)}
+          onClick={() => { setSlideDirection("next"); HandleNext(techSlideIndex, 1, 6, setTechSlideIndex); }}
         >
           <ArrowForwardIcon className="!text-MantisGreen !text-4xl" />
         </MyButton>
@@ -143,6 +145,7 @@ function HandleNextPrev(
 
 export default function TechnologiesSection() {
   const [techSlideIndex, setTechSlideIndex] = useState(1);
+  const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
   const [screenWidth, setScreenWidth] = useState(0);
 
   useEffect(() => {
@@ -154,17 +157,46 @@ export default function TechnologiesSection() {
 
   const isMobile = screenWidth < 768;
 
+  /* Slide variants copied from bestProjects for consistent animation */
+  const SlideVariants = {
+    enter: (direction: "next" | "prev") => ({
+      x: direction === "next" ? 300 : -300,
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction: "next" | "prev") => ({
+      x: direction === "next" ? -300 : 300,
+      opacity: 0
+    })
+  };
+
   return (
     <section className="relative w-full min-h-[400px] px-4">
       <div className="flex flex-col items-center justify-center w-full max-w-[800px] mx-auto py-8">
         
         {/* Contenuto slide */}
-        <div className="w-full h-[300px] flex items-center justify-center">
-          {RenderLanguagesAndTecnologiesSlide(techSlideIndex)}
+        <div className="w-full h-[300px] flex items-center justify-center relative">
+          <AnimatePresence mode="wait" custom={slideDirection}>
+            <motion.div
+              key={techSlideIndex}
+              custom={slideDirection}
+              variants={SlideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute w-full h-full flex items-center justify-center"
+            >
+              {RenderLanguagesAndTecnologiesSlide(techSlideIndex)}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Bottoni */}
-        {HandleNextPrev(isMobile, techSlideIndex, setTechSlideIndex)}
+        {HandleNextPrev(isMobile, techSlideIndex, setTechSlideIndex, setSlideDirection)}
 
       </div>
     </section>

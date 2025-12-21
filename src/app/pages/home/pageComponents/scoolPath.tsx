@@ -28,7 +28,7 @@ export default function SchoolPath() {
           {/* ITTS Carlo Grassi */}
           <div
             ref={CarloGrassiRef}
-            className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 SlideIn ${CarloGrassiVisible ? 'SlideLeft' : 'SlideRight'}`}
+            className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 ${CarloGrassiVisible ? 'SlideIn SlideLeft' : 'SlideHiddenLeft'}`}
           >
             <Link href="https://www.itisgrassi.edu.it" className="!no-underline !text-black">
               <div className="flex items-center gap-6">
@@ -66,7 +66,7 @@ export default function SchoolPath() {
           {/* ITS Academy */}
           <div
             ref={ItsAcademyRef}
-            className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 SlideIn ${ItsAcademyVisible ? 'SlideRight' : 'SlideLeft'}`}
+            className={`flex-1 bg-FernGreen rounded-lg shadow-lg p-6 mr-4 ml-4 mb-4 ${ItsAcademyVisible ? 'SlideIn SlideRight' : 'SlideHiddenRight'}`}
           >
             <Link href="https://www.itsacademy.it" className="!no-underline !text-black">
               <div className="flex items-center gap-6">

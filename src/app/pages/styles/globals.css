@@ -55,29 +55,6 @@ body {
 
 /* ================= SLIDE OUT ================= */
 
-@keyframes SlideOut {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(var(--slide-end));
-    opacity: 0;
-  }
-}
-
-.SlideOut {
-  animation: SlideOut 0.6s ease-in forwards;
-}
-
-/* Direzione uscita */
-.SlideOutLeft {
-  --slide-end: -100%;
-}
-
-.SlideOutRight {
-  --slide-end: 100%;
-}
 
 /* ================= FOG ================= */
 
@@ -96,4 +73,15 @@ body {
 
 .FogAnimation {
   animation: FogAppear 0.8s ease-out forwards;
+}
+
+/* Stati iniziali per elementi che devono restare nascosti fino all'intersezione */
+.SlideHiddenLeft {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.SlideHiddenRight {
+  transform: translateX(100%);
+  opacity: 0;
 }
