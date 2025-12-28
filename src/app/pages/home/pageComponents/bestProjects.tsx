@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import Link from "next/link";
+
 import { Label } from "@/components/Label/Label";
 import { MyButton } from "@/components/Button/Button";
 import { MyImage } from "@/components/Image/Image";
@@ -73,95 +75,134 @@ function RenderProjectSlide(projectSlideIndex: number, isMobile: boolean) {
 
     case 2:
       return (
-        <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
-          <MyImage
-            src="/My-CV-Site/images/PasswordManagerIcon.png"
-            alt="Project Image"
-            width={isMobile ? 150 : 250}
-            height={isMobile ? 150 : 250}
-            className="rounded-2xl object-cover"
-            priority
-          />
-
-          <div className="flex flex-col max-w-[350px]">
-            <div className="flex gap-4 items-baseline">
-              <Label text="KEYDEN" className="text-4xl text-MantisGreen" font="teko" />
-              <Label text="Password Manager" className="text-xl text-LightGreen" font="teko" />
-            </div>
-
-            <Label
-              text={[
-                "Il mio password manager è un progetto formativo sviluppato in Python per imparare a gestire dati sensibili in modo sicuro.",
-                "Utilizza cifratura simmetrica e un backend semplice.",
-                "Pensato per studiare CLEAN ARCHITECTURE, REST API e UNIT TESTS."
-              ].map((p, i) => <p key={i}>{p}</p>)}
-              className="leading-6 text-white text-lg mt-2"
-              font="roboto"
+        <Link href="/pages/projects/cv-site" className="group">
+          <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
+            <MyImage
+              src="/My-CV-Site/images/myLogo.png"
+              alt="Project Image"
+              width={isMobile ? 150 : 250}
+              height={isMobile ? 150 : 250}
+              className="rounded-2xl object-cover"
+              priority
             />
+
+            <div className="flex flex-col max-w-[350px]">
+              <div className="flex gap-4 items-baseline">
+                <Label text="My CV Site" className="text-4xl text-MantisGreen" font="teko" />
+                <Label text="Sito Curriculum" className="text-xl text-LightGreen" font="teko" />
+              </div>
+
+              <Label
+                text={[
+                  "Questo sito web è il mio progetto personale per mostrare le mie competenze di sviluppo web.",
+                  "Realizzato con Next.js e Tailwind CSS per un design moderno e reattivo.",
+                  "Funzionalità includono animazioni fluide, gestione delle immagini ottimizzata e design mobile-first."
+                ].map((p, i) => <p key={i}>{p}</p>)}
+                className="leading-6 text-white text-lg mt-2"
+                font="roboto"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
       );
 
     case 3:
       return (
-        <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
-          <MyImage
-            src="/My-CV-Site/images/FotoPlaceHolder.png"
-            alt="Project Image"
-            width={isMobile ? 150 : 250}
-            height={isMobile ? 150 : 250}
-            className="rounded-2xl object-cover"
-            priority
-          />
-
-          <div className="flex flex-col max-w-[350px]">
-            <div className="flex gap-4 items-baseline">
-              <Label text="BOH" className="text-4xl text-MantisGreen" font="teko" />
-              <Label text="Expense Manager" className="text-xl text-LightGreen" font="teko" />
-            </div>
-
-            <Label
-              text={[
-                "Progetto per la gestione delle spese personali.",
-                "Studio di CRUD, validazioni e architettura.",
-                "Pensato per crescere come progetto completo."
-              ].map((p, i) => <p key={i}>{p}</p>)}
-              className="leading-6 text-white text-lg mt-2"
-              font="roboto"
+        <Link href="/pages/projects/password-manager" className="group">
+          <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
+            <MyImage
+              src="/My-CV-Site/images/PasswordManagerIcon.png"
+              alt="Project Image"
+              width={isMobile ? 150 : 250}
+              height={isMobile ? 150 : 250}
+              className="rounded-2xl object-cover"
+              priority
             />
+
+            <div className="flex flex-col max-w-[350px]">
+              <div className="flex gap-4 items-baseline">
+                <Label text="KEYDEN" className="text-4xl text-MantisGreen" font="teko" />
+                <Label text="Password Manager" className="text-xl text-LightGreen" font="teko" />
+              </div>
+
+              <Label
+                text={[
+                  "Il mio password manager è un progetto formativo sviluppato in Python per imparare a gestire dati sensibili in modo sicuro.",
+                  "Utilizza cifratura simmetrica e un backend semplice.",
+                  "Pensato per studiare CLEAN ARCHITECTURE, REST API e UNIT TESTS."
+                ].map((p, i) => <p key={i}>{p}</p>)}
+                className="leading-6 text-white text-lg mt-2"
+                font="roboto"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
       );
 
     case 4:
       return (
-        <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
-          <MyImage
-            src="/My-CV-Site/images/FotoPlaceHolder.png"
-            alt="Project Image"
-            width={isMobile ? 150 : 250}
-            height={isMobile ? 150 : 250}
-            className="rounded-2xl object-cover"
-            priority
-          />
-
-          <div className="flex flex-col max-w-[350px]">
-            <div className="flex gap-4 items-baseline">
-              <Label text="A.J.A.I." className="text-4xl text-MantisGreen" font="teko" />
-              <Label text="Personal Assistant" className="text-xl text-LightGreen" font="teko" />
-            </div>
-
-            <Label
-              text={[
-                "Assistente personale modulare.",
-                "Basato su AI e architettura scalabile.",
-                "Progetto sperimentale a lungo termine."
-              ].map((p, i) => <p key={i}>{p}</p>)}
-              className="leading-6 text-white text-lg mt-2"
-              font="roboto"
+        <Link href="/pages/projects/expense-manager" className="group">
+          <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
+            <MyImage
+              src="/My-CV-Site/images/FotoPlaceHolder.png"
+              alt="Project Image"
+              width={isMobile ? 150 : 250}
+              height={isMobile ? 150 : 250}
+              className="rounded-2xl object-cover"
+              priority
             />
+
+            <div className="flex flex-col max-w-[350px]">
+              <div className="flex gap-4 items-baseline">
+                <Label text="BOH" className="text-4xl text-MantisGreen" font="teko" />
+                <Label text="Expense Manager" className="text-xl text-LightGreen" font="teko" />
+              </div>
+
+              <Label
+                text={[
+                  "Progetto per la gestione delle spese personali.",
+                  "Studio di CRUD, validazioni e architettura.",
+                  "Pensato per crescere come progetto completo."
+                ].map((p, i) => <p key={i}>{p}</p>)}
+                className="leading-6 text-white text-lg mt-2"
+                font="roboto"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
+      );
+
+    case 5:
+      return (
+        <Link href="/pages/projects/personal-assistant" className="group">
+          <div className={`flex ${isMobile ? "flex-col" : "flex-row"} gap-6 items-center`}>
+            <MyImage
+              src="/My-CV-Site/images/FotoPlaceHolder.png"
+              alt="Project Image"
+              width={isMobile ? 150 : 250}
+              height={isMobile ? 150 : 250}
+              className="rounded-2xl object-cover"
+              priority
+            />
+
+            <div className="flex flex-col max-w-[350px]">
+              <div className="flex gap-4 items-baseline">
+                <Label text="A.J.A.I." className="text-4xl text-MantisGreen" font="teko" />
+                <Label text="Personal Assistant" className="text-xl text-LightGreen" font="teko" />
+              </div>
+
+              <Label
+                text={[
+                  "Assistente personale modulare.",
+                  "Basato su AI e architettura scalabile.",
+                  "Progetto sperimentale a lungo termine."
+                ].map((p, i) => <p key={i}>{p}</p>)}
+                className="leading-6 text-white text-lg mt-2"
+                font="roboto"
+              />
+            </div>
+          </div>
+        </Link>
       );
 
     default:
