@@ -25,7 +25,6 @@ const config: Config = {
         CalPolyGreen: '#284D23',
         DarkGreen: '#0B210C',
         NightGreen: '#061106',
-        BlackGreen: '#030903',
         Black: '#000000',  //scuro
       },
     },
