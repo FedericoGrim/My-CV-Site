@@ -17,9 +17,10 @@ export const MyImage: React.FC<ImageProps> = ({
   priority = false,
   unoptimized = false,
   sizes, 
-  placeholder = 'empty',  
-  blurDataURL,  
-}) => {
+loading = 'lazy',
+    placeholder = 'empty',  
+    blurDataURL,  
+  }) => {
   return (
     <div className={`relative ${divClassName}`} style={divImageStyle}>
       {fill ? (
@@ -30,6 +31,7 @@ export const MyImage: React.FC<ImageProps> = ({
           style={{ objectFit }}
           className={className}
           priority={priority}
+          loading={loading}
           unoptimized={unoptimized}
           placeholder={placeholder}
           blurDataURL={blurDataURL}
@@ -43,6 +45,7 @@ export const MyImage: React.FC<ImageProps> = ({
           height={height}
           className={className}
           priority={priority}
+          loading={loading}
           unoptimized={unoptimized}
           placeholder={placeholder}
           blurDataURL={blurDataURL}
