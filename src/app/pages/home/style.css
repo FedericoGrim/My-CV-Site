@@ -109,6 +109,7 @@
   color: #7cd068;
   box-shadow: 0 0 16px rgba(124, 208, 104, 0.55);
   transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .icon-button:hover {
@@ -136,4 +137,198 @@
 
 .logo-menu.open .icon-item {
   transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1);
+}
+
+/* When logo is revealing, keep icons small and hidden so they can animate in afterwards */
+.page-home.reveal-logo .logo-menu.open .icon-item {
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+}
+
+/* Ensure icons transition smoothly when they reappear; add slight stagger */
+.page-home .logo-menu.open .icon-item {
+  transition: transform 0.6s cubic-bezier(.2,.9,.2,1), opacity 0.4s ease;
+}
+.logo-menu.open .item-0 { transition-delay: 0.02s; }
+.logo-menu.open .item-1 { transition-delay: 0.04s; }
+.logo-menu.open .item-2 { transition-delay: 0.06s; }
+.logo-menu.open .item-3 { transition-delay: 0.03s; }
+.logo-menu.open .item-4 { transition-delay: 0.05s; }
+.logo-menu.open .item-5 { transition-delay: 0.07s; }
+
+/* Move selected icon to center and fade others when animating */
+.page-home.moving .logo-menu .icon-item {
+  transition: transform 0.9s cubic-bezier(.2,.9,.2,1), opacity 0.45s ease;
+}
+
+.page-home.moving .logo-menu .icon-item.moving {
+  transform: translate(-50%, -50%) scale(1.6) !important;
+  z-index: 80;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.page-home.moving .logo-menu .icon-item:not(.moving) {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  pointer-events: none;
+}
+
+/* Fade out background content while the icon moves */
+.page-home.moving .page-title,
+.page-home.moving .fade-text,
+.page-home.moving .logo-menu .glow-ring {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+/* Hide the title completely while the popup is open */
+.page-home.modal-open .page-title {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* When modal is open, hide icon grid and related labels completely */
+.page-home.modal-open .icon-grid {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.page-home.modal-open .icon-item,
+.page-home.modal-open .icon-label {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Also hide the central logo while modal is open */
+.page-home.modal-open .glow-ring {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+}
+
+/* When revealing logo only after modal close: show logo but keep icons hidden */
+.page-home.reveal-logo .glow-ring {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.page-home.reveal-logo .icon-grid {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Modal open keyframes */
+@keyframes modal-pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  60% {
+    transform: scale(1.04);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modal / overlay styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 60;
+  padding: 2rem;
+}
+
+.modal-panel {
+  width: min(1100px, 94vw);
+  height: min(780px, 86vh);
+  background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(6,6,6,0.95));
+  border-radius: 12px;
+  border: 1px solid rgba(124,208,104,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  overflow: auto;
+}
+
+.modal-panel {
+  transform-origin: center center;
+  animation: modal-pop 360ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.modal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.02);
+  border: 2px solid rgba(124,208,104,0.9);
+  color: #7cd068;
+  box-shadow: 0 0 26px rgba(124,208,104,0.25);
+  font-size: 48px;
+}
+
+.modal-title {
+  font-family: Teko, sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.14em;
+  color: #c8ffb8;
+}
+
+.modal-body {
+  width: 100%;
+  max-width: 900px;
+  min-height: 220px;
+  background: rgba(255,255,255,0.015);
+  border-radius: 8px;
+  padding: 1rem;
+  color: #dfeee0;
+}
+
+/* When modal is open, make background interactions inert visually */
+.modal-overlay + * {
+  pointer-events: none;
 }
