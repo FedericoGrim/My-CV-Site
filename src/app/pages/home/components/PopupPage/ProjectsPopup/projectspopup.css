@@ -1,0 +1,135 @@
+/* ==========================================================================
+   TEMA INTERFACCIA TATTICA CORE
+   ========================================================================== */
+:root {
+  --fui-green: #00ff66;
+  --fui-green-dim: rgba(0, 255, 102, 0.25);
+  --fui-green-bg: rgba(0, 15, 4, 0.96);
+  --fui-font: 'Courier New', Courier, monospace;
+}
+
+.fui-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: #000000;
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999; font-family: var(--fui-font); color: var(--fui-green); overflow: hidden;
+}
+
+.fui-interface-container {
+  position: relative; width: 96vw; height: 94vh;
+  background-color: var(--fui-green-bg);
+  border: 2px solid var(--fui-green);
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.3), inset 0 0 40px rgba(0, 255, 102, 0.15);
+  display: flex; flex-direction: column;
+}
+
+/* ==========================================================================
+   EFFETTI CRT EFFETTIVI
+   ========================================================================== */
+.crt-warp { animation: crt-turn-on 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+.crt-scanlines {
+  position: absolute; inset: 0; z-index: 100; pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+  background-size: 100% 4px, 6px 100%;
+}
+.crt-flicker { position: absolute; inset: 0; z-index: 101; pointer-events: none; background: rgba(18, 16, 16, 0.015); animation: crt-flicker-anim 0.15s infinite; }
+
+/* Dati Bordi */
+.fui-border { position: absolute; font-size: 11px; text-transform: uppercase; opacity: 0.7; display: flex; justify-content: space-between; pointer-events: none; }
+.border-top { top: 6px; left: 20px; right: 20px; }
+.border-bottom { bottom: 6px; left: 20px; right: 20px; }
+.border-left { left: 6px; top: 80px; bottom: 80px; flex-direction: column; gap: 20px; }
+.border-right { right: 6px; top: 80px; bottom: 80px; flex-direction: column; gap: 20px; text-align: right; }
+
+/* Header */
+.fui-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px dashed var(--fui-green-dim); background: rgba(0, 40, 10, 0.3); z-index: 10; }
+.header-left { display: flex; align-items: center; gap: 10px; }
+.header-title { font-size: 20px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 0 8px var(--fui-green); margin: 0; }
+.fui-close-btn { background: transparent; border: 1px solid var(--fui-green); color: var(--fui-green); font-family: var(--fui-font); padding: 6px 12px; cursor: pointer; transition: all 0.2s; }
+.fui-close-btn:hover { background: var(--fui-green); color: #000; box-shadow: 0 0 10px var(--fui-green); }
+
+/* ==========================================================================
+   SPAZIO VETTORIALE 3D E GRIGLIA
+   ========================================================================== */
+.fui-viewport-3d { flex: 1; perspective: 1300px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.fui-world-transformer { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); pointer-events: none; }
+.camera-zoom-active { transform: translateZ(450px) scale(1.2) translateY(140px); }
+
+.fui-tactical-grid {
+  position: relative; width: 800px; height: 800px;
+  background-image: linear-gradient(var(--fui-green-dim) 1px, transparent 1px), linear-gradient(90deg, var(--fui-green-dim) 1px, transparent 1px);
+  background-size: 50px 50px; background-position: center;
+  transform: rotateX(60deg) rotateZ(-10deg); transform-style: preserve-3d;
+  border: 2px solid var(--fui-green-dim); box-shadow: inset 0 0 60px rgba(0, 255, 102, 0.1); pointer-events: none;
+}
+
+.monolith-wrapper { position: absolute; width: 80px; height: 80px; transform-style: preserve-3d; cursor: pointer; pointer-events: auto; z-index: 1; }
+
+/* ==========================================================================
+   MONOLITI DEI LINGUAGGI (PIÙ GRANDI E MAGGIOR DETTAGLIO)
+   ========================================================================== */
+.core-monolith { width: 80px; height: 80px; transform: translateZ(60px); transform-style: preserve-3d; }
+.core-monolith .face { position: absolute; border: 1px solid var(--fui-green); background: rgba(0, 255, 102, 0.04); display: flex; align-items: center; justify-content: center; }
+
+/* Estrusione cubica massiccia per i moduli linguaggio (120px di altezza) */
+.core-monolith .face-front, .core-monolith .face-back { width: 80px; height: 120px; }
+.core-monolith .face-left, .core-monolith .face-right { width: 80px; height: 120px; }
+.core-monolith .face-top { width: 80px; height: 80px; background: rgba(0, 255, 102, 0.15); }
+
+.core-monolith .face-front { transform: rotateX(-90deg) translateZ(40px) translateY(-60px); }
+.core-monolith .face-back  { transform: rotateX(90deg) translateZ(40px) translateY(60px); }
+.core-monolith .face-left  { transform: rotateY(-90deg) translateZ(40px) translateY(-60px); }
+.core-monolith .face-right { transform: rotateY(90deg) translateZ(40px) translateY(-60px); }
+.core-monolith .face-top   { transform: translateZ(60px); }
+
+/* Sigla del linguaggio incisa sulla faccia frontale del blocco wireframe */
+.internal-code { font-size: 26px; font-weight: bold; color: var(--fui-green); opacity: 0.5; font-family: var(--fui-font); text-shadow: 0 0 5px var(--fui-green); }
+
+/* Etichette Olografiche dei nodi */
+.hologram-label.lang-node {
+  position: absolute; top: -75px; left: -40px; width: 170px;
+  transform: rotateZ(10deg) rotateX(-60deg) translateZ(160px);
+  background: rgba(0, 10, 2, 0.95); border: 1px solid var(--fui-green); border-left: 4px solid var(--fui-green);
+  padding: 6px; box-shadow: 0 0 10px rgba(0, 255, 102, 0.2); pointer-events: none; transition: all 0.2s;
+}
+.font-large { font-size: 12px; font-weight: bold; color: #fff !important; letter-spacing: 1px; }
+
+/* Stati Attivi Hover/Tastiera */
+.monolith-wrapper:hover .face, .monolith-wrapper.system-active .face { background: rgba(0, 255, 102, 0.2); border-color: #ffffff; box-shadow: 0 0 15px var(--fui-green); }
+.monolith-wrapper:hover .internal-code, .monolith-wrapper.system-active .internal-code { color: #fff; opacity: 1; }
+.monolith-wrapper:hover .hologram-label, .monolith-wrapper.system-active .hologram-label { border-color: #ffffff; box-shadow: 0 0 20px var(--fui-green); }
+
+/* ==========================================================================
+   SUB-WINDOW REPOSITORY TERMINAL (LIVELLO 2 - DETTAGLI)
+   ========================================================================== */
+.fui-sub-window-overlay { position: absolute; inset: 0; background: rgba(0, 5, 2, 0.75); display: flex; align-items: center; justify-content: center; z-index: 200; perspective: 1000px; backdrop-filter: blur(3px); }
+.fui-sub-window.extended-window { width: 650px; max-height: 80vh; background: rgba(0, 12, 4, 0.98); border: 2px solid var(--fui-green); box-shadow: 0 0 35px rgba(0, 255, 102, 0.4); transform: rotateY(-5deg) rotateX(5deg) translateZ(30px); animation: window-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+
+.scrollable-repo { overflow-y: auto; padding: 20px; max-height: 65vh; scrollbar-width: thin; scrollbar-color: var(--fui-green) transparent; }
+.lang-summary-text { font-size: 12px; opacity: 0.7; margin: 0 0 20px 0; line-height: 1.4; border-bottom: 1px dashed var(--fui-green-dim); padding-bottom: 12px; }
+
+/* Lista dei Progetti in stile terminale a riga */
+.projects-terminal-list { display: flex; flex-direction: column; gap: 15px; }
+.terminal-project-row { background: rgba(0, 255, 102, 0.02); border: 1px solid rgba(0, 255, 102, 0.15); padding: 12px; border-left: 3px solid var(--fui-green); transition: all 0.2s; }
+.terminal-project-row:hover { background: rgba(0, 255, 102, 0.06); border-color: var(--fui-green); box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
+
+.row-main-info { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.proj-id-badge { font-size: 10px; background: var(--fui-green-dim); padding: 2px 6px; font-weight: bold; }
+.proj-name-text { font-size: 14px; font-weight: bold; color: #ffffff; flex: 1; }
+
+.proj-status-badge { font-size: 9px; padding: 2px 6px; border: 1px solid currentColor; }
+.proj-status-badge[data-status="ACTIVE"] { color: #00ff66; }
+.proj-status-badge[data-status="STABLE"] { color: #00bcff; }
+.proj-status-badge[data-status="DEGRADED"] { color: #ff3b30; }
+.proj-status-badge[data-status="COMPILING"] { color: #ffcc00; }
+
+.row-technical-details { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.6; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(0, 255, 102, 0.05); }
+.proj-desc-paragraph { font-size: 12px; opacity: 0.85; line-height: 1.4; margin: 0; color: rgba(255, 255, 255, 0.9); }
+
+/* ==========================================================================
+   ANIMAZIONI
+   ========================================================================== */
+@keyframes crt-turn-on { 0% { transform: scaleY(0.005) scaleX(0); filter: brightness(3); } 50% { transform: scaleY(0.005) scaleX(1); filter: brightness(2); } 100% { transform: scaleY(1) scaleX(1); filter: brightness(1); } }
+@keyframes crt-flicker-anim { 0% { opacity: 0.01; } 50% { opacity: 0.02; } 100% { opacity: 0.01; } }
+@keyframes window-appear { 0% { transform: rotateY(-5deg) rotateX(5deg) translateZ(-80px) scale(0.9); opacity: 0; } 100% { transform: rotateY(-5deg) rotateX(5deg) translateZ(30px) scale(1); opacity: 1; } }

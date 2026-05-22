@@ -8,7 +8,12 @@ import SchoolIcon from '@mui/icons-material/School';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
 import CodeIcon from '@mui/icons-material/Code';
-import { PopupPage } from "./components/PopupPage/PopupPage";
+import { MePopup } from "./components/PopupPage/MePopup/MePopup";
+import { WorkPopup } from "./components/PopupPage/WorkPopup/WorkPopup";
+import { StudyPopup } from "./components/PopupPage/StudyPopup/StudyPopup";
+import { GitHubPopup } from "./components/PopupPage/GitHubPopup/GitHubPopup";
+import { ContactPopup } from "./components/PopupPage/ContactPopup/ContactPopup";
+import { ProjectsPopup } from "./components/PopupPage/ProjectsPopup/ProjectsPopup";
 
 const menuItems = [
   { label: "Me", icon: <Person fontSize="medium" /> },
@@ -120,9 +125,42 @@ export default function HomePage() {
         Press To Discover
       </p>
 
-      {activeItem && (
-        <PopupPage
-          activeItem={activeItem}
+      {activeItem === "Me" && (
+        <MePopup
+          onClose={closeModal}
+        />
+      )}
+
+      {activeItem === "Work" && (
+        <WorkPopup
+          icon={menuItems.find((m) => m.label === activeItem)?.icon ?? null}
+          onClose={closeModal}
+        />
+      )}
+
+      {activeItem === "Study" && (
+        <StudyPopup
+          icon={menuItems.find((m) => m.label === activeItem)?.icon ?? null}
+          onClose={closeModal}
+        />
+      )}
+
+      {activeItem === "GitHub" && (
+        <GitHubPopup
+          icon={menuItems.find((m) => m.label === activeItem)?.icon ?? null}
+          onClose={closeModal}
+        />
+      )}
+
+      {activeItem === "Contact" && (
+        <ContactPopup
+          icon={menuItems.find((m) => m.label === activeItem)?.icon ?? null}
+          onClose={closeModal}
+        />
+      )}
+
+      {activeItem === "Projects" && (
+        <ProjectsPopup
           icon={menuItems.find((m) => m.label === activeItem)?.icon ?? null}
           onClose={closeModal}
         />

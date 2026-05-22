@@ -1,0 +1,254 @@
+/* Overlay e Sfondo */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.modal-panel.tron {
+  background: rgba(4, 12, 8, 0.85);
+  border-radius: 6px;
+  border: 1px solid rgba(90, 255, 122, 0.15);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1100px;
+  height: 600px;
+  box-shadow: 0 0 80px rgba(32, 255, 96, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.panel-grid-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(rgba(90, 255, 122, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90, 255, 122, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Pulsante Chiudi */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: 1px solid rgba(90, 255, 122, 0.3);
+  color: #6eff7a;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background: #6eff7a;
+  color: #000;
+  box-shadow: 0 0 12px #6eff7a;
+}
+
+/* Corpo Principale e SVG */
+.modal-body.tron-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tron-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.tron-path {
+  stroke: #6eff7a;
+  stroke-width: 0.5px; /* Sottile e chirurgico su griglia percentuale */
+  filter: drop-shadow(0 0 4px rgba(94, 255, 122, 0.6));
+}
+
+/* Animazione Circuiti Light-Bike */
+.bike-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bike-container.done {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.light-bike {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #6eff7a, 0 0 20px #6eff7a;
+}
+
+.bike-left {
+  animation: run-left 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.bike-right {
+  animation: run-right 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes run-left {
+  0%   { top: 0; left: 50%; transform: translateX(-50%); }
+  25%  { top: 0; left: 0; }
+  75%  { top: 100%; left: 0; }
+  100% { top: 100%; left: 50%; }
+}
+
+@keyframes run-right {
+  0%   { top: 0; left: 50%; transform: translateX(-50%); }
+  25%  { top: 0; left: 100%; }
+  75%  { top: 100%; left: 100%; }
+  100% { top: 100%; left: 50%; }
+}
+
+/* Layout Pannello */
+.panel-stage {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.identity-pane, .feed-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Griglia e Frame Foto */
+.glitch-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border: 1px solid rgba(90, 255, 122, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Linea di Scansione Olografica */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to bottom, rgba(90, 255, 122, 0.8), transparent);
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: -4%; }
+  100% { top: 104%; }
+}
+
+/* Dati Personali */
+.personal-data {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  color: rgba(110, 255, 122, 0.85);
+}
+
+.data-line span {
+  color: #fff;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+/* Area Testo e Feed (Destra) */
+.feed-pane {
+  justify-content: space-between;
+}
+
+.pane-header {
+  font-family: monospace;
+  color: rgba(90, 255, 122, 0.5);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.bio-description {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(90, 255, 122, 0.1);
+  padding: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #d8ffcc;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.cursor {
+  animation: blink 0.8s infinite steps(2);
+  color: #6eff7a;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.footer-lines {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.footer-item {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(90, 255, 122, 0.5);
+  border: 1px solid rgba(90, 255, 122, 0.15);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* Gestione Schermi Mobile */
+@media (max-width: 850px) {
+  .modal-panel.tron {
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .panel-stage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .glitch-photo-frame {
+    height: 260px;
+  }
+}
