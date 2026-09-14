@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./projectspopup.css";
 
 interface ProjectsPopupProps {
@@ -28,7 +28,8 @@ interface LanguageCore {
 export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [selectedLang, setSelectedLang] = useState<LanguageCore | null>(null);
-  const [isZooming, setIsZooming] = useState(false);
+  const [panTransform, setPanTransform] = useState<string>("");
+  const viewportRef = useRef<HTMLDivElement>(null);
 
   // 1. Database dei Core dei Linguaggi (I Monoliti 3D sulla griglia)
   const languages: LanguageCore[] = [
@@ -66,20 +67,44 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
     return false;
   });
 
-  const handleSelectLang = useCallback((index: number) => {
+  const handleSelectLang = useCallback((index: number, blockEl: HTMLDivElement | null) => {
     if (selectedLang) return;
-    setIsZooming(true);
+
+    // Pan the world so the clicked block's screen position becomes the
+    // viewport center, then zoom in on that same point.
+    const zoom = 2.4;
+    if (blockEl && viewportRef.current) {
+      const viewportRect = viewportRef.current.getBoundingClientRect();
+      const blockRect = blockEl.getBoundingClientRect();
+      const viewportCenterX = viewportRect.left + viewportRect.width / 2;
+      const viewportCenterY = viewportRect.top + viewportRect.height / 2;
+      const blockCenterX = blockRect.left + blockRect.width / 2;
+      const blockCenterY = blockRect.top + blockRect.height / 2;
+      const offsetX = blockCenterX - viewportCenterX;
+      const offsetY = blockCenterY - viewportCenterY;
+      const dx = -zoom * offsetX;
+      const dy = -zoom * offsetY;
+      setPanTransform(`translate(${dx}px, ${dy}px) scale(${zoom})`);
+    } else {
+      setPanTransform(`scale(${zoom})`);
+    }
+
+    setActiveIndex(index);
     setTimeout(() => {
       setSelectedLang(languages[index]);
-      setIsZooming(false);
-    }, 500);
+    }, 600);
   }, [languages, selectedLang]);
+
+  const handleBackToGrid = useCallback(() => {
+    setSelectedLang(null);
+    setPanTransform("");
+  }, []);
 
   // Tastiera attiva solo sui 4 monoliti principali
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedLang) {
-        if (e.key === "Escape") setSelectedLang(null);
+        if (e.key === "Escape") handleBackToGrid();
         return;
       }
 
@@ -91,7 +116,7 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
         setActiveIndex((prev) => (prev - 1 + languages.length) % languages.length);
       } else if (e.key === "Enter") {
         e.preventDefault();
-        handleSelectLang(activeIndex);
+        handleSelectLang(activeIndex, null);
       } else if (e.key === "Escape") {
         onClose();
       }
@@ -99,7 +124,7 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeIndex, selectedLang, languages.length, handleSelectLang, onClose]);
+  }, [activeIndex, selectedLang, languages.length, handleSelectLang, handleBackToGrid, onClose]);
 
   return (
     <div className="fui-modal-overlay crt-warp" role="dialog" aria-modal="true" onClick={onClose}>
@@ -123,27 +148,30 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
         </header>
 
         {/* Viewport 3D */}
-        <div className="fui-viewport-3d">
-          <div className={`fui-world-transformer ${isZooming ? "camera-zoom-active" : ""}`}>
+        <div className="fui-viewport-3d" ref={viewportRef}>
+          <div
+            className="fui-world-transformer"
+            style={panTransform ? { transform: panTransform } : undefined}
+          >
             <div className="fui-tactical-grid distributed-4n">
-              
+
               {languages.map((lang, index) => {
                 const isActive = index === activeIndex;
 
                 // Griglia 2x2 pulita per i 4 Core Linguaggio principali
                 const row = Math.floor(index / 2);
                 const col = index % 2;
-                
+
                 const computedLeft = 200 + (col * 340);
                 const computedTop = 200 + (row * 340);
 
                 return (
-                  <div 
-                    key={lang.id} 
+                  <div
+                    key={lang.id}
                     className={`monolith-wrapper ${isActive ? "system-active" : ""}`}
                     style={{ top: `${computedTop}px`, left: `${computedLeft}px` }}
                     onMouseEnter={() => !selectedLang && setActiveIndex(index)}
-                    onClick={() => handleSelectLang(index)}
+                    onClick={(e) => handleSelectLang(index, e.currentTarget)}
                   >
                     {/* Label olografica del Linguaggio */}
                     <div className="hologram-label lang-node">
@@ -169,11 +197,11 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
 
         {/* Schermata Pop-up: Lista Progetti del Linguaggio selezionato */}
         {selectedLang && (
-          <div className="fui-sub-window-overlay" onClick={() => setSelectedLang(null)}>
+          <div className="fui-sub-window-overlay" onClick={handleBackToGrid}>
             <div className="fui-sub-window extended-window" onClick={(e) => e.stopPropagation()}>
               <div className="sub-window-header">
                 <h3>REPOSITORY // {selectedLang.name} // PROJECTS</h3>
-                <button onClick={() => setSelectedLang(null)}>[BACK_TO_GRID]</button>
+                <button onClick={handleBackToGrid}>[BACK_TO_GRID]</button>
               </div>
               <div className="sub-window-body scrollable-repo">
                 <p className="lang-summary-text">{selectedLang.description}</p>
