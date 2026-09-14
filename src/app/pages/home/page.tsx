@@ -102,18 +102,17 @@ export default function HomePage() {
 
         <div className="icon-grid" aria-hidden={!!activeItem || movingIndex !== null}>
           {menuItems.map((item, index) => (
-            <div key={item.label} className={`icon-item item-${index} ${movingIndex === index ? 'moving' : ''}`}>
-              <button
-                type="button"
-                className="icon-button"
-                onClick={() => handleMenuItemClick(item.label, index)}
-                tabIndex={isClicked && !activeItem && movingIndex === null ? 0 : -1}
-                aria-pressed={activeItem === item.label}
-              >
-                {item.icon}
-              </button>
+            <button
+              key={item.label}
+              type="button"
+              className={`icon-item item-${index} ${movingIndex === index ? 'moving' : ''}`}
+              onClick={() => handleMenuItemClick(item.label, index)}
+              tabIndex={isClicked && !activeItem && movingIndex === null ? 0 : -1}
+              aria-pressed={activeItem === item.label}
+            >
+              <span className="icon-button">{item.icon}</span>
               <span className="icon-label">{item.label}</span>
-            </div>
+            </button>
           ))}
         </div>
       </div>

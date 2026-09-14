@@ -95,6 +95,11 @@
   box-shadow: 0 0 10px rgba(124, 208, 104, 0.2);
   white-space: nowrap;
   pointer-events: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logo-menu.open .icon-item {
@@ -102,10 +107,15 @@
   pointer-events: auto;
 }
 
-.icon-item:hover {
+.icon-item:hover,
+.icon-item:focus-visible {
   background: rgba(124, 208, 104, 0.22);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 18px rgba(124, 208, 104, 0.65), 0 0 38px rgba(124, 208, 104, 0.35);
+}
+
+.icon-item:focus-visible {
+  outline: none;
 }
 
 .icon-button {
