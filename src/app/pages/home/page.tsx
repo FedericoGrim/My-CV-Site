@@ -93,8 +93,8 @@ export default function HomePage() {
           <MyImage
             src="/My-CV-Site/images/myLogo.png"
             alt="Federico Grimaldi logo"
-            width={180}
-            height={180}
+            width={300}
+            height={300}
             loading="eager"
             className="rounded-full"
           />
