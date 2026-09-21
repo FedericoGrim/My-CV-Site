@@ -110,8 +110,9 @@
 
 /* Lista dei Progetti in stile terminale a riga */
 .projects-terminal-list { display: flex; flex-direction: column; gap: 15px; }
-.terminal-project-row { background: rgba(0, 255, 102, 0.02); border: 1px solid rgba(0, 255, 102, 0.15); padding: 12px; border-left: 3px solid var(--fui-green); transition: all 0.2s; }
-.terminal-project-row:hover { background: rgba(0, 255, 102, 0.06); border-color: var(--fui-green); box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
+.terminal-project-row { position: relative; background: rgba(0, 255, 102, 0.02); border: 1px solid rgba(0, 255, 102, 0.15); padding: 12px; border-left: 3px solid var(--fui-green); transition: all 0.2s; cursor: pointer; }
+.terminal-project-row:hover, .terminal-project-row:focus-visible { background: rgba(0, 255, 102, 0.06); border-color: var(--fui-green); box-shadow: 0 0 10px rgba(0, 255, 102, 0.1); }
+.terminal-project-row:focus-visible { outline: 1px dashed var(--fui-green); outline-offset: 2px; }
 
 .row-main-info { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
 .proj-id-badge { font-size: 10px; background: var(--fui-green-dim); padding: 2px 6px; font-weight: bold; }
@@ -122,9 +123,39 @@
 .proj-status-badge[data-status="STABLE"] { color: #00bcff; }
 .proj-status-badge[data-status="DEGRADED"] { color: #ff3b30; }
 .proj-status-badge[data-status="COMPILING"] { color: #ffcc00; }
+.proj-status-badge[data-status="STANDBY"] { color: #9a9a9a; }
+.proj-status-badge[data-status="INDEXING"] { color: #c17dff; }
+.proj-status-badge[data-status="COMPILED"] { color: #2dd4bf; }
+.proj-status-badge[data-status="COMPLETED"] { color: #7cd068; }
 
 .row-technical-details { display: flex; justify-content: space-between; font-size: 11px; opacity: 0.6; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid rgba(0, 255, 102, 0.05); }
 .proj-desc-paragraph { font-size: 12px; opacity: 0.85; line-height: 1.4; margin: 0; color: rgba(255, 255, 255, 0.9); }
+.row-open-hint { position: absolute; right: 12px; bottom: 12px; font-size: 10px; letter-spacing: 0.05em; color: var(--fui-green); opacity: 0; transform: translateX(-6px); transition: all 0.2s; }
+.terminal-project-row:hover .row-open-hint, .terminal-project-row:focus-visible .row-open-hint { opacity: 0.8; transform: translateX(0); }
+
+/* ==========================================================================
+   FINESTRA DETTAGLIO PROGETTO (LIVELLO 3)
+   ========================================================================== */
+.fui-project-overlay { position: absolute; inset: 0; background: rgba(0, 5, 2, 0.82); display: flex; align-items: center; justify-content: center; z-index: 300; backdrop-filter: blur(3px); }
+.fui-project-window { width: min(880px, 92vw); max-height: 88vh; background: rgba(0, 12, 4, 0.98); border: 2px solid var(--fui-green); box-shadow: 0 0 35px rgba(0, 255, 102, 0.4); animation: window-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+
+.project-window-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px dashed var(--fui-green-dim); background: rgba(0, 40, 10, 0.3); }
+.project-window-header h3 { margin: 0; font-size: 15px; letter-spacing: 1px; }
+.project-window-header button { background: transparent; border: 1px solid var(--fui-green); color: var(--fui-green); font-family: var(--fui-font); padding: 6px 12px; cursor: pointer; transition: all 0.2s; }
+.project-window-header button:hover { background: var(--fui-green); color: #000; box-shadow: 0 0 10px var(--fui-green); }
+
+.project-meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--fui-green-dim); }
+.meta-cell { display: flex; flex-direction: column; gap: 4px; }
+.meta-cell-wide { grid-column: span 2; }
+.meta-label { font-size: 9px; letter-spacing: 0.1em; opacity: 0.55; }
+.meta-value { font-size: 12px; color: #ffffff; }
+
+.project-section-title { font-size: 11px; letter-spacing: 0.1em; color: var(--fui-green); opacity: 0.85; margin: 18px 0 8px 0; }
+.project-section-title:first-of-type { margin-top: 0; }
+.project-overview-text { font-size: 13px; line-height: 1.6; color: rgba(255, 255, 255, 0.9); margin: 0; }
+
+.project-features-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.project-features-list li { font-size: 12px; line-height: 1.5; color: rgba(255, 255, 255, 0.85); }
 
 /* ==========================================================================
    ANIMAZIONI
