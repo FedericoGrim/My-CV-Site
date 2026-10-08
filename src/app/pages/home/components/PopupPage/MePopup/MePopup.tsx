@@ -1,7 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import { Orbitron } from "next/font/google";
 import "./mepopup.css";
+
+const orbitron = Orbitron({ subsets: ["latin"], weight: ["500", "700"] });
+
+// Size in px of the cut-off top-left and bottom-right corners
+const CHAMFER = 28;
 
 interface MePopupProps {
   onClose?: () => void;
@@ -12,7 +18,7 @@ const typeText =
   "A HIGHLY MOTIVATED ENGINEER DRIVEN BY COMPLEX CHALLENGES, CUTTING-EDGE TECHNOLOGIES, AND OUT-OF-THE-BOX PROBLEM SOLVING. \n \nFOCUSED ON DELIVERING SECURE, FUTURE-PROOF SOLUTIONS WHILE CONTINUOUSLY EVOLVING WITH THE TECH LANDSCAPE. \n \nPASSIONATE ABOUT MAKING A SIGNIFICANT MARK IN TECHNOLOGICAL ADVANCEMENT.";
 
   export function MePopup({ onClose, inline = false }: MePopupProps) {
-  const borderRef = useRef<SVGPathElement | null>(null);
+  const borderRef = useRef<SVGPolygonElement | null>(null);
   const [showContent, setShowContent] = useState(false);
   const [bio, setBio] = useState("");
 
@@ -23,9 +29,9 @@ const typeText =
 
     if (path) {
       try {
-        const length = path.getTotalLength();
-        path.style.strokeDasharray = `${length}`;
-        path.style.strokeDashoffset = `${length}`;
+        // pathLength="1" on the polygon makes the dash independent of its size
+        path.style.strokeDasharray = "1";
+        path.style.strokeDashoffset = "1";
         path.getBoundingClientRect();
         path.style.transition = "stroke-dashoffset 900ms cubic-bezier(0.4, 0, 0.2, 1)";
         requestAnimationFrame(() => {
@@ -42,6 +48,19 @@ const typeText =
     return () => {
       if (contentTimer) window.clearTimeout(contentTimer);
     };
+  }, []);
+
+  // Keep the chamfered border polygon matching the panel size in px
+  useEffect(() => {
+    const path = borderRef.current;
+    const svg = path?.ownerSVGElement;
+    if (!path || !svg) return;
+    const observer = new ResizeObserver(([entry]) => {
+      const { width: w, height: h } = entry.contentRect;
+      path.setAttribute("points", `${CHAMFER},0 ${w},0 ${w},${h - CHAMFER} ${w - CHAMFER},${h} 0,${h} 0,${CHAMFER}`);
+    });
+    observer.observe(svg);
+    return () => observer.disconnect();
   }, []);
 
   // Effetto Scrittura (Typewriter) corretto senza bug closure/undefined
@@ -74,8 +93,6 @@ const typeText =
 
   const panel = (
       <div className={`modal-panel tron ${inline ? "me-inline" : ""}`} onClick={(e) => e.stopPropagation()}>
-        <div className="panel-grid-background" aria-hidden="true" />
-
         {!inline && (
           <button className="modal-close icon-button" onClick={onClose} aria-label="Close">
             ✕
@@ -83,14 +100,8 @@ const typeText =
         )}
 
         <div className="modal-body tron-body show">
-          <svg className="tron-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <rect
-              ref={borderRef as any}
-              className="tron-path"
-              x="0.25" y="0.25" width="99.5" height="99.5"
-              rx="1" ry="1"
-              fill="none"
-            />
+          <svg className="tron-border" aria-hidden="true">
+            <polygon ref={borderRef} className="tron-path" pathLength={1} fill="none" />
           </svg>
 
           <div className={`bike-container ${!showContent ? "active" : "done"}`}>
@@ -103,17 +114,13 @@ const typeText =
             <div className="identity-pane">
               <div className="glitch-photo-frame">
                 <img src="/My-CV-Site/images/MyPhoto.jpg" alt="Federico" className="photo" />
-                <div className="scan-line" />
-                <div className="scan-ring">
-                  <span /><span /><span />
-                </div>
               </div>
               
               <div className="personal-data">
-                <div className="data-line"><span>NAME:</span> FEDERICO GRIMALDI</div>
-                <div className="data-line"><span>ROLE:</span> FULL STACK SOFTWARE ARCHITECT</div>
-                <div className="data-line"><span>FOCUS:</span> SECURITY & RELIABILITY</div>
-                <div className="data-line"><span>LOCATION:</span> TORINO (IT) </div>
+                <div className="data-line"><span className={orbitron.className}>NAME</span> FEDERICO GRIMALDI</div>
+                <div className="data-line"><span className={orbitron.className}>ROLE</span> FULL STACK SOFTWARE ARCHITECT</div>
+                <div className="data-line"><span className={orbitron.className}>FOCUS</span> SECURITY & RELIABILITY</div>
+                <div className="data-line"><span className={orbitron.className}>LOCATION</span> TORINO (IT)</div>
               </div>
             </div>
 

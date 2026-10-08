@@ -351,8 +351,8 @@
   max-width: none;
   height: 80vh;
   z-index: 10;
-  /* Keep the original outer size, but paint the dark area only inside
-     the animated green border */
+  /* Same box as every other section: no inset around the green border */
+  padding: 0;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -360,12 +360,7 @@
 
 .me-inline .modal-body {
   max-width: none;
-  background: rgba(4, 12, 8, 0.85);
-  box-shadow: 0 0 80px rgba(124, 208, 104, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
-}
-
-.me-inline .panel-grid-background {
-  inset: 2rem;
+  background: none;
 }
 
 /* Every other section opens in the same slot as the Me panel */
@@ -398,6 +393,7 @@
 
   .me-inline .panel-stage {
     grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
     overflow-y: auto;
   }
 }
