@@ -1,2 +1,208 @@
-/* Placeholder styles for ContactPopup */
-.modal-panel { }
+/* Fallout Pip-Boy screen in the site's green */
+.modal-panel.pipboy {
+  --pip: #7cd068;
+  --pip-dim: rgba(124, 208, 104, 0.45);
+  --pip-bg: #071107;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.4rem 0.8rem;
+  background: radial-gradient(ellipse at center, #0e200d 0%, var(--pip-bg) 70%, #020502 100%);
+  border: 2px solid #1b2a1a;
+  border-radius: 28px;
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.9), inset 0 0 12px rgba(124, 208, 104, 0.15);
+  overflow: hidden;
+  color: var(--pip);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 5px rgba(124, 208, 104, 0.7);
+}
+
+/* CRT scanlines and a soft rolling band */
+.modal-panel.pipboy::before,
+.modal-panel.pipboy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.modal-panel.pipboy::before {
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0 1px, transparent 1px 3px);
+}
+
+.modal-panel.pipboy::after {
+  background: linear-gradient(to bottom, transparent, rgba(124, 208, 104, 0.06), transparent);
+  height: 30%;
+  animation: pip-roll 6s linear infinite;
+}
+
+/* ---------- Top status bar ---------- */
+.pip-status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--pip);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.pip-title {
+  margin-right: auto;
+  font-size: 1.3rem;
+}
+
+/* ---------- List and detail ---------- */
+.pip-main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* Each row at least as tall as the screen, so the detail fills it */
+  grid-auto-rows: minmax(100%, auto);
+  gap: 1.5rem;
+  padding: 1.2rem 0 0.4rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pip) transparent;
+}
+
+.pip-list,
+.pip-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pip-list > li + li {
+  margin-top: 0.9rem;
+}
+
+/* Folder header: an open folder with its items indented below */
+.pip-folder {
+  display: block;
+  padding: 0.2rem 0.6rem;
+  border-bottom: 2px solid var(--pip-dim);
+  font-size: 1rem;
+  opacity: 0.75;
+}
+
+.pip-folder::before {
+  content: "\25BE  ";
+}
+
+.pip-list ul {
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--pip-dim);
+  margin-left: 0.6rem;
+}
+
+.pip-list a {
+  display: block;
+  padding: 0.25rem 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+/* Pip-Boy cursor: the selected row is drawn in reverse video */
+.pip-list a.selected {
+  background: var(--pip);
+  color: var(--pip-bg);
+  text-shadow: none;
+  outline: none;
+}
+
+.pip-list a.selected::before {
+  content: "\25A0  ";
+}
+
+.pip-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  border-left: 2px solid var(--pip-dim);
+  animation: pip-in 0.25s steps(3) both;
+}
+
+.pip-art {
+  display: grid;
+  place-items: center;
+  width: clamp(120px, 24vh, 240px);
+  aspect-ratio: 1;
+  border: 2px solid var(--pip-dim);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px rgba(124, 208, 104, 0.7));
+}
+
+.pip-art svg {
+  font-size: clamp(60px, 12vh, 120px);
+}
+
+.pip-description {
+  margin: 0;
+  width: 100%;
+  text-transform: none;
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Item stats: label on the left, value pushed to the right */
+.pip-stats {
+  width: 100%;
+  margin: 0;
+  border-top: 2px solid var(--pip-dim);
+}
+
+.pip-stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 2px solid var(--pip-dim);
+}
+
+.pip-stats dd {
+  margin: 0;
+  min-width: 0;
+  text-align: right;
+}
+
+.pip-value {
+  overflow-wrap: anywhere;
+  text-transform: none;
+}
+
+.pip-action {
+  margin-top: auto;
+  align-self: stretch;
+  padding: 0.4rem;
+  border: 2px solid var(--pip);
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.pip-action:hover,
+.pip-action:focus-visible {
+  background: var(--pip);
+  color: var(--pip-bg);
+  text-shadow: none;
+  outline: none;
+}
+
+@keyframes pip-roll {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(400%); }
+}
+
+@keyframes pip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
