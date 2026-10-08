@@ -128,7 +128,7 @@ export function StudyPopup({ onClose }: StudyPopupProps) {
             </ul>
 
             <a className="lcars-pill lcars-link" href={school.url} target="_blank" rel="noopener noreferrer">
-              Access school database
+              Access school site
             </a>
           </section>
         </div>
