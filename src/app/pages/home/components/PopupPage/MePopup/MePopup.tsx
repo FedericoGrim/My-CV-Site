@@ -6,6 +6,8 @@ import "./mepopup.css";
 
 const orbitron = Orbitron({ subsets: ["latin"], weight: ["500", "700"] });
 
+const CHARS_PER_TICK = 4;
+
 // Size in px of the cut-off top-left and bottom-right corners
 const CHAMFER = 28;
 
@@ -63,27 +65,20 @@ const typeText =
     return () => observer.disconnect();
   }, []);
 
-  // Effetto Scrittura (Typewriter) corretto senza bug closure/undefined
+  // Typewriter: a few characters per tick so the whole bio prints in about a second
   useEffect(() => {
     if (!showContent) return;
 
     let intervalId: number;
-    let currentIdx = 0;
+    let typed = 0;
 
     const bioTimer = window.setTimeout(() => {
       intervalId = window.setInterval(() => {
-        if (currentIdx < typeText.length) {
-          const nextChar = typeText.toUpperCase()[currentIdx];
-          // Controllo di sicurezza stringente per evitare caratteri spuri
-          if (nextChar !== undefined) {
-            setBio((prev) => prev + nextChar);
-          }
-          currentIdx++;
-        } else {
-          window.clearInterval(intervalId);
-        }
-      }, 20);
-    }, 400);
+        typed += CHARS_PER_TICK;
+        setBio(typeText.slice(0, typed));
+        if (typed >= typeText.length) window.clearInterval(intervalId);
+      }, 12);
+    }, 150);
 
     return () => {
       window.clearTimeout(bioTimer);
