@@ -1,2 +1,226 @@
-/* Placeholder styles for WorkPopup */
-.modal-panel { /* inherit existing modal-panel styles */ }
+/* Minority Report: floating glass panels in the site's green */
+.modal-panel.precog {
+  --precog: #7cd068;
+  --precog-glass: rgba(124, 208, 104, 0.07);
+  --precog-line: rgba(124, 208, 104, 0.45);
+
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  background: radial-gradient(ellipse at 50% 40%, rgba(124, 208, 104, 0.1), transparent 65%), #040805;
+  border: 1px solid rgba(124, 208, 104, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  color: #e8f5e3;
+  font-family: system-ui, sans-serif;
+}
+
+.precog-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--precog);
+}
+
+.precog-hint {
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
+
+/* ---------- Stage: cards in a shallow 3D arc ---------- */
+.precog-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  perspective: 1200px;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.precog-stage:active {
+  cursor: grabbing;
+}
+
+.precog-card {
+  --card-width: min(560px, 78cqi);
+
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  width: var(--card-width);
+  max-height: 88%;
+  margin-left: calc(var(--card-width) / -2);
+  padding: 1.4rem 1.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--precog) transparent;
+  background: linear-gradient(135deg, rgba(124, 208, 104, 0.14), var(--precog-glass) 45%, rgba(124, 208, 104, 0.03));
+  border: 1px solid var(--precog-line);
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 30px rgba(124, 208, 104, 0.12), inset 0 0 40px rgba(124, 208, 104, 0.06);
+  cursor: pointer;
+  transform:
+    translateX(calc(var(--offset) * 82%))
+    translateZ(calc(var(--distance) * -260px))
+    rotateY(calc(var(--offset) * -28deg));
+  opacity: calc(1 - var(--distance) * 0.45);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease, border-color 0.3s ease;
+}
+
+.precog-card.active {
+  z-index: 2;
+  cursor: default;
+  border-color: var(--precog);
+}
+
+/* Light sweeping across the glass when a panel comes forward */
+.precog-card.active::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.12) 50%, transparent 70%);
+  animation: precog-sweep 1.2s ease-out both;
+}
+
+/* Thin L-shaped marker in the top-left corner */
+.precog-corner {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 18px;
+  height: 18px;
+  border-top: 2px solid var(--precog);
+  border-left: 2px solid var(--precog);
+}
+
+.precog-period {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: var(--precog);
+}
+
+.precog-card h3 {
+  margin: 0.3rem 0 0;
+  font-size: clamp(1.4rem, 4cqi, 2.2rem);
+  font-weight: 200;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.precog-role {
+  margin: 0.2rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.precog-detail {
+  margin-top: 1.1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--precog-line);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.6;
+  animation: precog-in 0.5s 0.2s ease both;
+}
+
+.precog-detail p {
+  margin: 0;
+}
+
+.precog-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.8rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.precog-tasks li {
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--precog);
+}
+
+.precog-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.precog-stack li {
+  padding: 1px 10px;
+  border: 1px solid var(--precog-line);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--precog);
+}
+
+/* ---------- Timeline scrubber ---------- */
+.precog-timeline {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--precog-line);
+}
+
+.precog-timeline button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  color: rgba(232, 245, 227, 0.55);
+  font: inherit;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.precog-timeline button:hover,
+.precog-timeline button:focus-visible,
+.precog-timeline button.active {
+  color: var(--precog);
+  outline: none;
+}
+
+.precog-dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.precog-timeline button.active .precog-dot {
+  background: var(--precog);
+  box-shadow: 0 0 10px var(--precog);
+}
+
+@keyframes precog-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes precog-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
