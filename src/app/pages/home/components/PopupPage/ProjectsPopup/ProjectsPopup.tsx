@@ -238,7 +238,6 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
             {icon && <span className="header-icon">{icon}</span>}
             <h2 className="header-title">CORE_MATRIX // FEDERICO_GRIMALDI</h2>
           </div>
-          <button className="fui-close-btn" onClick={onClose}>[ ABORT_CONNECTION ]</button>
         </header>
 
         {/* Viewport 3D */}

@@ -93,11 +93,6 @@ const typeText =
 
   const panel = (
       <div className={`modal-panel tron ${inline ? "me-inline" : ""}`} onClick={(e) => e.stopPropagation()}>
-        {!inline && (
-          <button className="modal-close icon-button" onClick={onClose} aria-label="Close">
-            ✕
-          </button>
-        )}
 
         <div className="modal-body tron-body show">
           <svg className="tron-border" aria-hidden="true">

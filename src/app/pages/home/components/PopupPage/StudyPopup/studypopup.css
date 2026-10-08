@@ -98,11 +98,6 @@
 
 .lcars-pill:hover { filter: brightness(1.2); }
 
-.lcars-close {
-  height: 100%;
-  background: var(--lcars-2);
-}
-
 .lcars-bar-segments span {
   flex: 1;
   height: 100%;

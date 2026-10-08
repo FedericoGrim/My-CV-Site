@@ -24,27 +24,6 @@
   box-shadow: 0 0 80px rgba(124, 208, 104, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
-/* Pulsante Chiudi */
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: 1px solid rgba(124, 208, 104, 0.3);
-  color: #7cd068;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 4px 8px;
-  z-index: 10;
-  transition: all 0.2s ease;
-}
-
-.modal-close:hover {
-  background: #7cd068;
-  color: #000;
-  box-shadow: 0 0 12px #7cd068;
-}
-
 /* Corpo Principale e SVG */
 .modal-body.tron-body {
   position: relative;

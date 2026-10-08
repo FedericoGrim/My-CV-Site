@@ -78,7 +78,6 @@ export function StudyPopup({ onClose }: StudyPopupProps) {
           <div className="lcars-elbow lcars-elbow-top" />
           <div className="lcars-bar">
             <h2>Educational records</h2>
-            <button className="lcars-pill lcars-close" onClick={onClose} aria-label="Close">Close</button>
           </div>
         </header>
 

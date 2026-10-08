@@ -54,7 +54,6 @@ export function GitHubPopup({ onClose }: GitHubPopupProps) {
         <header className="mother-bar">
           <span>MU-TH-UR 6000</span>
           <span className="mother-bar-center">REPOSITORY ACCESS</span>
-          <button className="mother-exit" onClick={onClose} aria-label="Close">[ EXIT ]</button>
         </header>
 
         <div className="mother-screen" aria-live="polite">

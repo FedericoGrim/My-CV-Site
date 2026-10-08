@@ -45,23 +45,6 @@
   opacity: 0.6;
 }
 
-.mother-exit {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  text-shadow: inherit;
-  cursor: pointer;
-}
-
-.mother-exit:hover,
-.mother-exit:focus-visible {
-  background: #7cd068;
-  color: #020602;
-  text-shadow: none;
-  outline: none;
-}
-
 .mother-screen {
   display: flex;
   flex-direction: column;
