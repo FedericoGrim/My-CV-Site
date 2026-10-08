@@ -48,7 +48,7 @@ export default function HomePage() {
         <button
           type="button"
           onClick={handleClick}
-          className={`glow-ring group flex items-center justify-center rounded-full border-4 p-2 transition duration-500 focus:outline-none focus:ring-2 ${isClicked ? "active" : "base"}`}
+          className={`glow-ring group flex items-center justify-center rounded-full border-4 p-2 transition duration-500 focus:outline-none focus-visible:ring-2 ${isClicked ? "active" : "base"}`}
         >
           <MyImage
             src="/My-CV-Site/images/myLogo.png"

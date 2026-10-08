@@ -41,8 +41,13 @@
   transform: scale(1.02);
 }
 
+/* Once the menu is open: a crisp green ring, glowing only on hover */
 .glow-ring.active {
   border-color: #7cd068;
+  box-shadow: none;
+}
+
+.glow-ring.active:hover {
   box-shadow: 0 0 8px rgba(124, 208, 104, 0.8), 0 0 25px rgba(124, 208, 104, 0.4), 0 0 50px rgba(124, 208, 104, 0.18);
 }
 
