@@ -37,8 +37,6 @@
 
 /* Dati Bordi */
 .fui-border { position: absolute; font-size: 11px; text-transform: uppercase; opacity: 0.7; display: flex; justify-content: space-between; pointer-events: none; }
-.border-top { top: 6px; left: 20px; right: 20px; }
-.border-bottom { bottom: 6px; left: 20px; right: 20px; }
 .border-left { left: 6px; top: 80px; bottom: 80px; flex-direction: column; gap: 20px; }
 .border-right { right: 6px; top: 80px; bottom: 80px; flex-direction: column; gap: 20px; text-align: right; }
 
@@ -68,44 +66,32 @@
 /* ==========================================================================
    MONOLITI DEI LINGUAGGI (PIÙ GRANDI E MAGGIOR DETTAGLIO)
    ========================================================================== */
-.core-monolith { width: 80px; height: 80px; transform: translateZ(60px); transform-style: preserve-3d; }
-.core-monolith .face { position: absolute; border: 1px solid var(--fui-green); background: rgba(124, 208, 104, 0.04); display: flex; align-items: center; justify-content: center; }
+.core-monolith { width: 80px; height: 80px; transform: translateZ(40px); transform-style: preserve-3d; }
+.core-monolith .face { position: absolute; width: 80px; height: 80px; border: 2px solid var(--fui-green); background: rgba(124, 208, 104, 0.3); box-shadow: 0 0 12px rgba(124, 208, 104, 0.5); display: flex; align-items: center; justify-content: center; }
+.core-monolith .face-top { background: rgba(124, 208, 104, 0.5); }
 
-/* Estrusione cubica massiccia per i moduli linguaggio (120px di altezza) */
-.core-monolith .face-front, .core-monolith .face-back { width: 80px; height: 120px; }
-.core-monolith .face-left, .core-monolith .face-right { width: 80px; height: 120px; }
-.core-monolith .face-top { width: 80px; height: 80px; background: rgba(124, 208, 104, 0.15); }
-
-.core-monolith .face-front { transform: rotateX(-90deg) translateZ(40px) translateY(-60px); }
-.core-monolith .face-back  { transform: rotateX(90deg) translateZ(40px) translateY(60px); }
-.core-monolith .face-left  { transform: rotateY(-90deg) translateZ(40px) translateY(-60px); }
-.core-monolith .face-right { transform: rotateY(90deg) translateZ(40px) translateY(-60px); }
-.core-monolith .face-top   { transform: translateZ(60px); }
+/* Simple 80px cube resting on the grid */
+.core-monolith .face-front { transform: rotateX(-90deg) translateZ(40px); }
+.core-monolith .face-back  { transform: rotateX(90deg) translateZ(40px); }
+.core-monolith .face-left  { transform: rotateY(-90deg) translateZ(40px); }
+.core-monolith .face-right { transform: rotateY(90deg) translateZ(40px); }
+.core-monolith .face-top   { transform: translateZ(40px); }
 
 /* Sigla del linguaggio incisa sulla faccia frontale del blocco wireframe */
-.internal-code { font-size: 26px; font-weight: bold; color: var(--fui-green); opacity: 0.5; font-family: var(--fui-font); text-shadow: 0 0 5px var(--fui-green); }
-
-/* Etichette Olografiche dei nodi */
-.hologram-label.lang-node {
-  position: absolute; top: -75px; left: -40px; width: 170px;
-  transform: rotateZ(10deg) rotateX(-60deg) translateZ(160px);
-  background: rgba(0, 10, 2, 0.95); border: 1px solid var(--fui-green); border-left: 4px solid var(--fui-green);
-  padding: 6px; box-shadow: 0 0 10px rgba(124, 208, 104, 0.2); pointer-events: none; transition: all 0.2s;
-}
-.font-large { font-size: 12px; font-weight: bold; color: #fff !important; letter-spacing: 1px; }
+.internal-code { font-size: 26px; font-weight: bold; color: #fff; opacity: 0.9; font-family: var(--fui-font); text-shadow: 0 0 5px var(--fui-green); }
 
 /* Stati Attivi Hover/Tastiera */
-.monolith-wrapper:hover .face, .monolith-wrapper.system-active .face { background: rgba(124, 208, 104, 0.2); border-color: #ffffff; box-shadow: 0 0 15px var(--fui-green); }
+.monolith-wrapper:hover .face, .monolith-wrapper.system-active .face { background: rgba(124, 208, 104, 0.6); border-color: #ffffff; box-shadow: 0 0 15px var(--fui-green); }
 .monolith-wrapper:hover .internal-code, .monolith-wrapper.system-active .internal-code { color: #fff; opacity: 1; }
-.monolith-wrapper:hover .hologram-label, .monolith-wrapper.system-active .hologram-label { border-color: #ffffff; box-shadow: 0 0 20px var(--fui-green); }
 
 /* ==========================================================================
    SUB-WINDOW REPOSITORY TERMINAL (LIVELLO 2 - DETTAGLI)
    ========================================================================== */
 .fui-sub-window-overlay { position: absolute; inset: 0; background: rgba(0, 5, 2, 0.75); display: flex; align-items: center; justify-content: center; z-index: 200; perspective: 1000px; backdrop-filter: blur(3px); }
-.fui-sub-window.extended-window { width: min(1200px, 96vw); max-height: 94vh; background: rgba(0, 12, 4, 0.98); border: 2px solid var(--fui-green); box-shadow: 0 0 35px rgba(124, 208, 104, 0.4); animation: window-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
+.fui-sub-window.extended-window { width: 100%; height: 100%; background: rgba(0, 12, 4, 0.98); border: 2px solid var(--fui-green); box-shadow: 0 0 35px rgba(124, 208, 104, 0.4); animation: window-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
 
 .scrollable-repo { overflow-y: auto; padding: 28px; max-height: 82vh; scrollbar-width: thin; scrollbar-color: var(--fui-green) transparent; }
+.extended-window .scrollable-repo { flex: 1; max-height: none; }
 .lang-summary-text { font-size: 12px; opacity: 0.7; margin: 0 0 20px 0; line-height: 1.4; border-bottom: 1px dashed var(--fui-green-dim); padding-bottom: 12px; }
 
 /* Lista dei Progetti in stile terminale a riga */
@@ -139,10 +125,10 @@
 .fui-project-overlay { position: absolute; inset: 0; background: rgba(0, 5, 2, 0.82); display: flex; align-items: center; justify-content: center; z-index: 300; backdrop-filter: blur(3px); }
 .fui-project-window { width: min(880px, 92vw); max-height: 88vh; background: rgba(0, 12, 4, 0.98); border: 2px solid var(--fui-green); box-shadow: 0 0 35px rgba(124, 208, 104, 0.4); animation: window-appear 0.3s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; }
 
-.project-window-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px dashed var(--fui-green-dim); background: rgba(0, 40, 10, 0.3); }
-.project-window-header h3 { margin: 0; font-size: 15px; letter-spacing: 1px; }
-.project-window-header button { background: transparent; border: 1px solid var(--fui-green); color: var(--fui-green); font-family: var(--fui-font); padding: 6px 12px; cursor: pointer; transition: all 0.2s; }
-.project-window-header button:hover { background: var(--fui-green); color: #000; box-shadow: 0 0 10px var(--fui-green); }
+.sub-window-header, .project-window-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px dashed var(--fui-green-dim); background: rgba(0, 40, 10, 0.3); }
+.sub-window-header h3, .project-window-header h3 { margin: 0; font-size: 15px; letter-spacing: 1px; }
+.sub-window-header button, .project-window-header button { background: transparent; border: 1px solid var(--fui-green); color: var(--fui-green); font-family: var(--fui-font); padding: 6px 12px; cursor: pointer; transition: all 0.2s; }
+.sub-window-header button:hover, .project-window-header button:hover { background: var(--fui-green); color: #000; box-shadow: 0 0 10px var(--fui-green); }
 
 .project-meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--fui-green-dim); }
 .meta-cell { display: flex; flex-direction: column; gap: 4px; }

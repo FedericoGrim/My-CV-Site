@@ -230,9 +230,6 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
 
       <div className="fui-interface-container" onClick={(e) => e.stopPropagation()}>
 
-        {/* Intestazioni */}
-        <div className="fui-border border-top"><span>SYS_STATUS: ONLINE</span><span>DATABASE: SEPARATED_BY_CORE</span><span>CORE_ACTIVE: {activeIndex + 1}/{languages.length}</span></div>
-        <div className="fui-border border-bottom"><span>NAV_MODE: SELECT CORE NODES [ENTER]</span><span>MATRIX_V2</span></div>
         <div className="fui-border border-left"><div>0001</div><div>0002</div><div>0003</div><div>0004</div><div>0005</div><div>0006</div></div>
         <div className="fui-border border-right"><div>LN_1</div><div>LN_2</div><div>LN_3</div><div>LN_4</div><div>LN_5</div><div>LN_6</div></div>
 
@@ -259,8 +256,8 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
                 const row = Math.floor(index / 3);
                 const col = index % 3;
 
-                const computedLeft = 170 + (col * 260);
-                const computedTop = 190 + (row * 320);
+                const computedLeft = 180 + (col * 180);
+                const computedTop = 228 + (row * 265);
 
                 return (
                   <div
@@ -270,12 +267,6 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
                     onMouseEnter={() => !selectedLang && setActiveIndex(index)}
                     onClick={(e) => handleSelectLang(index, e.currentTarget)}
                   >
-                    {/* Label olografica del Core */}
-                    <div className="hologram-label lang-node">
-                      <div className="tag-id font-large">&lt;/&gt; {lang.name}</div>
-                      <div className="tag-status">{lang.description}</div>
-                    </div>
-
                     {/* Cubo Monolite */}
                     <div className="monolith-3d core-monolith">
                       <div className="face face-front"><span className="internal-code">{lang.iconTag}</span></div>
