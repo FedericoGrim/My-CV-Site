@@ -14,22 +14,22 @@
 .modal-panel.tron {
   background: rgba(4, 12, 8, 0.85);
   border-radius: 6px;
-  border: 1px solid rgba(90, 255, 122, 0.15);
+  border: 1px solid rgba(124, 208, 104, 0.15);
   padding: 2rem;
   position: relative;
   overflow: hidden;
   width: 100%;
   max-width: 1100px;
   height: 600px;
-  box-shadow: 0 0 80px rgba(32, 255, 96, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 80px rgba(124, 208, 104, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
 .panel-grid-background {
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(rgba(90, 255, 122, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(90, 255, 122, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(124, 208, 104, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 208, 104, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
   pointer-events: none;
 }
@@ -40,8 +40,8 @@
   top: 15px;
   right: 15px;
   background: none;
-  border: 1px solid rgba(90, 255, 122, 0.3);
-  color: #6eff7a;
+  border: 1px solid rgba(124, 208, 104, 0.3);
+  color: #7cd068;
   border-radius: 4px;
   cursor: pointer;
   padding: 4px 8px;
@@ -50,9 +50,9 @@
 }
 
 .modal-close:hover {
-  background: #6eff7a;
+  background: #7cd068;
   color: #000;
-  box-shadow: 0 0 12px #6eff7a;
+  box-shadow: 0 0 12px #7cd068;
 }
 
 /* Corpo Principale e SVG */
@@ -71,9 +71,9 @@
 }
 
 .tron-path {
-  stroke: #6eff7a;
+  stroke: #7cd068;
   stroke-width: 0.5px; /* Sottile e chirurgico su griglia percentuale */
-  filter: drop-shadow(0 0 4px rgba(94, 255, 122, 0.6));
+  filter: drop-shadow(0 0 4px rgba(124, 208, 104, 0.6));
 }
 
 /* Animazione Circuiti Light-Bike */
@@ -94,7 +94,7 @@
   height: 6px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 10px #6eff7a, 0 0 20px #6eff7a;
+  box-shadow: 0 0 10px #7cd068, 0 0 20px #7cd068;
 }
 
 .bike-left {
@@ -140,7 +140,7 @@
   position: relative;
   width: 100%;
   height: 340px;
-  border: 1px solid rgba(90, 255, 122, 0.3);
+  border: 1px solid rgba(124, 208, 104, 0.3);
   background: rgba(0, 0, 0, 0.4);
   overflow: hidden;
   border-radius: 4px;
@@ -159,7 +159,7 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(to bottom, rgba(90, 255, 122, 0.8), transparent);
+  background: linear-gradient(to bottom, rgba(124, 208, 104, 0.8), transparent);
   animation: scan 3s linear infinite;
 }
 
@@ -176,7 +176,7 @@
   gap: 0.5rem;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.8rem;
-  color: rgba(110, 255, 122, 0.85);
+  color: rgba(124, 208, 104, 0.85);
 }
 
 .data-line span {
@@ -192,7 +192,7 @@
 
 .pane-header {
   font-family: monospace;
-  color: rgba(90, 255, 122, 0.5);
+  color: rgba(124, 208, 104, 0.5);
   font-size: 0.85rem;
   margin-bottom: 0.5rem;
 }
@@ -200,7 +200,7 @@
 .bio-description {
   flex: 1;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(90, 255, 122, 0.1);
+  border: 1px solid rgba(124, 208, 104, 0.1);
   padding: 1.5rem;
   font-family: 'Courier New', Courier, monospace;
   color: #d8ffcc;
@@ -213,7 +213,7 @@
 
 .cursor {
   animation: blink 0.8s infinite steps(2);
-  color: #6eff7a;
+  color: #7cd068;
   font-weight: bold;
 }
 
@@ -231,8 +231,8 @@
 .footer-item {
   font-family: monospace;
   font-size: 0.75rem;
-  color: rgba(90, 255, 122, 0.5);
-  border: 1px solid rgba(90, 255, 122, 0.15);
+  color: rgba(124, 208, 104, 0.5);
+  border: 1px solid rgba(124, 208, 104, 0.15);
   padding: 4px 10px;
   border-radius: 2px;
 }

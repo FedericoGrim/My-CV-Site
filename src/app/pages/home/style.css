@@ -90,7 +90,7 @@
   width: 300px;
   padding: 0.45rem 1.3rem 0.45rem 0.45rem;
   border-radius: 9999px;
-  background: rgba(90, 230, 70, 0.11);
+  background: rgba(124, 208, 104, 0.11);
   border: 1px solid rgba(124, 208, 104, 0.55);
   box-shadow: 0 0 10px rgba(124, 208, 104, 0.2);
   white-space: nowrap;
@@ -109,7 +109,7 @@
 
 .icon-item:hover,
 .icon-item:focus-visible {
-  background: rgba(90, 230, 70, 0.23);
+  background: rgba(124, 208, 104, 0.23);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 18px rgba(124, 208, 104, 0.65), 0 0 38px rgba(124, 208, 104, 0.35);
 }
@@ -361,7 +361,7 @@
 .me-inline .modal-body {
   max-width: none;
   background: rgba(4, 12, 8, 0.85);
-  box-shadow: 0 0 80px rgba(32, 255, 96, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 80px rgba(124, 208, 104, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
 }
 
 .me-inline .panel-grid-background {
