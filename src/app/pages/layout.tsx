@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/app/pages/styles/globals.css";
+import "@/app/pages/globals.css";
 
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -35,16 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head />
       <body className={inter.className}>
-        <Header 
-          options={["Projects", "Contacts"]}
-          buttonsLinks={["/My-CV-Site/pages/projects", "/My-CV-Site/pages/contacts"]}
-          classnameMyButtonDiv="flex justify-center items-center"
-          classnameMyButton={{"DropDownMenuButtons":"!text-DarkGreen !font-Teko !text-lg !border-2 !border-DarkGreen !rounded-lg px-4 !py-2 !hover:bg-LightGreen !hover:border-DarkGreen !hover:text-MantisGreen !transition !duration-300",
-                              "SeparatedButtons":"!text-MantisGreen !font-Teko !text-lg !border-2 !hover:text-MantisGreen !border-MantisGreen !rounded-lg !px-4 !py-2 !hover:bg-CalPolyGreen !hover:text-MantisGreen !transition duration-300 !hover:border-MantisGreen"}}
-          variantMyButton="outlined"  
-        />
         <main>{children}</main>
-        <Footer />
       </body>
     </html>
   );

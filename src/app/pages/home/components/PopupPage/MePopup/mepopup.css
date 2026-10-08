@@ -1,0 +1,258 @@
+/* Overlay e Sfondo */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.modal-panel.tron {
+  background: rgba(4, 12, 8, 0.85);
+  border-radius: 6px;
+  border: 1px solid rgba(124, 208, 104, 0.15);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1100px;
+  height: 600px;
+  box-shadow: 0 0 80px rgba(124, 208, 104, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* Corpo Principale e SVG */
+.modal-body.tron-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tron-border {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Tron light line: pale hot core with a green halo */
+.tron-path {
+  stroke: #d8ffcc;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 2px #7cd068) drop-shadow(0 0 8px rgba(124, 208, 104, 0.7));
+}
+
+/* Dark chamfered surface with a perspective light grid on the floor */
+.modal-body.tron-body::before,
+.modal-body.tron-body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px);
+}
+
+.modal-body.tron-body::before {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(124, 208, 104, 0.08), transparent 60%),
+    rgba(2, 8, 5, 0.92);
+}
+
+.modal-body.tron-body::after {
+  top: 55%;
+  background:
+    linear-gradient(rgba(124, 208, 104, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 208, 104, 0.35) 1px, transparent 1px);
+  background-size: 48px 48px;
+  transform: perspective(400px) rotateX(60deg);
+  transform-origin: top;
+  mask-image: linear-gradient(to bottom, transparent, black 60%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
+  opacity: 0.5;
+}
+
+/* Animazione Circuiti Light-Bike */
+.bike-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bike-container.done {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.light-bike {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #7cd068, 0 0 20px #7cd068;
+}
+
+.bike-left {
+  animation: run-left 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.bike-right {
+  animation: run-right 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes run-left {
+  0%   { top: 0; left: 50%; transform: translateX(-50%); }
+  25%  { top: 0; left: 0; }
+  75%  { top: 100%; left: 0; }
+  100% { top: 100%; left: 50%; }
+}
+
+@keyframes run-right {
+  0%   { top: 0; left: 50%; transform: translateX(-50%); }
+  25%  { top: 0; left: 100%; }
+  75%  { top: 100%; left: 100%; }
+  100% { top: 100%; left: 50%; }
+}
+
+/* Layout Pannello */
+.panel-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.identity-pane, .feed-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Griglia e Frame Foto */
+.glitch-photo-frame {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  background: #7cd068;
+  padding: 1px;
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  filter: drop-shadow(0 0 6px rgba(124, 208, 104, 0.6));
+}
+
+.glitch-photo-frame .photo {
+  clip-path: polygon(17px 0, 100% 0, 100% calc(100% - 17px), calc(100% - 17px) 100%, 0 100%, 0 17px);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dati Personali */
+.personal-data {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.85rem;
+  color: #fff;
+  letter-spacing: 0.08em;
+}
+
+.data-line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, #7cd068, transparent) 1;
+}
+
+.data-line span {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: #7cd068;
+  text-shadow: 0 0 6px rgba(124, 208, 104, 0.8);
+}
+
+/* Area Testo e Feed (Destra) */
+.feed-pane {
+  justify-content: space-between;
+}
+
+.pane-header {
+  font-family: monospace;
+  color: rgba(124, 208, 104, 0.5);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.bio-description {
+  flex: 1;
+  background: linear-gradient(90deg, rgba(124, 208, 104, 0.08), transparent 40%);
+  border-left: 2px solid #7cd068;
+  box-shadow: -4px 0 12px -4px rgba(124, 208, 104, 0.8);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+  padding: 1.5rem;
+  font-family: 'Courier New', Courier, monospace;
+  color: #d8ffcc;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.cursor {
+  animation: blink 0.8s infinite steps(2);
+  color: #7cd068;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.footer-lines {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.footer-item {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: rgba(124, 208, 104, 0.5);
+  border: 1px solid rgba(124, 208, 104, 0.15);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+/* Gestione Schermi Mobile */
+@media (max-width: 850px) {
+  .modal-panel.tron {
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .panel-stage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .glitch-photo-frame {
+    height: 260px;
+  }
+}

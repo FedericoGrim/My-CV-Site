@@ -1,0 +1,400 @@
+.page-home {
+  position: relative;
+}
+
+.page-title {
+  position: relative;
+  margin-bottom: 1.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.65s ease, opacity 0.4s ease;  color: #7cd068;
+  text-shadow: 0 0 8px rgba(124, 208, 104, 0.85), 0 0 20px rgba(124, 208, 104, 0.4);}
+
+.page-title.moved {
+  transform: translateY(-15vh);
+}
+
+.fade-text {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.bottom-text {
+  min-height: 2.2rem;
+}
+
+.glow-ring {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 14px rgba(255, 255, 255, 0.3), 0 0 28px rgba(255, 255, 255, 0.15);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+}
+
+.glow-ring.base:hover {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.25), 0 0 60px rgba(124, 208, 104, 0.18);
+  transform: scale(1.02);
+}
+
+.glow-ring.active {
+  border-color: #7cd068;
+  box-shadow: 0 0 8px rgba(124, 208, 104, 0.8), 0 0 25px rgba(124, 208, 104, 0.4), 0 0 50px rgba(124, 208, 104, 0.18);
+}
+
+.glow-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(124, 208, 104, 0.35), 0 0 24px rgba(124, 208, 104, 0.2);
+}
+
+.logo-menu {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.7s cubic-bezier(.2,.9,.2,1);
+}
+
+.logo-menu.open {
+  transform: translateX(-140px);
+}
+
+.icon-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.glow-ring {
+  position: relative;
+  z-index: 2;
+}
+
+.icon-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.45s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.85rem;
+  width: 300px;
+  padding: 0.45rem 1.3rem 0.45rem 0.45rem;
+  border-radius: 9999px;
+  background: rgba(124, 208, 104, 0.11);
+  border: 1px solid rgba(124, 208, 104, 0.55);
+  box-shadow: 0 0 10px rgba(124, 208, 104, 0.2);
+  white-space: nowrap;
+  pointer-events: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.logo-menu.open .icon-item {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.icon-item:hover,
+.icon-item:focus-visible {
+  background: rgba(124, 208, 104, 0.23);
+  border-color: rgba(124, 208, 104, 1);
+  box-shadow: 0 0 18px rgba(124, 208, 104, 0.65), 0 0 38px rgba(124, 208, 104, 0.35);
+}
+
+.icon-item:focus-visible {
+  outline: none;
+}
+
+.icon-button {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: transparent;
+  border: 2px solid rgba(124, 208, 104, 0.95);
+  color: #7cd068;
+  box-shadow: 0 0 16px rgba(124, 208, 104, 0.55);
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.icon-button:hover {
+  transform: scale(1.12);
+  background: rgba(124, 208, 104, 0.12);
+  border-color: rgba(124, 208, 104, 1);
+  box-shadow: 0 0 26px rgba(124, 208, 104, 0.85);
+}
+
+.icon-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #c8ffb8;
+  text-shadow: 0 0 12px rgba(124, 208, 104, 0.55);
+}
+
+/* Each item's left edge sits on a circle of constant radius around the logo's
+   center, so the stack curves along the round shape of the logo: rows near the
+   middle sit farthest out, rows near the top/bottom tuck in closer. Rows keep
+   a wide, even vertical pitch (--dy) and only --dx follows the curve. */
+.logo-menu.open .item-0 { --dx: 269px; --dy: -208px; }
+.logo-menu.open .item-1 { --dx: 324px; --dy: -104px; }
+.logo-menu.open .item-2 { --dx: 340px; --dy: 0px; }
+.logo-menu.open .item-3 { --dx: 324px; --dy: 104px; }
+.logo-menu.open .item-4 { --dx: 269px; --dy: 208px; }
+
+@media (max-width: 640px) {
+  .logo-menu.open {
+    transform: translateX(-90px);
+  }
+
+  .glow-ring {
+    transform: scale(0.72);
+  }
+
+  .icon-item {
+    width: auto;
+    padding: 0.3rem 0.9rem 0.3rem 0.3rem;
+    gap: 0.5rem;
+  }
+
+  .icon-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .icon-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+  }
+
+  .logo-menu.open .item-0 { --dx: 175px; --dy: -140px; }
+  .logo-menu.open .item-1 { --dx: 213px; --dy: -70px; }
+  .logo-menu.open .item-2 { --dx: 227px; --dy: 0px; }
+  .logo-menu.open .item-3 { --dx: 213px; --dy: 70px; }
+  .logo-menu.open .item-4 { --dx: 175px; --dy: 140px; }
+}
+
+.logo-menu.open .icon-item {
+  transform: translate(var(--dx), calc(-50% + var(--dy))) scale(1);
+}
+
+/* Ensure icons transition smoothly when they reappear; add slight stagger */
+.page-home .logo-menu.open .icon-item {
+  transition: transform 0.6s cubic-bezier(.2,.9,.2,1), opacity 0.4s ease;
+}
+.logo-menu.open .item-0 { transition-delay: 0.02s; }
+.logo-menu.open .item-1 { transition-delay: 0.04s; }
+.logo-menu.open .item-2 { transition-delay: 0.06s; }
+.logo-menu.open .item-3 { transition-delay: 0.03s; }
+.logo-menu.open .item-4 { transition-delay: 0.05s; }
+
+/* Modal open keyframes */
+@keyframes modal-pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  60% {
+    transform: scale(1.04);
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modal / overlay styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 60;
+  padding: 2rem;
+}
+
+.modal-panel {
+  width: min(1100px, 94vw);
+  height: min(780px, 86vh);
+  background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(6,6,6,0.95));
+  border-radius: 12px;
+  border: 1px solid rgba(124,208,104,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4);
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  overflow: auto;
+}
+
+.modal-panel {
+  transform-origin: center center;
+  animation: modal-pop 360ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+.modal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.02);
+  border: 2px solid rgba(124,208,104,0.9);
+  color: #7cd068;
+  box-shadow: 0 0 26px rgba(124,208,104,0.25);
+  font-size: 48px;
+}
+
+.modal-title {
+  font-family: Teko, sans-serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.14em;
+  color: #c8ffb8;
+}
+
+.modal-body {
+  width: 100%;
+  max-width: 900px;
+  min-height: 220px;
+  background: rgba(255,255,255,0.015);
+  border-radius: 8px;
+  padding: 1rem;
+  color: #dfeee0;
+}
+
+/* When modal is open, make background interactions inert visually */
+.modal-overlay + * {
+  pointer-events: none;
+}
+
+/* Split layout after the logo is pressed: Me panel on the left,
+   logo with its arc of buttons on the right. --s scales the logo cluster;
+   500px = button arc reach (dx + button width) right of the logo center,
+   660px = whole cluster width. */
+.page-home.split {
+  --s: 0.95;
+  --panel-left: 3vw;
+  --panel-width: calc(97vw - 660px * var(--s) - 140px);
+}
+
+.page-home.split .page-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-home.split .logo-menu.open {
+  /* Above the Me panel, which slightly overlaps the logo's left edge */
+  z-index: 20;
+  transform: translateX(calc(50vw - 500px * var(--s) - 80px)) scale(var(--s));
+}
+
+.page-home.split .icon-item {
+  width: 260px;
+}
+
+/* Tighter arc (radius 240px) so the buttons hug the logo */
+.page-home.split .logo-menu.open .item-0 { --dx: 120px; --dy: -208px; }
+.page-home.split .logo-menu.open .item-1 { --dx: 216px; --dy: -104px; }
+.page-home.split .logo-menu.open .item-2 { --dx: 240px; --dy: 0px; }
+.page-home.split .logo-menu.open .item-3 { --dx: 216px; --dy: 104px; }
+.page-home.split .logo-menu.open .item-4 { --dx: 120px; --dy: 208px; }
+
+.modal-panel.tron.me-inline {
+  position: fixed;
+  left: var(--panel-left);
+  top: 50%;
+  translate: 0 -50%;
+  width: var(--panel-width);
+  max-width: none;
+  height: 80vh;
+  z-index: 10;
+  /* Same box as every other section: no inset around the green border */
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.me-inline .modal-body {
+  max-width: none;
+  background: none;
+}
+
+/* Every other section opens in the same slot as the Me panel */
+.page-home.split .modal-overlay,
+.page-home.split .fui-modal-overlay {
+  position: fixed;
+  inset: auto;
+  left: var(--panel-left);
+  top: 50%;
+  translate: 0 -50%;
+  width: var(--panel-width);
+  height: 80vh;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  z-index: 10;
+}
+
+.page-home.split .modal-overlay > .modal-panel,
+.page-home.split .fui-interface-container {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  .page-home.split {
+    --s: 0.7;
+  }
+
+  .me-inline .panel-stage {
+    grid-template-columns: 1fr;
+    grid-auto-rows: max-content;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .modal-panel.tron.me-inline,
+  .page-home.split .modal-overlay,
+  .page-home.split .fui-modal-overlay {
+    top: 2vh;
+    translate: none;
+    width: 94vw;
+    height: 50vh;
+  }
+
+  .page-home.split .logo-menu.open {
+    transform: translate(-25vw, 25vh) scale(0.6);
+  }
+}

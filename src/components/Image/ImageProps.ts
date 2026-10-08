@@ -13,6 +13,7 @@ export interface ImageProps {
   
     // Ottimizzazione immagine
     priority?: boolean;  // Indica se questa immagine ha priorità di caricamento
+    loading?: 'lazy' | 'eager';  // Caricamento dell'immagine
     unoptimized?: boolean;  // Se true, disabilita l'ottimizzazione automatica di Next.js
     sizes?: string;  // Attributo sizes per immagini responsive
     placeholder?: 'blur' | 'empty';  // Usa un segnaposto sfocato o nessun segnaposto
