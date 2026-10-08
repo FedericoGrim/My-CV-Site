@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import "./style.css";
 import { MyImage } from "@/components/Image/Image";
-import { Person } from "@mui/icons-material";
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -16,69 +15,31 @@ import { ContactPopup } from "./components/PopupPage/ContactPopup/ContactPopup";
 import { ProjectsPopup } from "./components/PopupPage/ProjectsPopup/ProjectsPopup";
 
 const menuItems = [
-  { label: "Me", icon: <Person fontSize="medium" /> },
   { label: "Work", icon: <WorkIcon fontSize="medium" /> },
+  { label: "Projects", icon: <CodeIcon fontSize="medium" /> },
   { label: "Study", icon: <SchoolIcon fontSize="medium" /> },
   { label: "GitHub", icon: <GitHubIcon fontSize="medium" /> },
   { label: "Contact", icon: <MailIcon fontSize="medium" /> },
-  { label: "Projects", icon: <CodeIcon fontSize="medium" /> },
 ];
 
 export default function HomePage() {
   const [isClicked, setIsClicked] = useState(false);
   const [titleMoved, setTitleMoved] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
-  const [movingIndex, setMovingIndex] = useState<number | null>(null);
-  const [revealLogo, setRevealLogo] = useState(false);
-  const iconRevealTimer = React.useRef<number | null>(null);
 
   const handleClick = () => {
     if (!isClicked) {
       setIsClicked(true);
       setTitleMoved(true);
     }
-  };
-
-  const handleMenuItemClick = (label: string, index: number) => {
-    // Start icon movement, open modal after a short delay, and clear moving state after animation
-    if (movingIndex !== null) return;
-    setMovingIndex(index);
-    setTimeout(() => setActiveItem(label), 600);
-    setTimeout(() => {
-      setMovingIndex(null);
-    }, 900);
-  };
-
-  const closeModal = () => {
-    // Close modal, then reveal the logo first; icons return on logo transition end
+    // Pressing the logo again brings the Me section back
     setActiveItem(null);
-    setRevealLogo(true);
   };
 
-  const handleLogoTransitionEnd = (event: React.TransitionEvent<HTMLButtonElement>) => {
-    if (!revealLogo || activeItem) return;
-    if (event.propertyName !== "opacity") return;
-
-    if (iconRevealTimer.current) {
-      window.clearTimeout(iconRevealTimer.current);
-    }
-
-    iconRevealTimer.current = window.setTimeout(() => {
-      setRevealLogo(false);
-      iconRevealTimer.current = null;
-    }, 300);
-  };
-
-  React.useEffect(() => {
-    return () => {
-      if (iconRevealTimer.current) {
-        window.clearTimeout(iconRevealTimer.current);
-      }
-    };
-  }, []);
+  const closeModal = () => setActiveItem(null);
 
   return (
-    <section className={`page-home min-h-screen relative flex flex-col items-center justify-center bg-transparent text-white ${movingIndex !== null ? 'moving' : ''} ${activeItem ? 'modal-open' : ''} ${revealLogo ? 'reveal-logo' : ''}`}>
+    <section className={`page-home min-h-screen relative flex flex-col items-center justify-center bg-transparent text-white ${isClicked ? 'split' : ''}`}>
       <p className={`page-title font-Teko text-4xl text-center uppercase tracking-[0.3em] text-MantisGreen ${titleMoved ? "moved" : ""}`}>
         Federico Grimaldi
       </p>
@@ -87,7 +48,6 @@ export default function HomePage() {
         <button
           type="button"
           onClick={handleClick}
-          onTransitionEnd={handleLogoTransitionEnd}
           className={`glow-ring group flex items-center justify-center rounded-full border-4 p-2 transition duration-500 focus:outline-none focus:ring-2 ${isClicked ? "active" : "base"}`}
         >
           <MyImage
@@ -100,14 +60,14 @@ export default function HomePage() {
           />
         </button>
 
-        <div className="icon-grid" aria-hidden={!!activeItem || movingIndex !== null}>
+        <div className="icon-grid" aria-hidden={!isClicked}>
           {menuItems.map((item, index) => (
             <button
               key={item.label}
               type="button"
-              className={`icon-item item-${index} ${movingIndex === index ? 'moving' : ''}`}
-              onClick={() => handleMenuItemClick(item.label, index)}
-              tabIndex={isClicked && !activeItem && movingIndex === null ? 0 : -1}
+              className={`icon-item item-${index}`}
+              onClick={() => setActiveItem(item.label)}
+              tabIndex={isClicked ? 0 : -1}
               aria-pressed={activeItem === item.label}
             >
               <span className="icon-button">{item.icon}</span>
@@ -124,11 +84,7 @@ export default function HomePage() {
         Press To Discover
       </p>
 
-      {activeItem === "Me" && (
-        <MePopup
-          onClose={closeModal}
-        />
-      )}
+      {isClicked && !activeItem && <MePopup inline />}
 
       {activeItem === "Work" && (
         <WorkPopup

@@ -90,7 +90,7 @@
   width: 300px;
   padding: 0.45rem 1.3rem 0.45rem 0.45rem;
   border-radius: 9999px;
-  background: rgba(124, 208, 104, 0.1);
+  background: rgba(90, 230, 70, 0.11);
   border: 1px solid rgba(124, 208, 104, 0.55);
   box-shadow: 0 0 10px rgba(124, 208, 104, 0.2);
   white-space: nowrap;
@@ -109,7 +109,7 @@
 
 .icon-item:hover,
 .icon-item:focus-visible {
-  background: rgba(124, 208, 104, 0.22);
+  background: rgba(90, 230, 70, 0.23);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 18px rgba(124, 208, 104, 0.65), 0 0 38px rgba(124, 208, 104, 0.35);
 }
@@ -153,12 +153,11 @@
    center, so the stack curves along the round shape of the logo: rows near the
    middle sit farthest out, rows near the top/bottom tuck in closer. Rows keep
    a wide, even vertical pitch (--dy) and only --dx follows the curve. */
-.logo-menu.open .item-0 { --dx: 219px; --dy: -260px; }
-.logo-menu.open .item-1 { --dx: 302px; --dy: -156px; }
-.logo-menu.open .item-2 { --dx: 336px; --dy: -52px; }
-.logo-menu.open .item-3 { --dx: 336px; --dy: 52px; }
-.logo-menu.open .item-4 { --dx: 302px; --dy: 156px; }
-.logo-menu.open .item-5 { --dx: 219px; --dy: 260px; }
+.logo-menu.open .item-0 { --dx: 269px; --dy: -208px; }
+.logo-menu.open .item-1 { --dx: 324px; --dy: -104px; }
+.logo-menu.open .item-2 { --dx: 340px; --dy: 0px; }
+.logo-menu.open .item-3 { --dx: 324px; --dy: 104px; }
+.logo-menu.open .item-4 { --dx: 269px; --dy: 208px; }
 
 @media (max-width: 640px) {
   .logo-menu.open {
@@ -185,22 +184,15 @@
     letter-spacing: 0.14em;
   }
 
-  .logo-menu.open .item-0 { --dx: 149px; --dy: -175px; }
-  .logo-menu.open .item-1 { --dx: 205px; --dy: -105px; }
-  .logo-menu.open .item-2 { --dx: 227px; --dy: -35px; }
-  .logo-menu.open .item-3 { --dx: 227px; --dy: 35px; }
-  .logo-menu.open .item-4 { --dx: 205px; --dy: 105px; }
-  .logo-menu.open .item-5 { --dx: 149px; --dy: 175px; }
+  .logo-menu.open .item-0 { --dx: 175px; --dy: -140px; }
+  .logo-menu.open .item-1 { --dx: 213px; --dy: -70px; }
+  .logo-menu.open .item-2 { --dx: 227px; --dy: 0px; }
+  .logo-menu.open .item-3 { --dx: 213px; --dy: 70px; }
+  .logo-menu.open .item-4 { --dx: 175px; --dy: 140px; }
 }
 
 .logo-menu.open .icon-item {
   transform: translate(var(--dx), calc(-50% + var(--dy))) scale(1);
-}
-
-/* When logo is revealing, keep icons small and hidden so they can animate in afterwards */
-.page-home.reveal-logo .logo-menu.open .icon-item {
-  transform: translate(-50%, -50%) scale(0.4);
-  opacity: 0;
 }
 
 /* Ensure icons transition smoothly when they reappear; add slight stagger */
@@ -212,79 +204,6 @@
 .logo-menu.open .item-2 { transition-delay: 0.06s; }
 .logo-menu.open .item-3 { transition-delay: 0.03s; }
 .logo-menu.open .item-4 { transition-delay: 0.05s; }
-.logo-menu.open .item-5 { transition-delay: 0.07s; }
-
-/* Move selected icon to center and fade others when animating */
-.page-home.moving .logo-menu .icon-item {
-  transition: transform 0.9s cubic-bezier(.2,.9,.2,1), opacity 0.45s ease;
-}
-
-.page-home.moving .logo-menu .icon-item.moving {
-  transform: translate(-50%, -50%) scale(1.6) !important;
-  z-index: 80;
-  opacity: 1;
-  pointer-events: none;
-}
-
-.page-home.moving .logo-menu .icon-item:not(.moving) {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.4);
-  pointer-events: none;
-}
-
-/* Fade out background content while the icon moves */
-.page-home.moving .page-title,
-.page-home.moving .fade-text,
-.page-home.moving .logo-menu .glow-ring {
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-}
-
-/* Hide the title completely while the popup is open */
-.page-home.modal-open .page-title {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* When modal is open, hide icon grid and related labels completely */
-.page-home.modal-open .icon-grid {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.page-home.modal-open .icon-item,
-.page-home.modal-open .icon-label {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Also hide the central logo while modal is open */
-.page-home.modal-open .glow-ring {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: scale(0.98);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
-}
-
-/* When revealing logo only after modal close: show logo but keep icons hidden */
-.page-home.reveal-logo .glow-ring {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: scale(1);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.page-home.reveal-logo .icon-grid {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
 
 /* Modal open keyframes */
 @keyframes modal-pop {
@@ -389,4 +308,111 @@
 /* When modal is open, make background interactions inert visually */
 .modal-overlay + * {
   pointer-events: none;
+}
+
+/* Split layout after the logo is pressed: Me panel on the left,
+   logo with its arc of buttons on the right. --s scales the logo cluster;
+   500px = button arc reach (dx + button width) right of the logo center,
+   660px = whole cluster width. */
+.page-home.split {
+  --s: 0.95;
+  --panel-left: 3vw;
+  --panel-width: calc(97vw - 660px * var(--s) - 140px);
+}
+
+.page-home.split .page-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page-home.split .logo-menu.open {
+  /* Above the Me panel, which slightly overlaps the logo's left edge */
+  z-index: 20;
+  transform: translateX(calc(50vw - 500px * var(--s) - 80px)) scale(var(--s));
+}
+
+.page-home.split .icon-item {
+  width: 260px;
+}
+
+/* Tighter arc (radius 240px) so the buttons hug the logo */
+.page-home.split .logo-menu.open .item-0 { --dx: 120px; --dy: -208px; }
+.page-home.split .logo-menu.open .item-1 { --dx: 216px; --dy: -104px; }
+.page-home.split .logo-menu.open .item-2 { --dx: 240px; --dy: 0px; }
+.page-home.split .logo-menu.open .item-3 { --dx: 216px; --dy: 104px; }
+.page-home.split .logo-menu.open .item-4 { --dx: 120px; --dy: 208px; }
+
+.modal-panel.tron.me-inline {
+  position: fixed;
+  left: var(--panel-left);
+  top: 50%;
+  translate: 0 -50%;
+  width: var(--panel-width);
+  max-width: none;
+  height: 80vh;
+  z-index: 10;
+  /* Keep the original outer size, but paint the dark area only inside
+     the animated green border */
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.me-inline .modal-body {
+  max-width: none;
+  background: rgba(4, 12, 8, 0.85);
+  box-shadow: 0 0 80px rgba(32, 255, 96, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.me-inline .panel-grid-background {
+  inset: 2rem;
+}
+
+/* Every other section opens in the same slot as the Me panel */
+.page-home.split .modal-overlay,
+.page-home.split .fui-modal-overlay {
+  position: fixed;
+  inset: auto;
+  left: var(--panel-left);
+  top: 50%;
+  translate: 0 -50%;
+  width: var(--panel-width);
+  height: 80vh;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  z-index: 10;
+}
+
+.page-home.split .modal-overlay > .modal-panel,
+.page-home.split .fui-interface-container {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+}
+
+@media (max-width: 1200px) {
+  .page-home.split {
+    --s: 0.7;
+  }
+
+  .me-inline .panel-stage {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .modal-panel.tron.me-inline,
+  .page-home.split .modal-overlay,
+  .page-home.split .fui-modal-overlay {
+    top: 2vh;
+    translate: none;
+    width: 94vw;
+    height: 50vh;
+  }
+
+  .page-home.split .logo-menu.open {
+    transform: translate(-25vw, 25vh) scale(0.6);
+  }
 }

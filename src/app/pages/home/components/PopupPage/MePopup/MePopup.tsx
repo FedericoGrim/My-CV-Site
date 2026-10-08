@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState } from "react";
 import "./mepopup.css";
 
 interface MePopupProps {
-  onClose: () => void;
+  onClose?: () => void;
+  inline?: boolean;
 }
 
 const typeText =
   "A HIGHLY MOTIVATED ENGINEER DRIVEN BY COMPLEX CHALLENGES, CUTTING-EDGE TECHNOLOGIES, AND OUT-OF-THE-BOX PROBLEM SOLVING. \n \nFOCUSED ON DELIVERING SECURE, FUTURE-PROOF SOLUTIONS WHILE CONTINUOUSLY EVOLVING WITH THE TECH LANDSCAPE. \n \nPASSIONATE ABOUT MAKING A SIGNIFICANT MARK IN TECHNOLOGICAL ADVANCEMENT.";
 
-  export function MePopup({ onClose }: MePopupProps) {
+  export function MePopup({ onClose, inline = false }: MePopupProps) {
   const borderRef = useRef<SVGPathElement | null>(null);
   const [showContent, setShowContent] = useState(false);
   const [bio, setBio] = useState("");
@@ -71,21 +72,22 @@ const typeText =
     };
   }, [showContent]);
 
-  return (
-    <div className="modal-overlay" role="dialog" aria-modal="true" onClick={onClose}>
-      <div className="modal-panel tron" onClick={(e) => e.stopPropagation()}>
+  const panel = (
+      <div className={`modal-panel tron ${inline ? "me-inline" : ""}`} onClick={(e) => e.stopPropagation()}>
         <div className="panel-grid-background" aria-hidden="true" />
-        
-        <button className="modal-close icon-button" onClick={onClose} aria-label="Close">
-          ✕
-        </button>
+
+        {!inline && (
+          <button className="modal-close icon-button" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        )}
 
         <div className="modal-body tron-body show">
           <svg className="tron-border" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <rect
               ref={borderRef as any}
               className="tron-path"
-              x="1" y="1" width="98" height="98"
+              x="0.25" y="0.25" width="99.5" height="99.5"
               rx="1" ry="1"
               fill="none"
             />
@@ -126,6 +128,13 @@ const typeText =
 
         </div>
       </div>
+  );
+
+  if (inline) return panel;
+
+  return (
+    <div className="modal-overlay" role="dialog" aria-modal="true" onClick={onClose}>
+      {panel}
     </div>
   );
 }
