@@ -1,2 +1,118 @@
-/* Placeholder styles for GitHubPopup */
-.modal-panel { }
+/* Alien (1979) MU-TH-UR 6000 terminal in the site's green */
+.modal-panel.mother {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: radial-gradient(ellipse at center, #0b1a0b 0%, #020602 80%);
+  border: 2px solid rgba(124, 208, 104, 0.5);
+  border-radius: 18px;
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.9), 0 0 20px rgba(124, 208, 104, 0.15);
+  overflow: hidden;
+  color: #7cd068;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  text-shadow: 0 0 4px rgba(124, 208, 104, 0.8), 0 0 12px rgba(124, 208, 104, 0.35);
+}
+
+/* CRT scanlines and a slow flicker over the whole screen */
+.modal-panel.mother::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0 2px, transparent 2px 4px);
+  animation: mother-flicker 4s infinite;
+}
+
+.mother-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 1.25rem;
+  border-bottom: 2px solid rgba(124, 208, 104, 0.5);
+}
+
+.mother-bar > * {
+  white-space: nowrap;
+}
+
+.mother-bar-center {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.6;
+}
+
+.mother-exit {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+}
+
+.mother-exit:hover,
+.mother-exit:focus-visible {
+  background: #7cd068;
+  color: #020602;
+  text-shadow: none;
+  outline: none;
+}
+
+.mother-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #7cd068 transparent;
+}
+
+.mother-line {
+  display: block;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.mother-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.mother-link:hover,
+.mother-link:focus-visible {
+  background: #7cd068;
+  color: #020602;
+  text-shadow: none;
+  outline: none;
+}
+
+.mother-manual {
+  align-self: flex-start;
+  opacity: 0.6;
+}
+
+.mother-cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  vertical-align: -0.15em;
+  background: #7cd068;
+  animation: mother-blink 1s steps(2) infinite;
+}
+
+@keyframes mother-blink {
+  50% { opacity: 0; }
+}
+
+@keyframes mother-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
