@@ -30,15 +30,21 @@
 }
 
 .glow-ring {
+  --ring-scale: 1;
+  cursor: pointer;
+  transform: scale(var(--ring-scale));
   background-color: transparent;
   border-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 14px rgba(255, 255, 255, 0.3), 0 0 28px rgba(255, 255, 255, 0.15);
   transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
 
+.glow-ring:hover {
+  transform: scale(calc(var(--ring-scale) * 1.06));
+}
+
 .glow-ring.base:hover {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.25), 0 0 60px rgba(124, 208, 104, 0.18);
-  transform: scale(1.02);
 }
 
 /* Once the menu is open: a crisp green ring, glowing only on hover */
@@ -170,7 +176,7 @@
   }
 
   .glow-ring {
-    transform: scale(0.72);
+    --ring-scale: 0.72;
   }
 
   .icon-item {
