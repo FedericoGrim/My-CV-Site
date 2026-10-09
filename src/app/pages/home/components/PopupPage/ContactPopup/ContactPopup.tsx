@@ -40,7 +40,7 @@ const folders: { name: string; entries: Entry[] }[] = [
   {
     name: "Social",
     entries: [
-      { name: "LinkedIn", value: "Federico Grimaldi", href: "https://www.linkedin.com/in/federico-grimaldi-3385b9289/", icon: <LinkedInIcon />,
+      { name: "LinkedIn", value: "Federico Grimaldi", href: "https://www.linkedin.com/in/grimaldi-federico", icon: <LinkedInIcon />,
         description: "Professional network record with my full work history and endorsements.", bestFor: "Professional networking", action: "Open profile" },
       { name: "GitHub", value: "FedericoGrim", href: "https://github.com/FedericoGrim", icon: <GitHubIcon />,
         description: "Archive of my code: personal projects, experiments and this very site.", bestFor: "Code and projects", action: "Open profile" },

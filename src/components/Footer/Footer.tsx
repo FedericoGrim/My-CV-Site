@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex justify-center items-center space-x-2">
                 <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
-                <Link href="https://www.linkedin.com/in/federico-grimaldi-3385b9289/" passHref>
+                <Link href="https://www.linkedin.com/in/grimaldi-federico" passHref>
                   <Label text="Federico Grimaldi" className="text-blue-500 text-lg" font="teko" />
                 </Link>
               </div>
@@ -105,7 +105,7 @@ export default function Footer() {
             <div className="space-y-2">
               <div className="flex justify-center items-center space-x-2">
                 <Label text="LinkedIn:" className="text-white text-lg" font="teko" />
-                <Link href="https://www.linkedin.com/in/federico-grimaldi-3385b9289/" passHref>
+                <Link href="https://www.linkedin.com/in/grimaldi-federico" passHref>
                   <Label text="Federico Grimaldi" className="text-blue-500 text-lg" font="teko" />
                 </Link>
               </div>

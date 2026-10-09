@@ -39,111 +39,115 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
   const [panTransform, setPanTransform] = useState<string>("");
   const viewportRef = useRef<HTMLDivElement>(null);
 
-  // 1. Database dei Core (linguaggi/aree tecniche reali dal CV)
+  // 1. Technical cores (languages / areas from the CV)
   const languages: LanguageCore[] = [
-    { id: "LANG_01", category: "PYTHON", name: "PYTHON_NET", iconTag: "PY", description: "Backend API asincrone, automazione e tool desktop." },
-    { id: "LANG_02", category: "RUST", name: "RUST_SYSTEM", iconTag: "RS", description: "Backend a tre livelli ad alte prestazioni e memoria sicura." },
-    { id: "LANG_03", category: "CSHARP", name: "DOTNET_CORE", iconTag: "C#", description: "REST API e servizi backend in C# / .NET." },
-    { id: "LANG_04", category: "WEB", name: "WEB_STACK", iconTag: "TS", description: "Interfacce React/Next.js e piattaforme web full-stack." },
-    { id: "LANG_05", category: "DEVOPS", name: "DEVOPS_INFRA", iconTag: "OP", description: "Container, orchestrazione, IAM e infrastruttura self-hosted." },
-    { id: "LANG_06", category: "SCHOOL", name: "SCHOOL_LOGS", iconTag: "ED", description: "Progetti ed esperienze extracurriculari da percorso scolastico." },
+    { id: "LANG_01", category: "PYTHON", name: "PYTHON_NET", iconTag: "PY", description: "Async backend APIs, automation and desktop tools." },
+    { id: "LANG_02", category: "RUST", name: "RUST_SYSTEM", iconTag: "RS", description: "High-performance, memory-safe three-layered backends." },
+    { id: "LANG_03", category: "CSHARP", name: "DOTNET_CORE", iconTag: "C#", description: "REST APIs and backend services in C# / .NET." },
+    { id: "LANG_04", category: "WEB", name: "WEB_STACK", iconTag: "TS", description: "React / Next.js interfaces and full-stack web platforms." },
+    { id: "LANG_05", category: "DEVOPS", name: "DEVOPS_INFRA", iconTag: "OP", description: "Containers, orchestration, IAM and self-hosted infrastructure." },
+    { id: "LANG_06", category: "SCHOOL", name: "SCHOOL_LOGS", iconTag: "ED", description: "Extracurricular projects and experiences from high school." },
   ];
 
-  // 2. Database dei progetti reali (dal CV di Federico Grimaldi)
+  // 2. Projects from the CV
   const allProjects: ProjectData[] = [
     {
-      id: "PROJ_01", name: "KEYDEN", status: "ACTIVE", tech: "Python (FastAPI) / TypeScript (Next.js)", period: "08/2024 - Presente",
-      categories: ["PYTHON", "WEB"], role: "Founder & Full-Stack Developer", repo: "github.com/FedericoGrim/keyden",
-      details: "Password manager open-source con Clean Architecture, DDD e IAM enterprise-grade.",
-      overview: "Password manager open-source progettato applicando Clean Architecture e Domain-Driven Design end-to-end. Le API asincrone in FastAPI usano dependency injection (IoC), hashing Argon2 per le credenziali e Keycloak (OAuth2/JWT) per l'identity management di livello enterprise.",
+      id: "PROJ_01", name: "KEYDEN", status: "ACTIVE", tech: "Python (FastAPI) / TypeScript (Next.js)", period: "08/2024 - Present",
+      categories: ["PYTHON", "WEB"], role: "Creator & Full-Stack Developer (personal project)", repo: "github.com/FedericoGrim/Keyden-PasswordManager",
+      details: "Open-source password manager built with Clean Architecture, DDD and secure IAM.",
+      overview: "Full-stack open-source password manager built with Clean Architecture and Domain-Driven Design for a strict separation of concerns. Async APIs in FastAPI with Dependency Injector (IoC), Argon2 hashing, strong encryption and Keycloak (OAuth2/JWT) for secure identity and access management.",
       features: [
-        "Clean Architecture e Domain-Driven Design su tutto lo stack",
-        "Autenticazione enterprise con Keycloak (OAuth2/JWT) e hashing Argon2",
-        "Persistenza PostgreSQL con SQLAlchemy, migrazioni Alembic e validazione Pydantic",
-        "UI React/Next.js responsive con orchestrazione multi-container via Docker Compose",
-        "Documentazione Sphinx e API documentate con Swagger UI",
+        "Clean Architecture and Domain-Driven Design across the stack",
+        "Async FastAPI APIs with Dependency Injector (IoC)",
+        "Argon2 hashing, strong encryption and Keycloak (OAuth2/JWT) for IAM",
+        "PostgreSQL data layer with async SQLAlchemy ORM, Alembic migrations and Pydantic validation",
+        "Responsive React / Next.js UI with Axios, multi-container setup with Docker Compose",
+        "Quality and docs through Pytest, Sphinx and Swagger UI",
       ],
     },
     {
-      id: "PROJ_02", name: "ICCOM_PLATFORM", status: "COMPLETED", tech: "Rust / React (Vite)", period: "02/2026 - 05/2026",
-      categories: ["RUST", "WEB", "DEVOPS"], role: "Software Developer (Freelance)", repo: "Privato (cliente)",
-      details: "Backend scalabile in Rust con autenticazione Keycloak e frontend React/Vite.",
-      overview: "Progettazione e sviluppo di un backend scalabile per ICCOM S.R.L. basato su architettura a tre livelli (Three-Layered Design) in Rust, con autenticazione sicura tramite Keycloak e OAuth 2.0. Frontend realizzato in React con Vite, distribuito in produzione tramite Docker Compose.",
+      id: "PROJ_02", name: "ICCOM_PLATFORM", status: "COMPLETED", tech: "Rust / MongoDB / React (Vite)", period: "02/2026 - 06/2026",
+      categories: ["RUST", "WEB", "DEVOPS"], role: "Software Developer (Freelance)", repo: "Private (client)",
+      details: "High-performance Rust backend with MongoDB, Keycloak and a React / Vite frontend.",
+      overview: "High-performance backend for ICCOM S.R.L. written in Rust on a three-layered architecture, for clear separation of concerns, simple code and modularity. Flexible document data layer in MongoDB, role-based authentication with Keycloak (OAuth 2.0/JWT), and a fast React / Vite frontend, all containerized with Docker Compose.",
       features: [
-        "Backend in Rust con architettura Three-Layered per separazione delle responsabilità",
-        "Autenticazione sicura con Keycloak e OAuth 2.0",
-        "Frontend React/Vite integrato con le API del backend",
-        "Deployment production-ready orchestrato con Docker Compose",
+        "Three-layered Rust backend for separation of concerns and modularity",
+        "Flexible document database layer with MongoDB",
+        "Secure role-based authentication with Keycloak (OAuth 2.0/JWT)",
+        "Fast, lightweight React / Vite frontend",
+        "Whole ecosystem containerized with Docker and Docker Compose",
       ],
     },
     {
       id: "PROJ_03", name: "ICCOM_DESKTOP_TOOLS", status: "COMPLETED", tech: "Python / CustomTkinter / Pandas", period: "08/2024 - 06/2025",
-      categories: ["PYTHON"], role: "Junior Full-Stack Developer (Stage)", repo: "Privato (azienda)",
-      details: "App desktop Python per automazione dati ed export Excel.",
-      overview: "Sviluppo di applicazioni desktop custom in Python per l'automazione di processi di elaborazione dati ed export Excel, con manutenzione evolutiva di strumenti legacy aziendali.",
+      categories: ["PYTHON"], role: "Junior Full-Stack Developer (Apprenticeship)", repo: "Private (company)",
+      details: "Python desktop apps for data automation and Excel reports.",
+      overview: "Custom Python desktop applications that automate data processing and Excel report generation, together with maintenance and updates of legacy tools built by previous teams.",
       features: [
-        "GUI desktop realizzate con CustomTkinter",
-        "Automazione di elaborazione dati ed export Excel con Pandas",
-        "Manutenzione e refactoring di tool legacy esistenti",
+        "Desktop GUIs built with CustomTkinter",
+        "Data processing and Excel report generation automated with Pandas",
+        "Maintenance and updates of existing legacy tools",
       ],
     },
     {
-      id: "PROJ_04", name: "ICCOM_MONITOR_PORTAL", status: "COMPLETED", tech: "JavaScript / HTML5 / CSS3 / SQL", period: "08/2024 - 06/2025",
-      categories: ["WEB", "DEVOPS"], role: "Junior Full-Stack Developer (Stage)", repo: "Privato (azienda)",
-      details: "Piattaforma web interna per aggregazione dati e monitoraggio.",
-      overview: "Sviluppo di una piattaforma web interna per l'aggregazione e il monitoraggio dei dati tra i vari reparti aziendali, affiancata da configurazione e supporto dell'infrastruttura di rete professionale (Cisco, MikroTik, UniFi) con assistenza on-site e da remoto.",
+      id: "PROJ_04", name: "ICCOM_MONITOR_PORTAL", status: "COMPLETED", tech: "Python / JavaScript / HTML5 / CSS3 / SQL", period: "08/2024 - 06/2025",
+      categories: ["WEB", "DEVOPS"], role: "Junior Full-Stack Developer (Apprenticeship)", repo: "Private (company)",
+      details: "Internal web platform to aggregate data and monitor company departments.",
+      overview: "Internal web platform connected to a Python backend that aggregates data and monitors the status of the company's departments, alongside configuration and maintenance of professional network hardware (Cisco, MikroTik, UniFi) with on-site and remote support for clients.",
       features: [
-        "Piattaforma web interna per aggregazione dati multi-reparto",
-        "Query e reportistica su database SQL",
-        "Configurazione e supporto di rete professionale (Cisco, MikroTik, UniFi)",
+        "Internal web platform backed by Python for cross-department monitoring",
+        "Data aggregation on SQL databases",
+        "Network hardware setup and support (Cisco, MikroTik, UniFi)",
       ],
     },
     {
-      id: "PROJ_05", name: "EXTRANET_MICROSERVICES", status: "COMPLETED", tech: "C# (.NET) / Next.js / React / TypeScript", period: "01/2024 - 05/2024",
-      categories: ["CSHARP", "WEB", "DEVOPS"], role: "Junior Backend/Full-Stack Developer (Stage)", repo: "Privato (azienda)",
-      details: "Microservizi C# .NET in team Agile con workflow DevOps production-grade.",
-      overview: "Collaborazione in team Agile su architetture a microservizi e workflow DevOps production-grade. Sviluppo di REST API in C# .NET con gestione di database relazionali PostgreSQL e integrazione di Keycloak per IAM basato su OAuth 2.0/JWT. Contributo a componenti frontend responsive in Next.js/React/TypeScript.",
+      id: "PROJ_05", name: "EXTRANET_MICROSERVICES", status: "COMPLETED", tech: "C# (.NET) / Next.js / React / TypeScript", period: "2023/24 (4th year of high school)",
+      categories: ["CSHARP", "WEB", "DEVOPS"], role: "Junior Backend / Full-Stack Developer (Internship)", repo: "Private (company)",
+      details: "C# .NET microservices in an Agile team with modern DevOps workflows.",
+      overview: "Work inside an Agile team on microservices and modern DevOps workflows, guided by a senior developer. REST APIs in C# .NET on PostgreSQL, Keycloak integration for OAuth 2.0/JWT authentication, and responsive UI components for an internal Next.js app.",
       features: [
-        "REST API sviluppate in C# .NET con PostgreSQL",
-        "Autenticazione IAM con Keycloak (OAuth 2.0/JWT)",
-        "Componenti frontend responsive in Next.js, React e TypeScript",
-        "Containerizzazione Docker e orchestrazione Kubernetes locale (k3d, Helm)",
-        "Infrastructure as Code con Terraform e pipeline CI/CD su GitHub Actions",
+        "REST APIs in C# .NET on relational PostgreSQL data models",
+        "IAM with Keycloak (OAuth 2.0/JWT)",
+        "Responsive frontend components in Next.js, React and TypeScript",
+        "Docker in practice, plus first exposure to local Kubernetes (k3d), Helm / Helmfile and Terraform",
+        "GitHub collaboration and CI/CD foundations with GitHub Actions",
       ],
     },
     {
-      id: "PROJ_06", name: "PERSONAL_HOME_LAB", status: "ACTIVE", tech: "Docker / Kubernetes / Terraform / Keycloak", period: "In corso",
-      categories: ["DEVOPS"], role: "Owner & Maintainer", repo: "N/D (infrastruttura privata)",
-      details: "Infrastruttura self-hosted personale per identity management e zero-trust.",
-      overview: "Infrastruttura personale self-hosted per l'esplorazione pratica di concetti di produzione: orchestrazione container, identity management centralizzato e sicurezza zero-trust su un ambiente multi-VM.",
+      id: "PROJ_06", name: "PERSONAL_HOME_LAB", status: "ACTIVE", tech: "Ubuntu Server / Docker / Portainer / GitLab / Keycloak", period: "Ongoing",
+      categories: ["DEVOPS"], role: "Owner & Maintainer", repo: "N/A (private infrastructure)",
+      details: "Self-hosted infrastructure for containers, CI/CD, local AI and zero-trust access.",
+      overview: "Headless Ubuntu Server hosting several Linux VMs and a Docker ecosystem, used to run self-hosted databases, personal projects, CI/CD, local AI models and centralized identity management behind zero-trust remote access.",
       features: [
-        "Ecosistema Docker gestito con Portainer e GitLab self-hosted per CI/CD",
-        "Ambiente multi-VM (Ubuntu Server) con accesso VNC",
-        "Identity management centralizzato con istanza Keycloak dedicata",
-        "Accesso remoto zero-trust via Cloudflare Tunnels, Fail2ban e monitoring Netdata",
-        "Esecuzione locale di modelli AI con Ollama e Open WebUI",
+        "Headless Ubuntu Server with multiple Linux VMs reachable over VNC",
+        "Docker ecosystem managed with Portainer for databases, projects and utilities",
+        "Self-hosted GitLab for repositories and personal CI/CD workflows",
+        "Local AI models with Ollama and Open WebUI, plus a dedicated Keycloak instance for IAM",
+        "Zero-trust access with Cloudflare Tunnels, Fail2ban intrusion prevention and Netdata monitoring",
       ],
     },
     {
       id: "PROJ_07", name: "ROMECUP_2025", status: "COMPLETED", tech: "C / C++ / Python", period: "02/2024 - 03/2024",
-      categories: ["SCHOOL"], role: "Team Member - Autonomous Robotics", repo: "mondodigitale.org/progetti/romecup",
-      details: "Robot calciatori autonomi per la competizione nazionale RomeCup.",
-      overview: "Programmazione di due robot calciatori autonomi per la competizione nazionale di robotica RomeCup, con rilevamento della palla in tempo reale (sensori IR, ultrasuoni, bussola IMU) e logica di navigazione autonoma.",
+      categories: ["SCHOOL"], role: "Software Developer (Team) / Hardware Integrator", repo: "mondodigitale.org/progetti/romecup",
+      details: "Two autonomous soccer robots for the RomeCup national robotics competition.",
+      overview: "Design and programming of two autonomous soccer robots (Soccer Hub - Twin Robots category) for the RomeCup national robotics competition by Fondazione Mondo Digitale, able to locate an IR-emitting ball and coordinate their moves to score.",
       features: [
-        "Rilevamento palla in tempo reale con sensori IR, ultrasuoni e bussola IMU",
-        "Logica di navigazione autonoma sviluppata in C/C++ e Python",
-        "Risoluzione di guasti hardware e ottimizzazione del codice sotto pressione durante il torneo dal vivo",
+        "Embedded C/C++ and Python for motor control and real-time decision making",
+        "IR sensors, ultrasonic sensors and IMU compasses for spatial orientation",
+        "Autonomous navigation, ball tracking and attack / defense strategies",
+        "Fixing hardware failures and optimizing code under pressure during the tournament",
       ],
     },
     {
       id: "PROJ_08", name: "TECH_FUSION_LAB", status: "COMPLETED", tech: "Leadership / Peer Education", period: "04/2023 - 05/2024",
-      categories: ["SCHOOL"], role: "Co-Founder & Facilitator", repo: "N/D",
-      details: "Laboratorio scolastico interdisciplinare di peer education e innovazione.",
-      overview: "Co-fondazione e gestione di un laboratorio scolastico interdisciplinare per favorire la condivisione di conoscenze e l'esplorazione tecnica pratica tra studenti, con organizzazione di workshop su IT e telecomunicazioni.",
+      categories: ["SCHOOL"], role: "Co-Founder & Facilitator", repo: "N/A",
+      details: "Interdisciplinary school lab for peer education and innovation.",
+      overview: "Co-founded and ran an interdisciplinary school lab to promote knowledge sharing and hands-on technical exploration among students, with interactive workshops on IT and telecommunications.",
       features: [
-        "Co-fondazione e coordinamento di un laboratorio scolastico interdisciplinare",
-        "Organizzazione e conduzione di workshop interattivi su temi IT e telecomunicazioni",
-        "Coordinamento di team studenteschi nella progettazione di progetti tecnici",
+        "Co-founded and managed an interdisciplinary school lab",
+        "Organized and led interactive IT and telecom workshops, simplifying complex concepts",
+        "Coordinated student teams designing and building technical projects",
+        "Cross-functional collaboration, community building and peer-to-peer mentoring",
       ],
     },
   ];
@@ -294,7 +298,7 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
                 <p className="lang-summary-text">{selectedLang.description}</p>
 
                 {filteredProjects.length === 0 ? (
-                  <p className="lang-summary-text">Nessun progetto registrato per questo core.</p>
+                  <p className="lang-summary-text">No projects recorded for this core.</p>
                 ) : (
                   <div className="projects-terminal-list">
                     {filteredProjects.map((proj) => (
@@ -350,11 +354,11 @@ export function ProjectsPopup({ icon, onClose }: ProjectsPopupProps) {
                     <span className="meta-value">{selectedProject.tech}</span>
                   </div>
                   <div className="meta-cell">
-                    <span className="meta-label">PERIODO</span>
+                    <span className="meta-label">PERIOD</span>
                     <span className="meta-value">{selectedProject.period}</span>
                   </div>
                   <div className="meta-cell">
-                    <span className="meta-label">RUOLO</span>
+                    <span className="meta-label">ROLE</span>
                     <span className="meta-value">{selectedProject.role}</span>
                   </div>
                   <div className="meta-cell meta-cell-wide">

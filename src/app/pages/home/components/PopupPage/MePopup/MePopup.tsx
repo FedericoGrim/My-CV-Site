@@ -17,7 +17,7 @@ interface MePopupProps {
 }
 
 const typeText =
-  "A HIGHLY MOTIVATED ENGINEER DRIVEN BY COMPLEX CHALLENGES, CUTTING-EDGE TECHNOLOGIES, AND OUT-OF-THE-BOX PROBLEM SOLVING. \n \nFOCUSED ON DELIVERING SECURE, FUTURE-PROOF SOLUTIONS WHILE CONTINUOUSLY EVOLVING WITH THE TECH LANDSCAPE. \n \nPASSIONATE ABOUT MAKING A SIGNIFICANT MARK IN TECHNOLOGICAL ADVANCEMENT.";
+  "SOFTWARE DEVELOPMENT STUDENT AT ITS ACADEMY ICT PIEMONTE AND ASPIRING CLOUD / SOFTWARE ARCHITECT. \n \nA STRUCTURED INTERNSHIP AT EXTRANET S.R.L. GAVE ME HANDS-ON EXPERIENCE WITH C# .NET CORE, CONTAINERIZATION AND MODERN ARCHITECTURAL PATTERNS, BUILDING SOLID BACKEND FOUNDATIONS. \n \nGUIDED BY SOFTWARE CRAFTSMANSHIP, I KEEP STUDYING INDUSTRY STANDARDS ON MY OWN, FROM CLEAN CODE TO THE PRAGMATIC PROGRAMMER.";
 
   export function MePopup({ onClose, inline = false }: MePopupProps) {
   const borderRef = useRef<SVGPolygonElement | null>(null);
@@ -108,9 +108,10 @@ const typeText =
               
               <div className="personal-data">
                 <div className="data-line"><span className={orbitron.className}>NAME</span> FEDERICO GRIMALDI</div>
-                <div className="data-line"><span className={orbitron.className}>ROLE</span> FULL STACK SOFTWARE ARCHITECT</div>
-                <div className="data-line"><span className={orbitron.className}>FOCUS</span> SECURITY & RELIABILITY</div>
-                <div className="data-line"><span className={orbitron.className}>LOCATION</span> TORINO (IT)</div>
+                <div className="data-line"><span className={orbitron.className}>ROLE</span> SOFTWARE DEVELOPER · ASPIRING CLOUD ARCHITECT</div>
+                <div className="data-line"><span className={orbitron.className}>FOCUS</span> BACKEND · CLEAN CODE</div>
+                <div className="data-line"><span className={orbitron.className}>LOCATION</span> ROBASSOMERO (TO)</div>
+                <div className="data-line"><span className={orbitron.className}>LANGUAGES</span> ITALIAN (NATIVE) · ENGLISH (C1)</div>
               </div>
             </div>
 
