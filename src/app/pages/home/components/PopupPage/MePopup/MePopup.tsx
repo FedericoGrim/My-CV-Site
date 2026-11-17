@@ -103,7 +103,7 @@ const typeText =
             {/* Pannello Identità (Sinistra) */}
             <div className="identity-pane">
               <div className="glitch-photo-frame">
-                <img src="/My-CV-Site/images/MyPhoto.jpg" alt="Federico" className="photo" />
+                <img src="/My-CV-Site/images/MyPhoto.webp" alt="Federico" className="photo" />
               </div>
               
               <div className="personal-data">
