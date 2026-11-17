@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { ContactPopup } from "./ContactPopup";
@@ -54,8 +54,54 @@ describe("ContactPopup email entry", () => {
   it("keeps plain links for the other entries", async () => {
     const { user } = renderPopup();
 
+    await user.hover(screen.getByRole("link", { name: "Telegram" }));
+
+    expect(screen.getByRole("link", { name: /open chat/i })).toHaveAttribute("href", "https://t.me/FedeGrim");
+  });
+});
+
+describe("ContactPopup phone entry", () => {
+  it("never links to a phone app", async () => {
+    const { user } = renderPopup();
+
+    await user.click(screen.getByRole("link", { name: "Phone" }));
+
+    expect(document.querySelector('a[href^="tel:"]')).toBeNull();
+    expect(screen.getByText("+39 348 342 3417")).toBeInTheDocument();
+  });
+
+  it("copies the number to the clipboard and confirms it", async () => {
+    const { user } = renderPopup();
     await user.hover(screen.getByRole("link", { name: "Phone" }));
 
-    expect(screen.getByRole("link", { name: /start call/i })).toHaveAttribute("href", "tel:+393483423417");
+    await user.click(screen.getByRole("button", { name: /copy number/i }));
+
+    expect(await navigator.clipboard.readText()).toBe("+39 348 342 3417");
+    expect(screen.getByRole("button", { name: /copied/i })).toBeInTheDocument();
+  });
+
+  it("goes back to the copy label after a moment", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    render(<ContactPopup onClose={vi.fn()} />);
+    await user.hover(screen.getByRole("link", { name: "Phone" }));
+    await user.click(screen.getByRole("button", { name: /copy number/i }));
+
+    await act(async () => {
+      vi.advanceTimersByTime(2500);
+    });
+
+    expect(screen.getByRole("button", { name: /copy number/i })).toBeInTheDocument();
+    vi.useRealTimers();
+  });
+
+  it("tells the visitor when the number could not be copied", async () => {
+    const { user } = renderPopup();
+    vi.spyOn(navigator.clipboard, "writeText").mockRejectedValue(new Error("denied"));
+    await user.hover(screen.getByRole("link", { name: "Phone" }));
+
+    await user.click(screen.getByRole("button", { name: /copy number/i }));
+
+    expect(await screen.findByRole("button", { name: /copy failed/i })).toBeInTheDocument();
   });
 });
