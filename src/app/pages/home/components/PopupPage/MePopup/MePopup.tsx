@@ -110,7 +110,7 @@ const typeText =
                 <div className="data-line"><span className={orbitron.className}>NAME</span> FEDERICO GRIMALDI</div>
                 <div className="data-line"><span className={orbitron.className}>ROLE</span> SOFTWARE DEVELOPER · ASPIRING CLOUD ARCHITECT</div>
                 <div className="data-line"><span className={orbitron.className}>FOCUS</span> BACKEND · CLEAN CODE</div>
-                <div className="data-line"><span className={orbitron.className}>LOCATION</span> ROBASSOMERO (TO)</div>
+                <div className="data-line"><span className={orbitron.className}>LOCATION</span> ROBASSOMERO (TURIN), ITALY</div>
                 <div className="data-line"><span className={orbitron.className}>LANGUAGES</span> ITALIAN (NATIVE) · ENGLISH (C1)</div>
               </div>
             </div>
