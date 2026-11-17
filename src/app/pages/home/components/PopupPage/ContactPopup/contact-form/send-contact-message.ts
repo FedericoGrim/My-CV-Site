@@ -34,7 +34,7 @@ export async function sendContactMessage(
         access_key: accessKey,
         email: message.senderEmail,
         subject: `${SUBJECT_PREFIX} ${message.subject}`,
-        message: withLinks(message.message, message.linkUrls),
+        message: appendLinks(message.message, message.linkUrls),
       }),
     });
   } catch {
@@ -44,7 +44,7 @@ export async function sendContactMessage(
   return (await isAccepted(response)) ? { status: "sent" } : { status: "failed", reason: "rejected" };
 }
 
-function withLinks(message: string, linkUrls: string[]): string {
+export function appendLinks(message: string, linkUrls: string[]): string {
   if (linkUrls.length === 0) {
     return message;
   }
