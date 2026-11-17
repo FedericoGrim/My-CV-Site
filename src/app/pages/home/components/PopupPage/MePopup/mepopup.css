@@ -151,6 +151,10 @@
 
 .glitch-photo-frame .photo {
   clip-path: polygon(17px 0, 100% 0, 100% calc(100% - 17px), calc(100% - 17px) 100%, 0 100%, 0 17px);
+  /* The photo has a transparent background: a dark base with a green glow behind the subject */
+  background:
+    radial-gradient(ellipse at 50% 38%, rgba(124, 208, 104, 0.45) 0%, rgba(124, 208, 104, 0.12) 45%, transparent 75%),
+    linear-gradient(180deg, #0b1a0d 0%, #050d06 100%);
 }
 
 .photo {
