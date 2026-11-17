@@ -9,9 +9,15 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { ContactForm } from "./contact-form/ContactForm";
+import { OWNER_EMAIL } from "./contact-form/owner-email";
+import { sendContactMessage, type OutgoingContactMessage } from "./contact-form/send-contact-message";
 import "./contactpopup.css";
 
 const shareTechMono = Share_Tech_Mono({ subsets: ["latin"], weight: "400" });
+
+const sendMessage = (message: OutgoingContactMessage) =>
+  sendContactMessage(message, { accessKey: process.env.NEXT_PUBLIC_CONTACT_FORM_ACCESS_KEY });
 
 interface ContactPopupProps { icon?: React.ReactNode; onClose: () => void }
 
@@ -23,14 +29,15 @@ interface Entry {
   description: string;
   bestFor: string;
   action: string;
+  opensComposeForm?: boolean;
 }
 
 const folders: { name: string; entries: Entry[] }[] = [
   {
     name: "Direct contact",
     entries: [
-      { name: "Email", value: "federico.grimaldi2006@gmail.com", href: "mailto:federico.grimaldi2006@gmail.com", icon: <MailOutlineIcon />,
-        description: "Standard issue mail terminal. The most reliable way to reach me for anything that needs a written trace.", bestFor: "Job offers, collaborations", action: "Compose message" },
+      { name: "Email", value: OWNER_EMAIL, href: `mailto:${OWNER_EMAIL}`, icon: <MailOutlineIcon />,
+        description: "Standard issue mail terminal. The most reliable way to reach me for anything that needs a written trace.", bestFor: "Job offers, collaborations", action: "Compose message", opensComposeForm: true },
       { name: "Phone", value: "+39 348 342 3417", href: "tel:+393483423417", icon: <PhoneIcon />,
         description: "Direct voice line. Works best when something is quick or urgent.", bestFor: "Quick calls", action: "Start call" },
       { name: "Telegram", value: "@FedeGrim", href: "https://t.me/FedeGrim", icon: <TelegramIcon />,
@@ -61,6 +68,18 @@ const folders: { name: string; entries: Entry[] }[] = [
 
 export function ContactPopup({ onClose }: ContactPopupProps) {
   const [entry, setEntry] = useState(folders[0].entries[0]);
+  const [isComposing, setIsComposing] = useState(false);
+
+  const selectEntry = (selected: Entry) => {
+    if (!isComposing) setEntry(selected);
+  };
+
+  const handleEntryClick = (event: React.MouseEvent, selected: Entry) => {
+    if (!selected.opensComposeForm) return;
+    event.preventDefault();
+    setEntry(selected);
+    setIsComposing(true);
+  };
 
   return (
     <div className="modal-overlay" role="dialog" aria-modal="true" aria-label="Contact" onClick={onClose} tabIndex={-1}>
@@ -82,8 +101,9 @@ export function ContactPopup({ onClose }: ContactPopupProps) {
                         target={e.href.startsWith("http") ? "_blank" : undefined}
                         rel="noopener noreferrer"
                         className={e === entry ? "selected" : ""}
-                        onMouseEnter={() => setEntry(e)}
-                        onFocus={() => setEntry(e)}
+                        onMouseEnter={() => selectEntry(e)}
+                        onFocus={() => selectEntry(e)}
+                        onClick={(event) => handleEntryClick(event, e)}
                       >
                         {e.name}
                       </a>
@@ -94,22 +114,34 @@ export function ContactPopup({ onClose }: ContactPopupProps) {
             ))}
           </ul>
 
-          <div className="pip-detail" key={entry.name}>
-            <div className="pip-art" aria-hidden="true">{entry.icon}</div>
-            <p className="pip-description">{entry.description}</p>
-            <dl className="pip-stats">
-              <div><dt>Channel</dt><dd>{entry.name}</dd></div>
-              <div><dt>Address</dt><dd className="pip-value">{entry.value}</dd></div>
-              <div><dt>Best for</dt><dd>{entry.bestFor}</dd></div>
-            </dl>
-            <a
-              className="pip-action"
-              href={entry.href}
-              target={entry.href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-            >
-              [ {entry.action} ]
-            </a>
+          <div className="pip-detail" key={isComposing ? "compose" : entry.name}>
+            {isComposing ? (
+              <ContactForm sendMessage={sendMessage} onCancel={() => setIsComposing(false)} />
+            ) : (
+              <>
+                <div className="pip-art" aria-hidden="true">{entry.icon}</div>
+                <p className="pip-description">{entry.description}</p>
+                <dl className="pip-stats">
+                  <div><dt>Channel</dt><dd>{entry.name}</dd></div>
+                  <div><dt>Address</dt><dd className="pip-value">{entry.value}</dd></div>
+                  <div><dt>Best for</dt><dd>{entry.bestFor}</dd></div>
+                </dl>
+                {entry.opensComposeForm ? (
+                  <button type="button" className="pip-action" onClick={() => setIsComposing(true)}>
+                    [ {entry.action} ]
+                  </button>
+                ) : (
+                  <a
+                    className="pip-action"
+                    href={entry.href}
+                    target={entry.href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                  >
+                    [ {entry.action} ]
+                  </a>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -189,12 +189,133 @@
   font-size: 1.1rem;
 }
 
-.pip-action:hover,
-.pip-action:focus-visible {
+button.pip-action {
+  background: transparent;
+  font: inherit;
+  font-size: 1.1rem;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-shadow: inherit;
+  cursor: pointer;
+}
+
+.pip-action:not(:disabled):hover,
+.pip-action:not(:disabled):focus-visible {
   background: var(--pip);
   color: var(--pip-bg);
   text-shadow: none;
   outline: none;
+}
+
+.pip-action:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+.contact-form {
+  --pip-warning: #ffb347;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  flex: 1;
+}
+
+.contact-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.contact-form-field label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.35rem 0.5rem;
+  background: rgba(124, 208, 104, 0.06);
+  border: 2px solid var(--pip-dim);
+  border-radius: 0;
+  color: inherit;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-shadow: inherit;
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--pip-dim);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--pip);
+  box-shadow: 0 0 8px rgba(124, 208, 104, 0.5);
+}
+
+.contact-form [aria-invalid="true"] {
+  border-color: var(--pip-warning);
+}
+
+.contact-form-error,
+.contact-form-failure {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: none;
+  color: var(--pip-warning);
+  text-shadow: none;
+}
+
+.contact-form-failure a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.contact-form-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+
+.contact-form-actions .pip-action {
+  flex: 1;
+  margin-top: 0;
+}
+
+.contact-form-done {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform: none;
+}
+
+.contact-form-done .pip-action {
+  margin-top: 1rem;
+  min-width: 10rem;
+}
+
+.contact-form-title {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+/* Honeypot for bots: off screen, not hidden, so naive scripts still fill it */
+.contact-form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes pip-roll {
