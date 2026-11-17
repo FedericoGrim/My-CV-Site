@@ -120,7 +120,6 @@
 
 .icon-item:hover,
 .icon-item:focus-visible {
-  background: rgba(124, 208, 104, 0.23);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 18px rgba(124, 208, 104, 0.65), 0 0 38px rgba(124, 208, 104, 0.35);
 }
@@ -147,7 +146,6 @@
 
 .icon-item:hover .icon-button,
 .icon-item:focus-visible .icon-button {
-  background: rgba(124, 208, 104, 0.12);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 26px rgba(124, 208, 104, 0.85);
 }
