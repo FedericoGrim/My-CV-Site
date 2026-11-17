@@ -95,6 +95,20 @@ describe("ContactPopup phone entry", () => {
     vi.useRealTimers();
   });
 
+  it("falls back to the legacy copy command when the clipboard API refuses", async () => {
+    const execCommand = vi.fn().mockReturnValue(true);
+    Object.defineProperty(document, "execCommand", { value: execCommand, configurable: true });
+    const { user } = renderPopup();
+    vi.spyOn(navigator.clipboard, "writeText").mockRejectedValue(new Error("denied"));
+    await user.hover(screen.getByRole("link", { name: "Phone" }));
+
+    await user.click(screen.getByRole("button", { name: /copy number/i }));
+
+    expect(await screen.findByRole("button", { name: /copied/i })).toBeInTheDocument();
+    expect(execCommand).toHaveBeenCalledWith("copy");
+    delete (document as { execCommand?: unknown }).execCommand;
+  });
+
   it("tells the visitor when the number could not be copied", async () => {
     const { user } = renderPopup();
     vi.spyOn(navigator.clipboard, "writeText").mockRejectedValue(new Error("denied"));
