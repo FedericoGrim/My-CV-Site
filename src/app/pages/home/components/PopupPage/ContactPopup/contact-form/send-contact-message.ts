@@ -1,3 +1,6 @@
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+const SUBJECT_PREFIX = "[CV site]";
+
 export interface OutgoingContactMessage {
   senderEmail: string;
   subject: string;
@@ -16,8 +19,48 @@ export interface SendContactMessageOptions {
 }
 
 export async function sendContactMessage(
-  _message: OutgoingContactMessage,
-  _options: SendContactMessageOptions,
+  message: OutgoingContactMessage,
+  { accessKey, fetchImpl = fetch }: SendContactMessageOptions,
 ): Promise<SendContactMessageResult> {
-  return { status: "sent" };
+  if (!accessKey) {
+    return { status: "failed", reason: "not-configured" };
+  }
+
+  let response: Response;
+  try {
+    response = await fetchImpl(FORM_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: accessKey,
+        email: message.senderEmail,
+        subject: `${SUBJECT_PREFIX} ${message.subject}`,
+        message: withLinks(message.message, message.linkUrls),
+        botcheck: message.honeypot,
+      }),
+    });
+  } catch {
+    return { status: "failed", reason: "network" };
+  }
+
+  return (await isAccepted(response)) ? { status: "sent" } : { status: "failed", reason: "rejected" };
+}
+
+function withLinks(message: string, linkUrls: string[]): string {
+  if (linkUrls.length === 0) {
+    return message;
+  }
+  return `${message}\n\nLinks:\n${linkUrls.map((url) => `- ${url}`).join("\n")}`;
+}
+
+async function isAccepted(response: Response): Promise<boolean> {
+  if (!response.ok) {
+    return false;
+  }
+  try {
+    const body = await response.json();
+    return body?.success === true;
+  } catch {
+    return false;
+  }
 }
