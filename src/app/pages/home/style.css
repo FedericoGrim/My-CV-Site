@@ -141,12 +141,12 @@
   border: 2px solid rgba(124, 208, 104, 0.95);
   color: #7cd068;
   box-shadow: 0 0 16px rgba(124, 208, 104, 0.55);
-  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.icon-button:hover {
-  transform: scale(1.12);
+.icon-item:hover .icon-button,
+.icon-item:focus-visible .icon-button {
   background: rgba(124, 208, 104, 0.12);
   border-color: rgba(124, 208, 104, 1);
   box-shadow: 0 0 26px rgba(124, 208, 104, 0.85);
