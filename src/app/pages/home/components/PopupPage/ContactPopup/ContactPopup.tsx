@@ -10,6 +10,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { ContactForm } from "./contact-form/ContactForm";
+import { CopyButton } from "./CopyButton";
 import { OWNER_EMAIL } from "./contact-form/owner-email";
 import { sendContactMessage, type OutgoingContactMessage } from "./contact-form/send-contact-message";
 import "./contactpopup.css";
@@ -24,13 +25,16 @@ interface ContactPopupProps { icon?: React.ReactNode; onClose: () => void }
 interface Entry {
   name: string;
   value: string;
-  href: string;
+  href?: string;
   icon: React.ReactNode;
   description: string;
   bestFor: string;
   action: string;
   opensComposeForm?: boolean;
+  copyText?: string;
 }
+
+const isExternal = (href?: string) => href?.startsWith("http") ?? false;
 
 const folders: { name: string; entries: Entry[] }[] = [
   {
@@ -38,8 +42,8 @@ const folders: { name: string; entries: Entry[] }[] = [
     entries: [
       { name: "Email", value: OWNER_EMAIL, href: `mailto:${OWNER_EMAIL}`, icon: <MailOutlineIcon />,
         description: "Standard issue mail terminal. The most reliable way to reach me for anything that needs a written trace.", bestFor: "Job offers, collaborations", action: "Compose message", opensComposeForm: true },
-      { name: "Phone", value: "+39 348 342 3417", href: "tel:+393483423417", icon: <PhoneIcon />,
-        description: "Direct voice line. Works best when something is quick or urgent.", bestFor: "Quick calls", action: "Start call" },
+      { name: "Phone", value: "+39 348 342 3417", icon: <PhoneIcon />,
+        description: "Direct voice line. Works best when something is quick or urgent.", bestFor: "Quick calls", action: "Copy number", copyText: "+39 348 342 3417" },
       { name: "Telegram", value: "@FedeGrim", href: "https://t.me/FedeGrim", icon: <TelegramIcon />,
         description: "Encrypted courier service across the wasteland. Fast and informal.", bestFor: "Quick messages", action: "Open chat" },
     ],
@@ -75,10 +79,14 @@ export function ContactPopup({ onClose }: ContactPopupProps) {
   };
 
   const handleEntryClick = (event: React.MouseEvent, selected: Entry) => {
-    if (!selected.opensComposeForm) return;
-    event.preventDefault();
-    setEntry(selected);
-    setIsComposing(true);
+    if (selected.opensComposeForm) {
+      event.preventDefault();
+      setEntry(selected);
+      setIsComposing(true);
+    } else if (!selected.href) {
+      event.preventDefault();
+      selectEntry(selected);
+    }
   };
 
   return (
@@ -97,8 +105,8 @@ export function ContactPopup({ onClose }: ContactPopupProps) {
                   {folder.entries.map((e) => (
                     <li key={e.name}>
                       <a
-                        href={e.href}
-                        target={e.href.startsWith("http") ? "_blank" : undefined}
+                        href={e.href ?? "#"}
+                        target={isExternal(e.href) ? "_blank" : undefined}
                         rel="noopener noreferrer"
                         className={e === entry ? "selected" : ""}
                         onMouseEnter={() => selectEntry(e)}
@@ -130,11 +138,13 @@ export function ContactPopup({ onClose }: ContactPopupProps) {
                   <button type="button" className="pip-action" onClick={() => setIsComposing(true)}>
                     [ {entry.action} ]
                   </button>
+                ) : entry.copyText ? (
+                  <CopyButton textToCopy={entry.copyText} label={entry.action} />
                 ) : (
                   <a
                     className="pip-action"
                     href={entry.href}
-                    target={entry.href.startsWith("http") ? "_blank" : undefined}
+                    target={isExternal(entry.href) ? "_blank" : undefined}
                     rel="noopener noreferrer"
                   >
                     [ {entry.action} ]
