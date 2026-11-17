@@ -6,7 +6,6 @@ const outgoingMessage: OutgoingContactMessage = {
   subject: "Job offer",
   message: "Hello Federico",
   linkUrls: [],
-  honeypot: "",
 };
 
 const accessKey = "test-access-key";
@@ -56,14 +55,6 @@ describe("sendContactMessage", () => {
     expect(sentPayload(fetchImpl).message).toBe(
       "Hello Federico\n\nLinks:\n- https://example.com/a\n- https://example.com/b",
     );
-  });
-
-  it("forwards the honeypot value as botcheck", async () => {
-    const fetchImpl = fetchReturning({});
-
-    await sendContactMessage({ ...outgoingMessage, honeypot: "spam" }, { accessKey, fetchImpl });
-
-    expect(sentPayload(fetchImpl).botcheck).toBe("spam");
   });
 
   it("reports success when the service accepts the message", async () => {

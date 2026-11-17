@@ -6,7 +6,6 @@ export interface OutgoingContactMessage {
   subject: string;
   message: string;
   linkUrls: string[];
-  honeypot: string;
 }
 
 export type SendContactMessageResult =
@@ -36,7 +35,6 @@ export async function sendContactMessage(
         email: message.senderEmail,
         subject: `${SUBJECT_PREFIX} ${message.subject}`,
         message: withLinks(message.message, message.linkUrls),
-        botcheck: message.honeypot,
       }),
     });
   } catch {
